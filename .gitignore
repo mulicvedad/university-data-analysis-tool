@@ -1,3 +1,27 @@
+
+target/
+web-app/node_modules/
+!.mvn/wrapper/maven-wrapper.jar
+.metadata
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### Sublime Text ###
+*.sublime-project
+*.sublime-workspace
+
 # Compiled class file
 *.class
 
@@ -15,8 +39,11 @@
 *.war
 *.ear
 *.zip
+
+web-app/npm-debug.log*
 *.tar.gz
 *.rar
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+/bin/
