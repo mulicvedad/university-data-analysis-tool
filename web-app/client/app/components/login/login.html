@@ -12,14 +12,14 @@
                         <input type="text" id="username" name="username" placeholder="Korisničko ime" ng-model="$ctrl.user.username" ng-pattern="/^[a-z][a-z0-9]{2,16}$/i" required autofocus>
                         <label for="username">Korisničko ime</label>
                         <div class="user-errors" ng-show="$ctrl.form.$submitted">
-						    <!--span class="error" ng-show="$ctrl.form.username.$error.required">Korisničko ime je obavezno.</span-->
+						    <span class="error" ng-show="$ctrl.form.username.$error.required">Korisničko ime je obavezno.</span>
 					    </div>
                     </div>
                     <div class="input-field">
                         <input type="password" id="password" name="password" placeholder="Lozinka" ng-model="$ctrl.user.password" minlength="8" required>
                         <label for="password">Lozinka</label>
                             <div class="user-errors" ng-show="$ctrl.form.$submitted">
-                                <!--span class="error" ng-show="$ctrl.form.password.$error.required">Lozinka je obavezna.</span-->
+                                <span class="error" ng-show="$ctrl.form.password.$error.required">Lozinka je obavezna.</span>
 					        </div>
                     </div>
                     <button class="btn" type="submit">Prijavi se</button>
