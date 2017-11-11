@@ -1,20 +1,23 @@
 class LoginController {
-    static $inject = ["accountService", "$state"];
+    static $inject = ["accountService", "$state", "swalService"];
 
-    constructor(accountService, $state, sessionService) {
+    constructor(accountService, $state, swalService) {
         this.accountService = accountService;
         this.$state = $state;
+        this.swalService = swalService;
         this.error = "";
         this.user = {};
     }
 
     login() {
-        if (!this.form.$valid) {
+        if (!this.form.$valid) {            
     		return;
     	}
         this.accountService.login(this.user).then((response) => {
             this.$state.go("home");
-        }, (error) => {});
+        }, (error) => {
+            this.swalService.displayError("Neispravni podaci za prijavu.");
+        });
     }
 
 }
