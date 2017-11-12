@@ -1,5 +1,38 @@
-<blockquote style="text-align:center"> Efikasnost simuliranog hladzenja u zavisnosti od mubarek mjeseca </blockquote>
-<div style="width:100%">
-        <canvas id="line" class="chart chart-line" chart-data="$ctrl.data" chart-labels="$ctrl.labels" chart-series="$ctrl.series" chart-options="$ctrl.options" chart-dataset-override="$ctrl.datasetOverride" chart-click="$ctrl.onClick()">
-            </canvas>
+<h5 style="text-align:center;color:darkgray"> Overall analysis </h5>
+<div class="row">
+    <div class="col s6">
+        <div class="card grey lighten-5">
+            <div class="card-content">
+                <canvas id="bar" class="chart chart-bar" chart-data="$ctrl.data" chart-labels="$ctrl.labels" chart-series="$ctrl.series"></canvas>  
+            </div>
+        </div>
+        <p style="color:lightseagreen;text-align:center"> Student enrollment in last 5 academic years </p>         
+    </div>
+    <div class="col s6">
+            <div class="card grey lighten-5">
+                <div class="card-content">
+                        <canvas id="line" class="chart chart-line" chart-data="$ctrl.data" chart-labels="$ctrl.labels" chart-series="$ctrl.series" chart-options="$ctrl.options"
+                            chart-dataset-override="datasetOverride">
+                        </canvas>
+                </div>
+            </div>
+            <p style="color:lightseagreen;text-align:center"> Student enrollment in last 5 academic years </p> 
+            
+    </div>
 </div>
+<div class="row">
+        <div class="col s6">
+            <div class="card grey lighten-5">
+                <div class="card-content">
+                    <canvas id="bar" class="chart chart-bar" chart-data="$ctrl.data" chart-labels="$ctrl.labels" chart-series="$ctrl.series"></canvas>   
+                </div>
+            </div>
+        </div>
+        <div class="col s6">
+                <div class="card grey lighten-5">
+                    <div class="card-content">
+                        <canvas id="bar" class="chart chart-bar" chart-data="$ctrl.data" chart-labels="$ctrl.labels" chart-series="$ctrl.series"></canvas>   
+                    </div>
+                </div>
+        </div>
+    </div>

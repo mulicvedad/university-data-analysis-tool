@@ -6,6 +6,6 @@ let loginComponent = {
     bindings: {},
     template,
     controller
-  };
+};
   
   export default loginComponent;

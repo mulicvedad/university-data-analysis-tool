@@ -1,36 +1,36 @@
 class HomeController {
-    constructor() {
-        this.labels = ["January", "February", "March", "April", "May", "June", "July"];
-        this.series = ['Series A', 'Series B'];
+    static $inject = ["studentService"];
+
+    constructor(studentService) {
+        this.studentService = studentService;
+        this.setupEnrollmentChart();
+        //this.loadData();
+    }
+
+    setupEnrollmentChart() {
+        this.labels = ["2013/14", "2014/15", "2015/16", "2016/17", "2017/18"];
+        this.series = ['Redovni', 'Samofinansirajuci'];
         this.data = [
-          [65, 59, 80, 81, 56, 55, 40],
-          [28, 48, 40, 19, 86, 27, 90]
+            [100, 150, 120, 95, 150 ],
+            [360, 381, 380, 453, 462]
         ];
         
-        this.options = {
-          scales: {
-            yAxes: [
-              {
-                id: 'y-axis-1',
-                type: 'linear',
-                display: true,
-                position: 'left'
-              },
-              {
-                id: 'y-axis-2',
-                type: 'linear',
-                display: true,
-                position: 'right'
-              }
-            ]
-          }
-        };
-
     }
-    onClick(points, evt) {
-        console.log("MISLIS");
-        console.log(points, evt);
-    };
+
+    loadData() {
+        this.loadEnrollmentData();
+    }
+
+    loadEnrollmentData(numYears = 5) {
+        this.studentService.report(5).then((response) => {
+            console.log("SUCCES");                
+            this.data = response.data;
+        }, (error) => {
+            console.log("Greska:" + error);
+        });
+    }
+
 }
+
 
 export default HomeController;
