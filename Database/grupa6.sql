@@ -120,7 +120,7 @@ DROP TABLE IF EXISTS `department_dim`;
 CREATE TABLE `department_dim` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `department_id` int(10) NOT NULL,
-  `title` int(10) DEFAULT NULL,
+  `title` varchar(255) DEFAULT NULL,
   `start_date` date NOT NULL,
   `end_date` date DEFAULT NULL,
   PRIMARY KEY (`id`),
@@ -266,7 +266,7 @@ DROP TABLE IF EXISTS `semester_dim`;
 CREATE TABLE `semester_dim` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `semester_id` int(10) NOT NULL,
-  `title` int(10) DEFAULT NULL,
+  `title` varchar(255) DEFAULT NULL,
   `start_date` date NOT NULL,
   `end_date` date DEFAULT NULL,
   PRIMARY KEY (`id`),
@@ -364,8 +364,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'Admin','Adminkovic','admin','5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8','admin@etf.unsa.ba','2017-11-11 14:07:31',1),
-						  (2,'Neko','Nekic','neko','5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8','neko@etf.unsa.ba','2017-11-11 14:07:31',2);
+INSERT INTO `user` VALUES (1,'Admin','Adminkovic','admin','5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8','admin@etf.unsa.ba','2017-11-11 14:07:31',1),(2,'Neko','Nekic','neko','5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8','neko@etf.unsa.ba','2017-11-11 14:07:31',2);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -378,4 +377,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-11-11 16:02:39
+-- Dump completed on 2017-11-12 18:31:05
