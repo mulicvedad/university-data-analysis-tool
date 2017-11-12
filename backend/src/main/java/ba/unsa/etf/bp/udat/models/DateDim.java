@@ -2,10 +2,7 @@ package ba.unsa.etf.bp.udat.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Collection;
@@ -14,6 +11,7 @@ import java.util.Date;
 /**
  * Created by Edin on 12.11.2017..
  */
+@Entity
 public class DateDim extends BaseModel{
 
     private Date date;

@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.Basic;
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -13,6 +14,7 @@ import java.util.Date;
 /**
  * Created by Edin on 12.11.2017..
  */
+@Entity
 public class SemesterDim extends BaseModel {
 
     private int semesterId;

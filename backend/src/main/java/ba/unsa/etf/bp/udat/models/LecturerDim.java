@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.Basic;
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
@@ -15,6 +16,7 @@ import java.util.Collection;
 /**
  * Created by Edin on 12.11.2017..
  */
+@Entity
 public class LecturerDim extends BaseModel{
 
     private int lecturerZamgerUserId;

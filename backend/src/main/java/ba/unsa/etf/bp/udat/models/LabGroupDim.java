@@ -20,15 +20,15 @@ public class LabGroupDim extends BaseModel{
     private String title;
     private String course;
     private String department;
-    private int accademicYear;
+    private int academicYear;
     private Collection<StudentFact> students;
 
-    public LabGroupDim(int labGroupId, String title, String course, String department, int accademicYear) {
+    public LabGroupDim(int labGroupId, String title, String course, String department, int academicYear) {
         this.labGroupId = labGroupId;
         this.title = title;
         this.course = course;
         this.department = department;
-        this.accademicYear = accademicYear;
+        this.academicYear = academicYear;
     }
 
     public LabGroupDim() {}
@@ -79,14 +79,14 @@ public class LabGroupDim extends BaseModel{
     }
 
     @Basic
-    @Column(name = "accademic_year", nullable = false)
+    @Column(name = "academic_year", nullable = false)
     @Size(min = 4, max = 255)
-    public int getAccademicYear() {
-        return accademicYear;
+    public int getAcademicYear() {
+        return academicYear;
     }
 
-    public void setAccademicYear(int accademicYear) {
-        this.accademicYear = accademicYear;
+    public void setAcademicYear(int academicYear) {
+        this.academicYear = academicYear;
     }
 
     @OneToMany(mappedBy = "lab_group_dim")

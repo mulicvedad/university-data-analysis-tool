@@ -25,20 +25,20 @@ public class StudentFact extends BaseModel{
     private String username;
     private int gender;
     private Date birthdate;
-    private LabGroupDim labGroupDim;
+    private LabGroupDim lab_group_dim;
     private DateDim enrollmentDate;
     private DateDim dissrollmentDate;
-    private DepartmentDim departmentDim;
+    private DepartmentDim department_dim;
     private DateDim graduationDate;
-    private SemesterDim semesterDim;
+    private SemesterDim semester_dim;
     private int studyYear;
     private boolean budget;
     private BigDecimal averageGrade;
 
     public StudentFact(int studentUserId, String jmbg, String firstName, String lastName,
                        String email, String adress, String username, int gender,
-                       Date birthdate, LabGroupDim labGroupDim, DateDim enrollmentDate, DateDim dissrollmentDate,
-                       DepartmentDim departmentDim, DateDim graduationDate, SemesterDim semesterDim,
+                       Date birthdate, LabGroupDim lab_group_dim, DateDim enrollmentDate, DateDim dissrollmentDate,
+                       DepartmentDim department_dim, DateDim graduationDate, SemesterDim semester_dim,
                        int studyYear, boolean budget, BigDecimal averageGrade)
     {
         this.studentUserId = studentUserId;
@@ -50,12 +50,12 @@ public class StudentFact extends BaseModel{
         this.username = username;
         this.gender = gender;
         this.birthdate = birthdate;
-        this.labGroupDim = labGroupDim;
+        this.lab_group_dim = lab_group_dim;
         this.enrollmentDate = enrollmentDate;
         this.dissrollmentDate = dissrollmentDate;
-        this.departmentDim = departmentDim;
+        this.department_dim = department_dim;
         this.graduationDate = graduationDate;
-        this.semesterDim = semesterDim;
+        this.semester_dim = semester_dim;
         this.studyYear = studyYear;
         this.budget = budget;
         this.averageGrade = averageGrade;
@@ -119,7 +119,7 @@ public class StudentFact extends BaseModel{
     }
 
     @Basic
-    @Column(name = "adress", nullable = false)
+    @Column(name = "address", nullable = false)
     @Size(min = 4, max = 128)
     public String getAdress() {
         return adress;
@@ -152,12 +152,12 @@ public class StudentFact extends BaseModel{
     }
     @ManyToOne
     @JoinColumn(name = "lab_group_dim_id", referencedColumnName = "id", nullable = false)
-    public LabGroupDim getLabGroupDim() {
-        return labGroupDim;
+    public LabGroupDim getLab_group_dim() {
+        return lab_group_dim;
     }
 
-    public void setLabGroupDim(LabGroupDim labGroupDim) {
-        this.labGroupDim = labGroupDim;
+    public void setLab_group_dim(LabGroupDim lab_group_dim) {
+        this.lab_group_dim = lab_group_dim;
     }
 
     @ManyToOne
@@ -181,13 +181,13 @@ public class StudentFact extends BaseModel{
     }
 
     @ManyToOne
-    @JoinColumn(name = "departmend_dim_id", referencedColumnName = "id", nullable = false)
-    public DepartmentDim getDepartmentDim() {
-        return departmentDim;
+    @JoinColumn(name = "department_dim_id", referencedColumnName = "id", nullable = false)
+    public DepartmentDim getDepartment_dim() {
+        return department_dim;
     }
 
-    public void setDepartmentDim(DepartmentDim departmentDim) {
-        this.departmentDim = departmentDim;
+    public void setDepartment_dim(DepartmentDim department_dim) {
+        this.department_dim = department_dim;
     }
 
     @ManyToOne
@@ -202,12 +202,12 @@ public class StudentFact extends BaseModel{
 
     @ManyToOne
     @JoinColumn(name = "current_semester_dim_id", referencedColumnName = "id", nullable = false)
-    public SemesterDim getSemesterDim() {
-        return semesterDim;
+    public SemesterDim getSemester_dim() {
+        return semester_dim;
     }
 
-    public void setSemesterDim(SemesterDim semesterDim) {
-        this.semesterDim = semesterDim;
+    public void setSemester_dim(SemesterDim semester_dim) {
+        this.semester_dim = semester_dim;
     }
 
     @Basic

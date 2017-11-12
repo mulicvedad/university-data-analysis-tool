@@ -1,30 +1,28 @@
 package ba.unsa.etf.bp.udat.models;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 /**
  * Created by Edin on 12.11.2017..
  */
+@Entity
 public class ClassFact extends BaseModel {
 
     private int classId;
-    private CourseDim course;
-    private DepartmentDim department;
-    private DateDim date;
-    private LecturerDim lecturer;
+    private CourseDim course_dim;
+    private DepartmentDim department_dim;
+    private DateDim date_dim;
+    private LecturerDim lecturer_dim;
     private int attendance;
 
-    public ClassFact(int classId, CourseDim course, DepartmentDim department, DateDim date, LecturerDim lecturer, int attendance) {
+    public ClassFact(int classId, CourseDim course_dim, DepartmentDim department_dim, DateDim date, LecturerDim lecturer_dim, int attendance) {
         this.classId = classId;
-        this.course = course;
-        this.department = department;
-        this.date = date;
-        this.lecturer = lecturer;
+        this.course_dim = course_dim;
+        this.department_dim = department_dim;
+        this.date_dim = date;
+        this.lecturer_dim = lecturer_dim;
         this.attendance = attendance;
     }
     public ClassFact() {}
@@ -43,42 +41,42 @@ public class ClassFact extends BaseModel {
 
     @ManyToOne
     @JoinColumn(name = "course_dim_id", referencedColumnName = "id", nullable = false)
-    public CourseDim getCourse() {
-        return course;
+    public CourseDim getCourse_dim() {
+        return course_dim;
     }
 
-    public void setCourse(CourseDim course) {
-        this.course = course;
+    public void setCourse_dim(CourseDim course_dim) {
+        this.course_dim = course_dim;
     }
 
     @ManyToOne
     @JoinColumn(name = "department_dim_id", referencedColumnName = "id", nullable = false)
-    public DepartmentDim getDepartment() {
-        return department;
+    public DepartmentDim getDepartment_dim() {
+        return department_dim;
     }
 
-    public void setDepartment(DepartmentDim department) {
-        this.department = department;
+    public void setDepartment_dim(DepartmentDim department_dim) {
+        this.department_dim = department_dim;
     }
 
     @ManyToOne
     @JoinColumn(name = "date_dim_id", referencedColumnName = "id", nullable = false)
-    public DateDim getDate() {
-        return date;
+    public DateDim getDate_dim() {
+        return date_dim;
     }
 
-    public void setDate(DateDim date) {
-        this.date = date;
+    public void setDate_dim(DateDim date_dim) {
+        this.date_dim = date_dim;
     }
 
     @ManyToOne
     @JoinColumn(name = "lecturer_dim_id", referencedColumnName = "id", nullable = false)
-    public LecturerDim getLecturer() {
-        return lecturer;
+    public LecturerDim getLecturer_dim() {
+        return lecturer_dim;
     }
 
-    public void setLecturer(LecturerDim lecturer) {
-        this.lecturer = lecturer;
+    public void setLecturer_dim(LecturerDim lecturer_dim) {
+        this.lecturer_dim = lecturer_dim;
     }
 
     @Basic
