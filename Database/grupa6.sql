@@ -98,7 +98,7 @@ CREATE TABLE `date_dim` (
   `day_of_week` int(10) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `date_dim` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -107,7 +107,7 @@ CREATE TABLE `date_dim` (
 
 LOCK TABLES `date_dim` WRITE;
 /*!40000 ALTER TABLE `date_dim` DISABLE KEYS */;
-INSERT INTO `date_dim` VALUES (1,'2013-09-09',2013,6,6,6,6),(2,'2012-08-08',2012,8,8,8,8);
+INSERT INTO `date_dim` VALUES (1,'2013-09-09',2013,6,6,6,6),(2,'2012-08-08',2012,8,8,8,8),(3,'2015-10-10',2015,10,10,10,10),(4,'2016-06-06',2016,6,6,6,6),(5,'2020-02-02',2020,2,2,2,2);
 /*!40000 ALTER TABLE `date_dim` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -328,7 +328,7 @@ CREATE TABLE `student_fact` (
   CONSTRAINT `FKstudent_fa698025` FOREIGN KEY (`dissrollment_date_dim_id`) REFERENCES `date_dim` (`id`),
   CONSTRAINT `FKstudent_fa734639` FOREIGN KEY (`department_dim_id`) REFERENCES `department_dim` (`id`),
   CONSTRAINT `FKstudent_fa871910` FOREIGN KEY (`current_semester_dim_id`) REFERENCES `semester_dim` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -337,7 +337,7 @@ CREATE TABLE `student_fact` (
 
 LOCK TABLES `student_fact` WRITE;
 /*!40000 ALTER TABLE `student_fact` DISABLE KEYS */;
-INSERT INTO `student_fact` VALUES (1,123,'11111','Edin','Begic','ed@ef.com','31. juli','edobraca','1994-10-17',0,1,1,NULL,1,NULL,1,1,1,8),(2,345,'2345','Vedad','Mulic','ved@ef.com','kg','sovedeckic','1994-01-01',0,1,2,NULL,1,NULL,1,1,1,9);
+INSERT INTO `student_fact` VALUES (1,123,'11111','Edin','Begic','ed@ef.com','31. juli','edobraca','1994-10-17',0,1,1,5,1,NULL,1,1,1,8),(2,345,'2345','Vedad','Mulic','ved@ef.com','kg','sovedeckic','1994-01-01',0,1,1,5,1,NULL,1,1,1,9),(3,456,'2345','Marko','Popovic','mar@etf.com','afas','marko','1994-01-02',0,1,1,3,1,NULL,1,1,1,5),(4,789,'2345','Velid','Spaho','dfa@eg.com','asd','spejho','1993-01-03',0,1,1,4,1,NULL,1,1,1,8);
 /*!40000 ALTER TABLE `student_fact` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -382,4 +382,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-11-12 20:05:41
+-- Dump completed on 2017-11-12 22:36:59

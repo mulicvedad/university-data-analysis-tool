@@ -1,5 +1,6 @@
 package ba.unsa.etf.bp.udat.models;
 
+import com.sun.istack.internal.Nullable;
 import org.hibernate.validator.constraints.Email;
 
 import javax.persistence.*;
@@ -171,7 +172,7 @@ public class StudentFact extends BaseModel{
     }
 
     @ManyToOne
-    @JoinColumn(name = "dissrollment_date_dim_id", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "dissrollment_date_dim_id", referencedColumnName = "id")
     public DateDim getDissrollmentDate() {
         return dissrollmentDate;
     }
