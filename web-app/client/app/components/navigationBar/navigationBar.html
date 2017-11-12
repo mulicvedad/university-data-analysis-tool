@@ -1,0 +1,30 @@
+<nav>
+    <div class="nav-wrapper blue lighten-2">
+        <a ui-sref="home" class="brand-logo">UDAT</a>
+        <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+        <ul class="right hide-on-med-and-down">
+            <li><a ui-sref="home">Početna</a></li>
+            <li><a ui-sref="home">Studenti</a></li>
+            <li><a ui-sref="home">Nastava</a></li>
+            <li><a ui-sref="home">Ispiti</a></li>
+            <li><a ui-sref="home">Predikcije</a></li>
+            <li><a ng-click="$ctrl.logout()">Odjavi se</a></li>
+        </ul>
+        <ul class="side-nav" id="nav-mobile">
+            <li><a ui-sref="home">Početna</a></li>
+            <li><a ui-sref="home">Studenti</a></li>
+            <li><a ui-sref="home">Nastava</a></li>
+            <li><a ui-sref="home">Ispiti</a></li>
+            <li><a ui-sref="home">Predikcije</a></li>
+            <li><a ng-click="$ctrl.logout()">Odjavi se</a></li>
+        </ul>
+    </div>
+</nav>
+
+<script>
+$(document).ready(function() {
+    $('.button-collapse').sideNav({
+        closeOnClick: true
+    });
+});
+</script>
