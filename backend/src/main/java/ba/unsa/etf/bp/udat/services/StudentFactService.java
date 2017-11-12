@@ -15,6 +15,7 @@ public class StudentFactService extends BaseService<StudentFact, StudentFactRepo
     public Collection<StudentFact> filterByFreshmen() {
         return repository.filterByFreshmen();
     }
+    public int filterByAcademicYear(int year_value) {
         return repository.filterByAcademicYear(year_value);
     }
 
