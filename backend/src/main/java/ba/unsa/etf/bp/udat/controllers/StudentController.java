@@ -26,6 +26,11 @@ public class StudentController extends BaseController<StudentFact, StudentFactSe
     public int filterByAcademicYear(@RequestParam("year_value") int year_value) {
         return service.filterByAcademicYear(year_value);
     }
+    @ResponseBody
+    @GetMapping("/registered_students")
+    public int filterByAcademicYearAllStudents(@RequestParam("year_value") int year_value) {
+        return service.filterByAcademicYearAllStudents(year_value);
+    }
 
 
 }

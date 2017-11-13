@@ -16,8 +16,12 @@ public interface StudentFactRepository  extends PagingAndSortingRepository<Stude
     @Query("Select s from StudentFact s where s.enrollmentDate.date = s.semester_dim.startDate")
     Collection<StudentFact> filterByFreshmen();
 
-    @Query("SELECT  COUNT (DISTINCT s.firstName) FROM StudentFact s WHERE " +
+    @Query("SELECT  COUNT (DISTINCT s.id) FROM StudentFact s WHERE " +
+            "(s.enrollmentDate.year = :year_value)")
+    int filterByAcademicYear(@Param("year_value") int year_value);
+    @Query("SELECT  COUNT (DISTINCT s.id) FROM StudentFact s WHERE " +
             "(s.enrollmentDate.year <= :year_value) AND " +
             "(s.dissrollmentDate IS NULL OR s.dissrollmentDate.year >= :year_value)")
-    int filterByAcademicYear(@Param("year_value") int year_value);
+    int filterByAcademicYearAllStudents(@Param("year_value") int year_value);
+
 }

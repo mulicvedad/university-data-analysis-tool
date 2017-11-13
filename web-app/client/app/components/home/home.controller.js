@@ -41,12 +41,21 @@ class HomeController {
         for (var i = 0; i < numYears; i++) { 
             tmp = this.currentAcademicYear - numYears + 1 + i;
             this.enrollmentForYear(i, tmp);
+            this.registeredStudentsForYear(i,tmp);
         }   
     }
-
+    
     enrollmentForYear(idx, year) {
         this.studentService.enrollmentReport(year).then((response) => {
-            this.data[idx] = response.data;            
+            this.data[idx] = response.data; 
+        }, (error) => {
+            console.log("Greska: " + error);
+        });
+    }
+    registeredStudentsForYear(idx, year)
+    {
+        this.studentService.registeredStudentsReport(year).then((response) => {
+            this.data2[idx] = response.data;     
         }, (error) => {
             console.log("Greska: " + error);
         });

@@ -1,8 +1,5 @@
 package ba.unsa.etf.bp.udat.models;
-
-import com.sun.istack.internal.Nullable;
 import org.hibernate.validator.constraints.Email;
-
 import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
