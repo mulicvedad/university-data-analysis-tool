@@ -15,9 +15,7 @@ class LoginController {
     		return;
     	}
         this.accountService.login(this.user).then((response) => {
-            console.log("Unisao u login: " + response.data);
             this.sessionService.startSession(response.data);
-            console.log("poslje");            
             this.$state.go("home");
         }, (error) => {
             this.swalService.displayError("Neispravni podaci za prijavu.");

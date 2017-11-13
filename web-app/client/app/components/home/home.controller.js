@@ -3,16 +3,31 @@ class HomeController {
 
     constructor(studentService) {
         this.studentService = studentService;
+        this.currentAcademicYear = 2017;
         this.setupEnrollmentChart();
-        //this.loadData();
+        this.loadData();
     }
 
     setupEnrollmentChart() {
         this.labels = ["2013/14", "2014/15", "2015/16", "2016/17", "2017/18"];
-        this.series = ['Redovni', 'Samofinansirajuci'];
+        this.series = ['Redovni'];
+        this.options = {
+            scales: {
+              yAxes: [
+                {
+                  id: 'y-axis-1',
+                  type: 'linear',
+                  display: true,
+                  position: 'left'
+                }
+              ]
+            }
+        };
         this.data = [
-            [100, 150, 120, 95, 150 ],
-            [360, 381, 380, 453, 462]
+            100, 150, 120, 95, 150 
+        ];
+        this.data2 = [
+            100, 150, 120, 95, 150 
         ];
         
     }
@@ -22,14 +37,20 @@ class HomeController {
     }
 
     loadEnrollmentData(numYears = 5) {
-        this.studentService.report(5).then((response) => {
-            console.log("SUCCES");                
-            this.data = response.data;
-        }, (error) => {
-            console.log("Greska:" + error);
-        });
+        var tmp = 0;
+        for (var i = 0; i < numYears; i++) { 
+            tmp = this.currentAcademicYear - numYears + 1 + i;
+            this.enrollmentForYear(i, tmp);
+        }   
     }
 
+    enrollmentForYear(idx, year) {
+        this.studentService.enrollmentReport(year).then((response) => {
+            this.data[idx] = response.data;            
+        }, (error) => {
+            console.log("Greska: " + error);
+        });
+    }
 }
 
 

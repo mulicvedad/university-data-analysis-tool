@@ -5,6 +5,7 @@ let homeComponent = {
     restrict: 'E',
     bindings: {},
     template,
+   // controllerAs: 'mojctrl',    
     controller
 };
 

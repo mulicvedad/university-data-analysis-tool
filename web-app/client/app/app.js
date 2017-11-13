@@ -5,6 +5,7 @@ import Components from './components/components';
 import AppComponent from './app.component';
 import env from './env';
 import Services from './services/services';
+import authInterceptor from './interceptors/auth.interceptor';
 
 angular.module('app', [
     uiRouter,
@@ -19,5 +20,6 @@ angular.module('app', [
     // #how-to-configure-your-server-to-work-with-html5mode
     $qProvider.errorOnUnhandledRejections(false);
     $locationProvider.html5Mode(true).hashPrefix('!');
+    $httpProvider.interceptors.push(authInterceptor);
 })
 .component('app', AppComponent);
