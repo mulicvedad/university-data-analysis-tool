@@ -7,9 +7,6 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Collection;
 
-/**
- * Created by Edin on 11.11.2017..
- */
 @Entity
 @Table(name="roles")
 public class Role extends BaseModel {

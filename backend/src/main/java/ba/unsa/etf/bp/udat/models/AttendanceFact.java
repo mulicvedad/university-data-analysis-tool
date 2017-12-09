@@ -3,40 +3,27 @@ package ba.unsa.etf.bp.udat.models;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.math.BigDecimal;
 
-/**
- * Created by Edin on 12.11.2017..
- */
 @Entity
-public class ClassFact extends BaseModel {
+public class AttendanceFact extends BaseModel {
 
-    private int classId;
     private CourseDim course_dim;
     private DepartmentDim department_dim;
-    private DateDim date_dim;
+    private TimeDim time_dim;
     private LecturerDim lecturer_dim;
-    private int attendance;
+    private Integer attendance;
+    private BigDecimal attendance_percentage;
 
-    public ClassFact(int classId, CourseDim course_dim, DepartmentDim department_dim, DateDim date, LecturerDim lecturer_dim, int attendance) {
-        this.classId = classId;
+    public AttendanceFact(CourseDim course_dim, DepartmentDim department_dim, TimeDim time_dim, LecturerDim lecturer_dim, Integer attendance, BigDecimal attendance_percentage) {
         this.course_dim = course_dim;
         this.department_dim = department_dim;
-        this.date_dim = date;
+        this.time_dim = time_dim;
         this.lecturer_dim = lecturer_dim;
         this.attendance = attendance;
+        this.attendance_percentage = attendance_percentage;
     }
-    public ClassFact() {}
-
-    @Basic
-    @Column(name = "class_id", nullable = false)
-    @Size(max = 10) @NotNull
-    public int getClassId() {
-        return classId;
-    }
-
-    public void setClassId(int classId) {
-        this.classId = classId;
-    }
+    public AttendanceFact() {}
 
 
     @ManyToOne
@@ -60,13 +47,13 @@ public class ClassFact extends BaseModel {
     }
 
     @ManyToOne
-    @JoinColumn(name = "date_dim_id", referencedColumnName = "id", nullable = false)
-    public DateDim getDate_dim() {
-        return date_dim;
+    @JoinColumn(name = "time_dim_id", referencedColumnName = "id", nullable = false)
+    public TimeDim getTime_dim() {
+        return time_dim;
     }
 
-    public void setDate_dim(DateDim date_dim) {
-        this.date_dim = date_dim;
+    public void setTime_dim(TimeDim time_dim) {
+        this.time_dim = time_dim;
     }
 
     @ManyToOne
@@ -88,5 +75,15 @@ public class ClassFact extends BaseModel {
 
     public void setAttendance(int attendance) {
         this.attendance = attendance;
+    }
+
+    @Basic
+    @Column(name = "attendance_percentage", nullable = false)
+    public BigDecimal getAttendance_percentage() {
+        return attendance_percentage;
+    }
+
+    public void setAttendance_percentage(BigDecimal attendance_percentage) {
+        this.attendance_percentage = attendance_percentage;
     }
 }

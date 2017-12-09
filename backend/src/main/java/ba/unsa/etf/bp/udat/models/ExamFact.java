@@ -4,27 +4,23 @@ import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import java.math.BigDecimal;
 
-/**
- * Created by Edin on 12.11.2017..
- */
 @Entity
 public class ExamFact extends BaseModel {
 
-    private int examId;
-    private DateDim date_dim;
+    private AcademicYearDim academic_year_dim;
+    private TimeDim time_dim;
     private SemesterDim semester_dim;
     private DepartmentDim department_dim;
     private CourseDim course_dim;
     private BigDecimal averagePoints;
-    private int turnout;
+    private Integer turnout;
 
-    public ExamFact(int examId, DateDim date_dim, SemesterDim semester_dim,
-                    DepartmentDim department_dim, CourseDim course_dim, BigDecimal averagePoints, int turnout) {
-        this.examId = examId;
-        this.date_dim = date_dim;
+    public ExamFact(AcademicYearDim academic_year_dim, TimeDim time_dim, SemesterDim semester_dim,
+                    DepartmentDim department_dim, CourseDim course_dim, BigDecimal averagePoints, Integer turnout) {
+        this.academic_year_dim = academic_year_dim;
+        this.time_dim = time_dim;
         this.semester_dim = semester_dim;
         this.department_dim = department_dim;
         this.course_dim = course_dim;
@@ -33,26 +29,21 @@ public class ExamFact extends BaseModel {
     }
     public ExamFact() {}
 
-    @Basic
-    @Column(name = "exam_id", nullable = false)
-    @Size(max = 10) @NotNull
-    public int getExamId() {
-        return examId;
-    }
 
+    @ManyToOne
+    @JoinColumn(name = "academic_year_dim_id", referencedColumnName = "id", nullable = false)
+    public AcademicYearDim getAcademic_year_dim() {return academic_year_dim;}
 
-    public void setExamId(int examId) {
-        this.examId = examId;
-    }
+    public void  setAcademic_year_dim(AcademicYearDim academic_year_dim) {this.academic_year_dim = academic_year_dim;}
 
     @ManyToOne
     @JoinColumn(name = "scheduled_date_dim_id", referencedColumnName = "id", nullable = false)
-    public DateDim getDate_dim() {
-        return date_dim;
+    public TimeDim getTime_dim() {
+        return time_dim;
     }
 
-    public void setDate_dim(DateDim date_dim) {
-        this.date_dim = date_dim;
+    public void setTime_dim(TimeDim time_dim) {
+        this.time_dim = time_dim;
     }
 
     @ManyToOne
@@ -99,12 +90,11 @@ public class ExamFact extends BaseModel {
 
     @Basic
     @Column(name = "turnout", nullable = false)
-    @Size(max = 10) @NotNull
-    public int getTurnout() {
+    public Integer getTurnout() {
         return turnout;
     }
 
-    public void setTurnout(int turnout) {
+    public void setTurnout(Integer turnout) {
         this.turnout = turnout;
     }
 }
