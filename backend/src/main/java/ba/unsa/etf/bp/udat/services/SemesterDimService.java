@@ -22,5 +22,11 @@ public class SemesterDimService extends BaseService<SemesterDim, SemesterDimRepo
         }
         return super.save(model);
     }
+    public SemesterDim findSemesterDim(Integer id) throws ServiceException
+    {
+        SemesterDim sd = repository.findSemesterDim(id);
+        return sd;
+    }
+
 
 }

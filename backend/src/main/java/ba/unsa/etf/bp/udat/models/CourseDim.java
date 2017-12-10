@@ -23,7 +23,12 @@ public class CourseDim extends BaseModel{
         this.courseId = courseId;
         this.title = title;
     }
-    public CourseDim() {}
+    public CourseDim(Integer id) {
+        this.setId((long) 0);
+        this.courseId = 0;
+        this.title = "Unknown";
+    }
+    public CourseDim(){}
 
     @Basic
     @Column(name = "course_id", nullable = false)

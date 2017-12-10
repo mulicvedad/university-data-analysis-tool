@@ -25,6 +25,12 @@ public class DepartmentDim extends BaseModel{
         this.departmentId = departmentId;
         this.title = title;
     }
+    public DepartmentDim(Integer id)
+    {
+        this.setId((long) 0);
+        this.departmentId = 0;
+        this.title = "Unknown";
+    }
     public DepartmentDim() {}
 
     @Basic

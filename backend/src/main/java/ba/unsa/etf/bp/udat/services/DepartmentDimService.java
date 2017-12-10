@@ -22,5 +22,11 @@ public class DepartmentDimService extends BaseService<DepartmentDim, DepartmentD
         }
         return super.save(model);
     }
+    public DepartmentDim findDepartmentDim(Integer id) throws ServiceException
+    {
+        DepartmentDim dd = repository.findDepartmentDim(id);
+        return dd;
+    }
+
 
 }

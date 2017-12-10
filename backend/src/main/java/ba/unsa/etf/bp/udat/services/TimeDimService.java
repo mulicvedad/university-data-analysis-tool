@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.sql.Time;
 import java.util.Collection;
+import java.util.Date;
 
 @Service
 public class TimeDimService extends BaseService<TimeDim,TimeDimRepository> {
@@ -16,5 +17,11 @@ public class TimeDimService extends BaseService<TimeDim,TimeDimRepository> {
             return null;
         return super.save(model);
     }
+    public TimeDim findTimeDim(Date date) throws ServiceException
+    {
+        TimeDim td = repository.findTimeDim(date);
+        return td;
+    }
+
 
 }

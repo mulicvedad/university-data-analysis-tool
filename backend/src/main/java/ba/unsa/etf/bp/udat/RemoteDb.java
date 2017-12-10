@@ -103,6 +103,7 @@ public class RemoteDb {
         {
             Statement statement = conn.createStatement();
             ResultSet rs = statement.executeQuery(query);
+        //    service.save(new DepartmentDim(0));
             while (rs.next())
             {
                 service.save(new DepartmentDim(rs.getInt(1), rs.getString(2)));
@@ -119,6 +120,7 @@ public class RemoteDb {
         {
             Statement statement = conn.createStatement();
             ResultSet rs = statement.executeQuery(query);
+         //   service.save(new CourseDim(0));
             while (rs.next())
             {
                 service.save(new CourseDim(rs.getInt(1), rs.getString(2)));
@@ -174,6 +176,73 @@ public class RemoteDb {
                 service.save(new LecturerDim(rs.getInt(1),rs.getString(2),rs.getString(3),
                         rs.getBoolean(4),rs.getBigDecimal(5),
                         rs.getString(6)));
+            }
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+    }
+    public void populateExamFact(String query, ExamFactService service, AcademicYearDimService academicYearDimService,
+                                 TimeDimService timeDimService, SemesterDimService semesterDimService,
+                                 DepartmentDimService departmentDimService, CourseDimService courseDimService)
+    {
+        try
+        {
+            Statement statement = conn.createStatement();
+            ResultSet rs = statement.executeQuery(query);
+            while (rs.next())
+            {
+                AcademicYearDim ayd = academicYearDimService.findAcademicYearDim(rs.getInt(1));
+                TimeDim td = timeDimService.findTimeDim(rs.getDate(2));
+                SemesterDim sd = semesterDimService.findSemesterDim(rs.getInt(3));
+                DepartmentDim dd = departmentDimService.findDepartmentDim(rs.getInt(4));
+                CourseDim cd = courseDimService.findCourseDim(rs.getInt(5));
+                service.save(new ExamFact(ayd, td, sd, dd, cd, rs.getBigDecimal(6),rs.getInt(7)));
+
+            }
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+    }
+    public void populateEnrollmentFact(String query, EnrollmentFactService service, DepartmentDimService departmentDimService,
+                                       AcademicYearDimService academicYearDimService, SemesterDimService semesterDimService)
+    {
+        try
+        {
+            Statement statement = conn.createStatement();
+            ResultSet rs = statement.executeQuery(query);
+            while (rs.next())
+            {
+                DepartmentDim dd = departmentDimService.findDepartmentDim(rs.getInt(1));
+                AcademicYearDim ayd = academicYearDimService.findAcademicYearDim(rs.getInt(2));
+                SemesterDim sd = semesterDimService.findSemesterDim(rs.getInt(3));
+                service.save(new EnrollmentFact(ayd, dd, sd, rs.getBoolean(4), Boolean.FALSE, rs.getInt(5)));
+                // is_repeating set-ovan na default 0
+            }
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+    }
+    public void populateAttendanceFact(String query, AttendanceFactService service, CourseDimService courseDimService,
+                                       DepartmentDimService departmentDimService, TimeDimService timeDimService,
+                                       LecturerDimService lecturerDimService)
+    {
+        try
+        {
+            Statement statement = conn.createStatement();
+            ResultSet rs = statement.executeQuery(query);
+            while (rs.next())
+            {
+                DepartmentDim dd = departmentDimService.findDepartmentDim(rs.getInt(1));
+                CourseDim cd = courseDimService.findCourseDim(rs.getInt(2));
+                TimeDim td = timeDimService.findTimeDim(rs.getDate(3));
+                LecturerDim ld = lecturerDimService.findLecturerDim(rs.getInt(4));
+                service.save(new AttendanceFact(cd, dd, td, ld, rs.getInt(5), rs.getBigDecimal(6)));
             }
         }
         catch (SQLException e)

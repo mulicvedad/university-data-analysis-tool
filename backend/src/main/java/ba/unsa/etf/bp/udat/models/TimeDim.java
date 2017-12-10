@@ -40,7 +40,7 @@ public class TimeDim extends BaseModel{
         return fullDate;
     }
 
-    public void setFullDate(Date date) {
+    public void setFullDate(Date fullDate) {
         this.fullDate = fullDate;
     }
 

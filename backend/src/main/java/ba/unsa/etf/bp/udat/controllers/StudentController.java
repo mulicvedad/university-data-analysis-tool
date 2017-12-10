@@ -1,24 +1,17 @@
 package ba.unsa.etf.bp.udat.controllers;
 
-import ba.unsa.etf.bp.udat.models.StudentFact;
-import ba.unsa.etf.bp.udat.services.StudentFactService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import ba.unsa.etf.bp.udat.models.EnrollmentFact;
+import ba.unsa.etf.bp.udat.services.EnrollmentFactService;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Collection;
 
-/**
- * Created by Edin on 12.11.2017..
- */
 @RestController
-public class StudentController extends BaseController<StudentFact, StudentFactService>
+public class StudentController extends BaseController<EnrollmentFact, EnrollmentFactService>
 {
-
+/*
     @ResponseBody
     @GetMapping("/freshmen")
-    public Collection<StudentFact> filterByFresmen() {
+    public Collection<EnrollmentFact> filterByFresmen() {
         return service.filterByFreshmen();
     }
     @ResponseBody
@@ -31,6 +24,6 @@ public class StudentController extends BaseController<StudentFact, StudentFactSe
     public int filterByAcademicYearAllStudents(@RequestParam("year_value") int year_value) {
         return service.filterByAcademicYearAllStudents(year_value);
     }
-
+*/
 
 }

@@ -12,5 +12,7 @@ import java.util.Collection;
 public interface LecturerDimRepository extends PagingAndSortingRepository<LecturerDim,Long> {
     @Query("select l from LecturerDim l where l.lecturerZamgerUserId = :id")
     Collection<LecturerDim> findLecturerDimsByLecturerZamgerUserId(@Param("id") Integer id );
+    @Query("SELECT ld FROM LecturerDim ld WHERE ld.lecturerZamgerUserId = :id")
+    LecturerDim findLecturerDim(@Param("id") Integer id);
 
 }

@@ -22,5 +22,11 @@ public class CourseDimService extends BaseService<CourseDim, CourseDimRepository
         }
         return super.save(model);
     }
+    public CourseDim findCourseDim(Integer id) throws ServiceException
+    {
+        CourseDim cd = repository.findCourseDim(id);
+        return cd;
+    }
+
 
 }

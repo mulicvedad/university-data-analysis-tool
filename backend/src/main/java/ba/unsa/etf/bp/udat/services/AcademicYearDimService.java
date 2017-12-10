@@ -21,5 +21,10 @@ public class AcademicYearDimService extends BaseService<AcademicYearDim, Academi
         }
         return super.save(model);
     }
+    public AcademicYearDim findAcademicYearDim(Integer id) throws ServiceException
+    {
+        AcademicYearDim ayd = repository.findAcademicYearDim(id);
+        return ayd;
+    }
 
 }

@@ -22,5 +22,12 @@ public class LecturerDimService extends BaseService<LecturerDim, LecturerDimRepo
         }
         return super.save(model);
     }
+    public LecturerDim findLecturerDim(Integer id) throws ServiceException
+    {
+        LecturerDim ld = repository.findLecturerDim(id);
+        return ld;
+    }
+
+
 
 }

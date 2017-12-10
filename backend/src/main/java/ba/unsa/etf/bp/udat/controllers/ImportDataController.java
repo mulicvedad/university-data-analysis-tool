@@ -28,6 +28,12 @@ public class ImportDataController {
     TimeDimService timeDimService;
     @Autowired
     LecturerDimService lecturerDimService;
+    @Autowired
+    ExamFactService examFactService;
+    @Autowired
+    EnrollmentFactService enrollmentFactService;
+    @Autowired
+    AttendanceFactService attendanceFactService;
 
     @RequestMapping("/import")
     @ResponseBody
@@ -68,6 +74,31 @@ public class ImportDataController {
                                     " WHERE zud.userid = u.id AND ud.userid = u.id AND ed.zamgeruserdetailsuserid = zud.userid" +
                                     " ORDER BY zud.userid", lecturerDimService);
         // Populate facts
-        return "Helo";
+       etf.populateExamFact("SELECT cd.academicyearid AS ayid, e.scheduled as full_date, cd.semesterid as semester_id, " +
+                                    "    cd.departmentid as department_id, cd.courseid as course_id, " +
+                                    "    Round(Avg(er.points), 2) AS avg_points, count(er.studentid) AS turnout" +
+                                    " FROM examresult er, exam e, course_department cd" +
+                                    " WHERE er.examid = e.id AND e.course_departmentid = cd.id " +
+                                    " GROUP BY cd.academicyearid, e.scheduled, cd.semesterid, cd.departmentid, cd.courseid" +
+                                    " ORDER BY cd.academicyearid", examFactService, academicYearDimService, timeDimService, semesterDimService, departmentDimService,courseDimService);
+
+        etf.populateEnrollmentFact("SELECT d.id AS dep_id, ay.id AS ay_id, s.id AS semester_id, sd.budget, Count(zud.userid) AS enrolled_count " +
+                                    " FROM zamgeruserdetails zud, USER_enrollment ue, course_department cd, academicyear ay, semester s, " +
+                                    "  department d, studentdetails sd " +
+                                    " WHERE ue.userid = zud.userid AND ue.course_departmentid = cd.id AND cd.academicyearid = ay.id " +
+                                    "    AND cd.semesterid = s.id AND cd.departmentid = d.id AND sd.zamgeruserdetailsuserid = zud.userid " +
+                                    " GROUP BY d.id, ay.id, s.id, sd.budget" +
+                                    " ORDER BY d.id, ay.id, s.id, sd.budget", enrollmentFactService, departmentDimService,academicYearDimService,semesterDimService);
+
+        etf.populateAttendanceFact("SELECT cd.departmentid as department_id, cd.courseid as course_id, c.scheduled as full_date, " +
+                                    "    c.lecturerid as lecturer_id, " +
+                                    "  Sum(ca.present) AS attendance, " +
+                                    "  Round(Sum(ca.present) / Decode(Count(ca.id), 0, 1, Count(ca.id)), 2) AS attendance_percentage " +
+                                    " FROM classattendance ca, class c, course_department cd " +
+                                    " WHERE ca.classid = c.id AND c.course_departmentid = cd.id " +
+                                    " GROUP BY cd.departmentid, cd.courseid, c.scheduled, c.lecturerid " +
+                                    " ORDER BY cd.courseid", attendanceFactService, courseDimService, departmentDimService, timeDimService, lecturerDimService);
+        etf.disconnect();
+        return "Uspjeh brassa";
     }
 }
