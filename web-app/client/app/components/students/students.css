@@ -1,0 +1,88 @@
+.example-card {
+  width: auto;
+}
+.material-icons{
+	font-size: 45px !important;
+    line-height: 107%;
+    margin-left: -11px;
+}
+.first-row{
+	margin-left: -7% !important;
+    margin-right: 2% !important;
+}
+.up{
+	line-height: 107%;
+	color: green;
+}
+.down{
+	color: red;
+}
+
+.apppercent{
+	color: red;
+}
+
+.footer-percentage p{
+	color: green;
+}
+
+.cardheader{
+	    background: rgba(200, 54, 54, 0.5);
+
+}
+.cardheader2{
+		    background: rgba(0, 191, 255, 1.0);
+
+}
+.cardheader3{
+		    background: rgba(0,128,0, 0.5);
+
+}
+.cardheader4{
+		    background: rgba(139,69,19, 0.5);
+
+}
+.appsum{
+		color: white;
+}
+.cardelement{
+		background: rgba(200, 54, 54, 0.2);
+}
+.cardfooter{
+		background: rgba(15, 15, 15, 1.0);
+		margin-bottom: 0;
+}
+.midvalue{
+	padding-bottom: 40px;
+    padding-top: 40px;
+}
+.cardtitle{
+	color: white;
+	font-size: 16px;
+}
+.cardelement{
+}
+#container1{
+            width: 100%;
+            max-width:initial;
+            > .row{
+                margin: 0;
+                > .col{
+                    padding: 0;
+                }
+            }
+
+        }
+
+.cardelement2 {
+	background: rgba(135,206,235, 0.5);
+}
+
+
+.cardelement3{
+	background: rgba(50,205,50, 0.5);
+}
+
+.cardelement4{
+	background: rgba(205,133,63, 0.5);
+}
