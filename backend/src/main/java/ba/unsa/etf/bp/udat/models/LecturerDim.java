@@ -6,29 +6,23 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import java.math.BigDecimal;
 import java.util.Collection;
 
-/**
- * Created by Edin on 12.11.2017..
- */
+
 @Entity
 public class LecturerDim extends BaseModel{
 
-    private int lecturerZamgerUserId;
+    private Integer lecturerZamgerUserId;
     private String firstName;
     private String lastName;
-    private boolean isStudent;
+    private Boolean isStudent;
     private BigDecimal salary;
-    private int gender;
-    private Collection<ClassFact> classes;
+    private String gender;
+    private Collection<AttendanceFact> attendance_facts;
 
-    public LecturerDim(int lecturerZamgerUserId, String firstName, String lastName,
-                       boolean isStudent, BigDecimal salary, int gender) {
+    public LecturerDim(Integer lecturerZamgerUserId, String firstName, String lastName,
+                       Boolean isStudent, BigDecimal salary, String gender) {
         this.lecturerZamgerUserId = lecturerZamgerUserId;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -40,18 +34,18 @@ public class LecturerDim extends BaseModel{
 
     @Basic
     @Column(name = "lecturer_zamger_user_id", nullable = false)
-    @Size(max = 10)@NotNull
-    public int getLecturerZamgerUserId() {
+  //  @Size(max = 10)@NotNull
+    public Integer getLecturerZamgerUserId() {
         return lecturerZamgerUserId;
     }
 
-    public void setLecturerZamgerUserId(int lecturerZamgerUserId) {
+    public void setLecturerZamgerUserId(Integer lecturerZamgerUserId) {
         this.lecturerZamgerUserId = lecturerZamgerUserId;
     }
 
     @Basic
     @Column(name = "first_name", nullable = false)
-    @Size(min = 2, max = 50)@NotNull
+  //  @Size(min = 2, max = 50)@NotNull
     public String getFirstName() {
         return firstName;
     }
@@ -62,7 +56,7 @@ public class LecturerDim extends BaseModel{
 
     @Basic
     @Column(name = "last_name", nullable = false)
-    @Size(min = 2, max = 50)@NotNull
+   // @Size(min = 2, max = 50)@NotNull
     public String getLastName() {
         return lastName;
     }
@@ -73,21 +67,17 @@ public class LecturerDim extends BaseModel{
 
     @Basic
     @Column(name = "is_student", nullable = false)
-    @NotNull
-    public boolean isStudent() {
+   // @NotNull
+    public Boolean getIsStudent() {
         return isStudent;
     }
 
-    public void setStudent(boolean student) {
-        isStudent = student;
+    public void setIsStudent(Boolean isStudent) {
+        this.isStudent = isStudent;
     }
 
-
     @Basic
-    @Column(name = "salary", nullable = false)
-    @Min(0)
-    @Max((long)99999999.99)
-    @NotNull
+    @Column(name = "salary",precision = 19, scale = 2)
     public BigDecimal getSalary() {
         return salary;
     }
@@ -98,22 +88,22 @@ public class LecturerDim extends BaseModel{
 
     @Basic
     @Column(name = "gender", nullable = false)
-    @Size(max = 10)@NotNull
-    public int getGender() {
+   // @NotNull
+    public String getGender() {
         return gender;
     }
 
-    public void setGender(int gender) {
+    public void setGender(String gender) {
         this.gender = gender;
     }
 
-    @OneToMany(mappedBy = "lecturer_dim")
+    @OneToMany(mappedBy = "lecturerDim")
     @JsonIgnore
-    public Collection<ClassFact> getClasses() {
-        return classes;
+    public Collection<AttendanceFact> getAttendanceFacts() {
+        return attendance_facts;
     }
 
-    public void setClasses(Collection<ClassFact> classes) {
-        this.classes = classes;
+    public void setAttendanceFacts(Collection<AttendanceFact> attendanceFacts) {
+        this.attendance_facts = attendance_facts;
     }
 }

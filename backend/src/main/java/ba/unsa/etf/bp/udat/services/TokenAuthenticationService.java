@@ -1,8 +1,6 @@
 package ba.unsa.etf.bp.udat.services;
 
-/**
- * Created by Edin on 09.11.2017..
- */
+
 
 import ba.unsa.etf.bp.udat.models.User;
 import ba.unsa.etf.bp.udat.repositories.UserRepository;

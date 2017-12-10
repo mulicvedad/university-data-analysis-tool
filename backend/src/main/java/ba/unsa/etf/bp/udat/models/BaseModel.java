@@ -5,9 +5,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 
-/**
- * Created by kalashnikov on 11.11.2017..
- */
 @MappedSuperclass
 public class BaseModel {
     private Long id;

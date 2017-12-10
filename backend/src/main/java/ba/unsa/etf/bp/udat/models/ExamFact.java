@@ -4,85 +4,76 @@ import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import java.math.BigDecimal;
 
-/**
- * Created by Edin on 12.11.2017..
- */
 @Entity
 public class ExamFact extends BaseModel {
 
-    private int examId;
-    private DateDim date_dim;
-    private SemesterDim semester_dim;
-    private DepartmentDim department_dim;
-    private CourseDim course_dim;
+    private AcademicYearDim academicYearDim;
+    private TimeDim timeDim;
+    private SemesterDim semesterDim;
+    private DepartmentDim departmentDim;
+    private CourseDim courseDim;
     private BigDecimal averagePoints;
-    private int turnout;
+    private Integer turnout;
 
-    public ExamFact(int examId, DateDim date_dim, SemesterDim semester_dim,
-                    DepartmentDim department_dim, CourseDim course_dim, BigDecimal averagePoints, int turnout) {
-        this.examId = examId;
-        this.date_dim = date_dim;
-        this.semester_dim = semester_dim;
-        this.department_dim = department_dim;
-        this.course_dim = course_dim;
+    public ExamFact(AcademicYearDim academicYearDim, TimeDim timeDim, SemesterDim semesterDim,
+                    DepartmentDim departmentDim, CourseDim courseDim, BigDecimal averagePoints, Integer turnout) {
+        this.academicYearDim = academicYearDim;
+        this.timeDim = timeDim;
+        this.semesterDim = semesterDim;
+        this.departmentDim = departmentDim;
+        this.courseDim = courseDim;
         this.averagePoints = averagePoints;
         this.turnout = turnout;
     }
     public ExamFact() {}
 
-    @Basic
-    @Column(name = "exam_id", nullable = false)
-    @Size(max = 10) @NotNull
-    public int getExamId() {
-        return examId;
-    }
 
+    @ManyToOne
+    @JoinColumn(name = "academic_year_dim_id", referencedColumnName = "id", nullable = false)
+    public AcademicYearDim getAcademicYearDim() {return academicYearDim;}
 
-    public void setExamId(int examId) {
-        this.examId = examId;
-    }
+    public void  setAcademicYearDim(AcademicYearDim academicYearDim) {this.academicYearDim = academicYearDim;}
 
     @ManyToOne
     @JoinColumn(name = "scheduled_date_dim_id", referencedColumnName = "id", nullable = false)
-    public DateDim getDate_dim() {
-        return date_dim;
+    public TimeDim getTimeDim() {
+        return timeDim;
     }
 
-    public void setDate_dim(DateDim date_dim) {
-        this.date_dim = date_dim;
+    public void setTimeDim(TimeDim timeDim) {
+        this.timeDim = timeDim;
     }
 
     @ManyToOne
     @JoinColumn(name = "semester_dim_id", referencedColumnName = "id", nullable = false)
-    public SemesterDim getSemester_dim() {
-        return semester_dim;
+    public SemesterDim getSemesterDim() {
+        return semesterDim;
     }
 
-    public void setSemester_dim(SemesterDim semester_dim) {
-        this.semester_dim = semester_dim;
+    public void setSemesterDim(SemesterDim semesterDim) {
+        this.semesterDim = semesterDim;
     }
 
     @ManyToOne
     @JoinColumn(name = "department_dim_id", referencedColumnName = "id", nullable = false)
-    public DepartmentDim getDepartment_dim() {
-        return department_dim;
+    public DepartmentDim getDepartmentDim() {
+        return departmentDim;
     }
 
-    public void setDepartment_dim(DepartmentDim department_dim) {
-        this.department_dim = department_dim;
+    public void setDepartmentDim(DepartmentDim departmentDim) {
+        this.departmentDim = departmentDim;
     }
 
     @ManyToOne
     @JoinColumn(name = "course_dim_id", referencedColumnName = "id", nullable = false)
-    public CourseDim getCourse_dim() {
-        return course_dim;
+    public CourseDim getCourseDim() {
+        return courseDim;
     }
 
-    public void setCourse_dim(CourseDim course_dim) {
-        this.course_dim = course_dim;
+    public void setCourseDim(CourseDim courseDim) {
+        this.courseDim = courseDim;
     }
 
     @Basic
@@ -99,12 +90,11 @@ public class ExamFact extends BaseModel {
 
     @Basic
     @Column(name = "turnout", nullable = false)
-    @Size(max = 10) @NotNull
-    public int getTurnout() {
+    public Integer getTurnout() {
         return turnout;
     }
 
-    public void setTurnout(int turnout) {
+    public void setTurnout(Integer turnout) {
         this.turnout = turnout;
     }
 }

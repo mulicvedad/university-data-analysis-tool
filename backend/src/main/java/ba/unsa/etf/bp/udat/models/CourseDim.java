@@ -10,42 +10,41 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Collection;
 
-/**
- * Created by Edin on 12.11.2017..
- */
+
 @Entity
 public class CourseDim extends BaseModel{
 
-    private int courseId;
+    private Integer courseId;
     private String title;
-    private String department;
-    private int studyYear;
-    private Collection<ExamFact> exams;
-    private Collection<ClassFact> classFacts;
+    private Collection<ExamFact> examFacts;
+    private Collection<AttendanceFact> attendanceFacts;
 
-    public CourseDim(int courseId, String title, String department, int studyYear) {
+    public CourseDim(Integer courseId, String title) {
         this.courseId = courseId;
         this.title = title;
-        this.department = department;
-        this.studyYear = studyYear;
     }
-    public CourseDim() {}
+    public CourseDim(Integer id) {
+        this.setId((long) 0);
+        this.courseId = 0;
+        this.title = "Unknown";
+    }
+    public CourseDim(){}
 
     @Basic
     @Column(name = "course_id", nullable = false)
-    @Size(max = 10) @NotNull
-    public int getCourseId() {
+   // @Size(max = 10) @NotNull
+    public Integer getCourseId() {
         return courseId;
     }
 
 
-    public void setCourseId(int courseId) {
+    public void setCourseId(Integer courseId) {
         this.courseId = courseId;
     }
 
     @Basic
     @Column(name = "title", nullable = false)
-    @Size(min = 4, max = 255) @NotNull
+   // @Size(min = 4, max = 255) @NotNull
     public String getTitle() {
         return title;
     }
@@ -54,45 +53,24 @@ public class CourseDim extends BaseModel{
         this.title = title;
     }
 
-    @Basic
-    @Column(name = "department", nullable = false)
-    @Size(min = 4, max = 255) @NotNull
-    public String getDepartment() {
-        return department;
-    }
 
-    public void setDepartment(String department) {
-        this.department = department;
-    }
-
-    @Basic
-    @Column(name = "study_year", nullable = false)
-    @Size(max = 10) @NotNull
-    public int getStudyYear() {
-        return studyYear;
-    }
-
-    public void setStudyYear(int studyYear) {
-        this.studyYear = studyYear;
-    }
-
-    @OneToMany(mappedBy = "course_dim")
+    @OneToMany(mappedBy = "courseDim")
     @JsonIgnore
-    public Collection<ExamFact> getExams() {
-        return exams;
+    public Collection<ExamFact> getExamFacts() {
+        return examFacts;
     }
 
-    public void setExams(Collection<ExamFact> exams) {
-        this.exams = exams;
+    public void setExamFacts(Collection<ExamFact> exams) {
+        this.examFacts = examFacts;
     }
 
-    @OneToMany(mappedBy = "course_dim")
+    @OneToMany(mappedBy = "courseDim")
     @JsonIgnore
-    public Collection<ClassFact> getClassFacts() {
-        return classFacts;
+    public Collection<AttendanceFact> getAttendanceFacts() {
+        return attendanceFacts;
     }
 
-    public void setClassFacts(Collection<ClassFact> classFacts) {
-        this.classFacts = classFacts;
+    public void setAttendanceFacts(Collection<AttendanceFact> attendanceFacts) {
+        this.attendanceFacts = attendanceFacts;
     }
 }

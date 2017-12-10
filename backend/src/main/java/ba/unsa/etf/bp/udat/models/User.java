@@ -11,10 +11,6 @@ import javax.validation.constraints.Size;
 import java.sql.Timestamp;
 import java.util.Collection;
 
-/**
- * Created by Edin on 11.11.2017..
- */
-
 @Entity
 public class User extends BaseModel {
 

@@ -11,43 +11,36 @@ import javax.validation.constraints.Size;
 import java.util.Collection;
 import java.util.Date;
 
-/**
- * Created by Edin on 12.11.2017..
- */
+
 @Entity
 public class DepartmentDim extends BaseModel{
 
-    private int departmentId;
+    private Integer departmentId;
     private String title;
-    private Date startDate;
-    private Date endDate;
-    private Collection<StudentFact> students;
-    private Collection<ClassFact> classes;
-    private Collection<ExamFact> exams;
+    private Collection<EnrollmentFact> enrollmentFacts;
+    private Collection<AttendanceFact> attendanceFacts;
+    private Collection<ExamFact> examFacts;
 
-    public DepartmentDim(int departmentId, String title, Date startDate, Date endDate) {
+    public DepartmentDim(Integer departmentId, String title) {
         this.departmentId = departmentId;
         this.title = title;
-        this.startDate = startDate;
-        this.endDate = endDate;
     }
+
     public DepartmentDim() {}
 
     @Basic
     @Column(name = "department_id", nullable = false)
-    @Size(max = 10) @NotNull
-    public int getDepartmentId() {
+    public Integer getDepartmentId() {
         return departmentId;
     }
 
 
-    public void setDepartmentId(int departmentId) {
+    public void setDepartmentId(Integer departmentId) {
         this.departmentId = departmentId;
     }
 
     @Basic
     @Column(name = "title", nullable = false)
-    @Size(min = 4, max = 255)
     public String getTitle() {
         return title;
     }
@@ -56,54 +49,33 @@ public class DepartmentDim extends BaseModel{
         this.title = title;
     }
 
-    @Basic
-    @Column(name = "start_date", nullable = false)
-    @NotNull
-    public Date getStartDate() {
-        return startDate;
-    }
-
-    public void setStartDate(Date startDate) {
-        this.startDate = startDate;
-    }
-
-    @Basic
-    @Column(name = "end_date", nullable = false)
-    public Date getEndDate() {
-        return endDate;
-    }
-
-    public void setEndDate(Date endDate) {
-        this.endDate = endDate;
-    }
-
-    @OneToMany(mappedBy = "department_dim")
+    @OneToMany(mappedBy = "departmentDim")
     @JsonIgnore
-    public Collection<StudentFact> getStudents() {
-        return students;
+    public Collection<EnrollmentFact> getEnrollmentFacts() {
+        return enrollmentFacts;
     }
 
-    public void setStudents(Collection<StudentFact> students) {
-        this.students = students;
+    public void setEnrollmentFacts(Collection<EnrollmentFact> students) {
+        this.enrollmentFacts = enrollmentFacts;
     }
 
-    @OneToMany(mappedBy = "department_dim")
+    @OneToMany(mappedBy = "departmentDim")
     @JsonIgnore
-    public Collection<ClassFact> getClasses() {
-        return classes;
+    public Collection<AttendanceFact> getAttendanceFacts() {
+        return attendanceFacts;
     }
 
-    public void setClasses(Collection<ClassFact> classes) {
-        this.classes = classes;
+    public void setAttendanceFacts(Collection<AttendanceFact> classes) {
+        this.attendanceFacts = attendanceFacts;
     }
 
-    @OneToMany(mappedBy = "department_dim")
+    @OneToMany(mappedBy = "departmentDim")
     @JsonIgnore
-    public Collection<ExamFact> getExams() {
-        return exams;
+    public Collection<ExamFact> getExamFacts() {
+        return examFacts;
     }
 
-    public void setExams(Collection<ExamFact> exams) {
-        this.exams = exams;
+    public void setExamFacts(Collection<ExamFact> exams) {
+        this.examFacts = examFacts;
     }
 }
