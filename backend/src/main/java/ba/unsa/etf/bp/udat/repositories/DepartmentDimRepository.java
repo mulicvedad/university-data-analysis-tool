@@ -13,4 +13,5 @@ public interface DepartmentDimRepository extends PagingAndSortingRepository<Depa
     Collection<DepartmentDim> findAllByDepartmentId(int id);
     @Query("SELECT dd FROM DepartmentDim dd WHERE dd.departmentId = :id")
     DepartmentDim findDepartmentDim(@Param("id") Integer id);
+    DepartmentDim findDepartmentDimByTitle(String title);
 }

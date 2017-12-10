@@ -16,7 +16,7 @@ public class AcademicYearDimService extends BaseService<AcademicYearDim, Academi
         {
             if(ayd.getTitle().equals(model.getTitle()) &&
                     ayd.getActive().equals(model.getActive()) &&
-                    ayd.getStart_year().equals(model.getStart_year()))
+                    ayd.getStartYear().equals(model.getStartYear()))
                 return null;
         }
         return super.save(model);

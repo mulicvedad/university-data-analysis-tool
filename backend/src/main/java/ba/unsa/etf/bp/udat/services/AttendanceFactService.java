@@ -13,12 +13,12 @@ public class AttendanceFactService extends BaseService<AttendanceFact, Attendanc
         Collection<AttendanceFact> lista = repository.findAll();
         for(AttendanceFact af : lista )
         {
-            if(af.getCourse_dim().equals(model.getCourse_dim()) &&
-                    af.getDepartment_dim().equals(model.getDepartment_dim()) &&
-                    af.getTime_dim().equals(model.getTime_dim()) &&
-                    af.getLecturer_dim().equals(model.getLecturer_dim()) &&
+            if(af.getCourseDim().equals(model.getCourseDim()) &&
+                    af.getDepartmentDim().equals(model.getDepartmentDim()) &&
+                    af.getTimeDim().equals(model.getTimeDim()) &&
+                    af.getLecturerDim().equals(model.getLecturerDim()) &&
                     af.getAttendance().equals(model.getAttendance())) //&&
-               //BUG     af.getAttendance_percentage().equals(model.getAttendance_percentage())
+               //BUG     af.getAttendancePercentage().equals(model.getAttendancePercentage())
                 return null;
         }
         return super.save(model);

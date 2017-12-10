@@ -97,7 +97,7 @@ public class LecturerDim extends BaseModel{
         this.gender = gender;
     }
 
-    @OneToMany(mappedBy = "lecturer_dim")
+    @OneToMany(mappedBy = "lecturerDim")
     @JsonIgnore
     public Collection<AttendanceFact> getAttendanceFacts() {
         return attendance_facts;

@@ -67,7 +67,7 @@ public class RemoteDb {
         {
             if(conn == null)
             {
-                System.out.println("Ne postoji konekcija");
+                System.out.println("There is no connection");
             }
             conn.close();
         }
@@ -103,7 +103,9 @@ public class RemoteDb {
         {
             Statement statement = conn.createStatement();
             ResultSet rs = statement.executeQuery(query);
-        //    service.save(new DepartmentDim(0));
+           // DepartmentDim dd = new DepartmentDim(0,"Unknown");
+           // dd.setId((long) 0);
+           // service.save(dd);
             while (rs.next())
             {
                 service.save(new DepartmentDim(rs.getInt(1), rs.getString(2)));
@@ -219,8 +221,7 @@ public class RemoteDb {
                 DepartmentDim dd = departmentDimService.findDepartmentDim(rs.getInt(1));
                 AcademicYearDim ayd = academicYearDimService.findAcademicYearDim(rs.getInt(2));
                 SemesterDim sd = semesterDimService.findSemesterDim(rs.getInt(3));
-                service.save(new EnrollmentFact(ayd, dd, sd, rs.getBoolean(4), Boolean.FALSE, rs.getInt(5)));
-                // is_repeating set-ovan na default 0
+                service.save(new EnrollmentFact(ayd, dd, sd, rs.getBoolean(4), rs.getBoolean(5), rs.getInt(6)));
             }
         }
         catch (SQLException e)

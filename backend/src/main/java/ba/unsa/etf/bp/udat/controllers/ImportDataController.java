@@ -82,13 +82,17 @@ public class ImportDataController {
                                     " GROUP BY cd.academicyearid, e.scheduled, cd.semesterid, cd.departmentid, cd.courseid" +
                                     " ORDER BY cd.academicyearid", examFactService, academicYearDimService, timeDimService, semesterDimService, departmentDimService,courseDimService);
 
-        etf.populateEnrollmentFact("SELECT d.id AS dep_id, ay.id AS ay_id, s.id AS semester_id, sd.budget, Count(zud.userid) AS enrolled_count " +
+        etf.populateEnrollmentFact("SELECT d.id AS dep_id, ay.id AS ay_id, s.id AS semester_id, sd.budget, " +
+                                    " Decode " +
+                                    " ( " +
+                                    "   (SELECT e.title FROM enrollment e WHERE e.id = ue.enrollmentid), 'Regular', 0, 'Repeated', 1, 0) AS is_repeating, " +
+                                    "  Count(zud.userid) AS enrolled_count " +
                                     " FROM zamgeruserdetails zud, USER_enrollment ue, course_department cd, academicyear ay, semester s, " +
                                     "  department d, studentdetails sd " +
                                     " WHERE ue.userid = zud.userid AND ue.course_departmentid = cd.id AND cd.academicyearid = ay.id " +
                                     "    AND cd.semesterid = s.id AND cd.departmentid = d.id AND sd.zamgeruserdetailsuserid = zud.userid " +
-                                    " GROUP BY d.id, ay.id, s.id, sd.budget" +
-                                    " ORDER BY d.id, ay.id, s.id, sd.budget", enrollmentFactService, departmentDimService,academicYearDimService,semesterDimService);
+                                    " GROUP BY d.id, ay.id, s.id, sd.budget,5, ue.enrollmentid" +
+                                    " ORDER BY d.id, ay.id, s.id, sd.budget, ue.enrollmentid", enrollmentFactService, departmentDimService,academicYearDimService,semesterDimService);
 
         etf.populateAttendanceFact("SELECT cd.departmentid as department_id, cd.courseid as course_id, c.scheduled as full_date, " +
                                     "    c.lecturerid as lecturer_id, " +
@@ -98,7 +102,8 @@ public class ImportDataController {
                                     " WHERE ca.classid = c.id AND c.course_departmentid = cd.id " +
                                     " GROUP BY cd.departmentid, cd.courseid, c.scheduled, c.lecturerid " +
                                     " ORDER BY cd.courseid", attendanceFactService, courseDimService, departmentDimService, timeDimService, lecturerDimService);
-        etf.disconnect();
+
+       // etf.disconnect();
         return "Uspjeh brassa";
     }
 }

@@ -27,6 +27,11 @@ public class DepartmentDimService extends BaseService<DepartmentDim, DepartmentD
         DepartmentDim dd = repository.findDepartmentDim(id);
         return dd;
     }
+    public DepartmentDim findDepartmentDimByTitle(String title) throws ServiceException
+    {
+        DepartmentDim dd = repository.findDepartmentDimByTitle(title);
+        return dd;
+    }
 
 
 }

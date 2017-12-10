@@ -15,14 +15,14 @@ public class AcademicYearDim extends BaseModel{
     private Integer academicYearId;
     private String title;
     private Integer active;
-    private Integer start_year;
+    private Integer startYear;
     private Collection<EnrollmentFact> enrollmentFacts;
 
-    public AcademicYearDim(Integer academicYearId, String title, Integer active, Integer start_year) {
+    public AcademicYearDim(Integer academicYearId, String title, Integer active, Integer startYear) {
         this.academicYearId = academicYearId;
         this.title = title;
         this.active = active;
-        this.start_year = start_year;
+        this.startYear = startYear;
     }
     public AcademicYearDim() {}
 
@@ -58,15 +58,15 @@ public class AcademicYearDim extends BaseModel{
 
     @Basic
     @Column(name = "start_year", nullable = false)
-    public Integer getStart_year() {
-        return start_year;
+    public Integer getStartYear() {
+        return startYear;
     }
 
-    public void setStart_year(Integer start_year) {
-        this.start_year = start_year;
+    public void setStartYear(Integer startYear) {
+        this.startYear = startYear;
     }
 
-    @OneToMany(mappedBy = "academic_year_dim")
+    @OneToMany(mappedBy = "academicYearDim")
     @JsonIgnore
     public Collection<EnrollmentFact> getEnrollmentFacts() {
         return enrollmentFacts;
@@ -76,7 +76,7 @@ public class AcademicYearDim extends BaseModel{
         this.enrollmentFacts = enrollmentFacts;
     }
 
-    @OneToMany(mappedBy = "academic_year_dim")
+    @OneToMany(mappedBy = "academicYearDim")
     @JsonIgnore
     public Collection<ExamFact> getExamFacts() {
         return examFacts;

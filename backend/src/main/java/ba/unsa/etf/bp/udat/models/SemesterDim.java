@@ -45,7 +45,7 @@ public class SemesterDim extends BaseModel {
     }
 
 
-    @OneToMany(mappedBy = "semester_dim")
+    @OneToMany(mappedBy = "semesterDim")
     @JsonIgnore
     public Collection<EnrollmentFact> getEnrollmentFacts() {
         return enrollmentFacts;
@@ -55,7 +55,7 @@ public class SemesterDim extends BaseModel {
         this.enrollmentFacts = enrollmentFacts;
     }
 
-    @OneToMany(mappedBy = "semester_dim")
+    @OneToMany(mappedBy = "semesterDim")
     @JsonIgnore
     public Collection<ExamFact> getExamFacts() {
         return examFacts;

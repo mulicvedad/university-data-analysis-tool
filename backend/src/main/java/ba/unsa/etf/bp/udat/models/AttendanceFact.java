@@ -28,41 +28,41 @@ public class AttendanceFact extends BaseModel {
 
     @ManyToOne
     @JoinColumn(name = "course_dim_id", referencedColumnName = "id", nullable = false)
-    public CourseDim getCourse_dim() {
+    public CourseDim getCourseDim() {
         return courseDim;
     }
 
-    public void setCourse_dim(CourseDim courseDim) {
+    public void setCourseDim(CourseDim courseDim) {
         this.courseDim = courseDim;
     }
 
     @ManyToOne
     @JoinColumn(name = "department_dim_id", referencedColumnName = "id", nullable = false)
-    public DepartmentDim getDepartment_dim() {
+    public DepartmentDim getDepartmentDim() {
         return departmentDim;
     }
 
-    public void setDepartment_dim(DepartmentDim departmentDim) {
+    public void setDepartmentDim(DepartmentDim departmentDim) {
         this.departmentDim = departmentDim;
     }
 
     @ManyToOne
     @JoinColumn(name = "time_dim_id", referencedColumnName = "id", nullable = false)
-    public TimeDim getTime_dim() {
+    public TimeDim getTimeDim() {
         return timeDim;
     }
 
-    public void setTime_dim(TimeDim timeDim) {
+    public void setTimeDim(TimeDim timeDim) {
         this.timeDim = timeDim;
     }
 
     @ManyToOne
     @JoinColumn(name = "lecturer_dim_id", referencedColumnName = "id", nullable = false)
-    public LecturerDim getLecturer_dim() {
+    public LecturerDim getLecturerDim() {
         return lecturerDim;
     }
 
-    public void setLecturer_dim(LecturerDim lecturerDim) {
+    public void setLecturerDim(LecturerDim lecturerDim) {
         this.lecturerDim = lecturerDim;
     }
 
@@ -78,11 +78,11 @@ public class AttendanceFact extends BaseModel {
 
     @Basic
     @Column(name = "attendance_precentage", nullable = false)
-    public BigDecimal getAttendance_percentage() {
+    public BigDecimal getAttendancePercentage() {
         return attendancePercentage;
     }
 
-    public void setAttendance_percentage(BigDecimal attendancePercentage) {
+    public void setAttendancePercentage(BigDecimal attendancePercentage) {
         this.attendancePercentage = attendancePercentage;
     }
 }

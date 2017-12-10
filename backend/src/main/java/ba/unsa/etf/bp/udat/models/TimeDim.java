@@ -97,7 +97,7 @@ public class TimeDim extends BaseModel{
         this.dayOfWeek = dayOfWeek;
     }
 
-    @OneToMany(mappedBy = "time_dim")
+    @OneToMany(mappedBy = "timeDim")
     @JsonIgnore
     public Collection<ExamFact> getExamFacts() {
         return examFacts;
@@ -107,7 +107,7 @@ public class TimeDim extends BaseModel{
         this.examFacts = examFacts;
     }
 
-    @OneToMany(mappedBy = "time_dim")
+    @OneToMany(mappedBy = "timeDim")
     @JsonIgnore
     public Collection<AttendanceFact> getAttendanceFacts() {
         return attendanceFacts;

@@ -13,11 +13,11 @@ public class ExamFactService extends BaseService<ExamFact, ExamFactRepository> {
         Collection<ExamFact> lista = repository.findAll();
         for(ExamFact ef : lista )
         {
-            if(ef.getAcademic_year_dim().equals(model.getAcademic_year_dim()) &&
-                    ef.getTime_dim().equals(model.getTime_dim()) &&
-                    ef.getSemester_dim().equals(model.getSemester_dim()) &&
-                    ef.getDepartment_dim().equals(model.getDepartment_dim()) &&
-                    ef.getCourse_dim().equals(model.getCourse_dim()) &&
+            if(ef.getAcademicYearDim().equals(model.getAcademicYearDim()) &&
+                    ef.getTimeDim().equals(model.getTimeDim()) &&
+                    ef.getSemesterDim().equals(model.getSemesterDim()) &&
+                    ef.getDepartmentDim().equals(model.getDepartmentDim()) &&
+                    ef.getCourseDim().equals(model.getCourseDim()) &&
              //BUG       ef.getAveragePoints().equals(model.getAveragePoints())
                     ef.getTurnout().equals(model.getTurnout()))
                 return null;

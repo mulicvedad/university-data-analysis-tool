@@ -26,5 +26,16 @@ public interface EnrollmentFactRepository extends PagingAndSortingRepository<Enr
     @Query("SELECT ef FROM EnrollmentFact ef")
     Collection<EnrollmentFact> findAll();
 
+    @Query("SELECT SUM (ef.enrolledCount) FROM EnrollmentFact ef, AcademicYearDim ayd" +
+            " WHERE ef.academicYearDim = ayd AND ayd.startYear = :ay")
+    Integer filterByAcademicYear(@Param("ay") Integer ay);
+
+    @Query("SELECT SUM(ef.enrolledCount) FROM EnrollmentFact ef, DepartmentDim dep " +
+            "WHERE ef.departmentDim = dep AND dep.title =:dep")
+    Integer filterByDepartment(@Param("dep") String dep);
+
+    @Query("SELECT SUM(ef.enrolledCount) FROM EnrollmentFact ef, AcademicYearDim ayd " +
+            " WHERE ef.academicYearDim = ayd AND ayd.active = 1")
+    Integer filterByActiveYear();
 
 }

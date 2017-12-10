@@ -25,12 +25,7 @@ public class DepartmentDim extends BaseModel{
         this.departmentId = departmentId;
         this.title = title;
     }
-    public DepartmentDim(Integer id)
-    {
-        this.setId((long) 0);
-        this.departmentId = 0;
-        this.title = "Unknown";
-    }
+
     public DepartmentDim() {}
 
     @Basic
@@ -54,7 +49,7 @@ public class DepartmentDim extends BaseModel{
         this.title = title;
     }
 
-    @OneToMany(mappedBy = "department_dim")
+    @OneToMany(mappedBy = "departmentDim")
     @JsonIgnore
     public Collection<EnrollmentFact> getEnrollmentFacts() {
         return enrollmentFacts;
@@ -64,7 +59,7 @@ public class DepartmentDim extends BaseModel{
         this.enrollmentFacts = enrollmentFacts;
     }
 
-    @OneToMany(mappedBy = "department_dim")
+    @OneToMany(mappedBy = "departmentDim")
     @JsonIgnore
     public Collection<AttendanceFact> getAttendanceFacts() {
         return attendanceFacts;
@@ -74,7 +69,7 @@ public class DepartmentDim extends BaseModel{
         this.attendanceFacts = attendanceFacts;
     }
 
-    @OneToMany(mappedBy = "department_dim")
+    @OneToMany(mappedBy = "departmentDim")
     @JsonIgnore
     public Collection<ExamFact> getExamFacts() {
         return examFacts;

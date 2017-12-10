@@ -10,7 +10,9 @@ import java.util.Collection;
 
 @Repository
 public interface AcademicYearDimRepository extends PagingAndSortingRepository<AcademicYearDim,Long>{
+
     Collection<AcademicYearDim> findAllByAcademicYearId(int id);
+
     @Query("SELECT ayd FROM AcademicYearDim ayd WHERE ayd.academicYearId = :id")
     AcademicYearDim findAcademicYearDim(@Param("id") Integer id);
 
