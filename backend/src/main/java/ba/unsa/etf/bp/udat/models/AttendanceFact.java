@@ -69,11 +69,11 @@ public class AttendanceFact extends BaseModel {
     @Basic
     @Column(name = "attendance", nullable = false)
     @Size(max = 10) @NotNull
-    public int getAttendance() {
+    public Integer getAttendance() {
         return attendance;
     }
 
-    public void setAttendance(int attendance) {
+    public void setAttendance(Integer attendance) {
         this.attendance = attendance;
     }
 

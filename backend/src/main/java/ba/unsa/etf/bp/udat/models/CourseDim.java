@@ -14,12 +14,12 @@ import java.util.Collection;
 @Entity
 public class CourseDim extends BaseModel{
 
-    private int courseId;
+    private Integer courseId;
     private String title;
     private Collection<ExamFact> examFacts;
     private Collection<AttendanceFact> attendanceFacts;
 
-    public CourseDim(int courseId, String title) {
+    public CourseDim(Integer courseId, String title) {
         this.courseId = courseId;
         this.title = title;
     }
@@ -28,12 +28,12 @@ public class CourseDim extends BaseModel{
     @Basic
     @Column(name = "course_id", nullable = false)
    // @Size(max = 10) @NotNull
-    public int getCourseId() {
+    public Integer getCourseId() {
         return courseId;
     }
 
 
-    public void setCourseId(int courseId) {
+    public void setCourseId(Integer courseId) {
         this.courseId = courseId;
     }
 

@@ -7,9 +7,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
-/**
- * Created by Edin on 12.11.2017..
- */
+
 public class BaseService<M extends BaseModel, R extends PagingAndSortingRepository<M, Long>> {
     protected R repository;
 
@@ -38,6 +36,9 @@ public class BaseService<M extends BaseModel, R extends PagingAndSortingReposito
 
     public M save(M model) throws ServiceException{
         return repository.save(model);
+    }
+    public void saveAll(Iterable<M> it) throws ServiceException {
+        repository.save(it);
     }
 
     public void delete(Long id) throws ServiceException {

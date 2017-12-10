@@ -12,14 +12,14 @@ import java.util.Collection;
 
 @Entity
 public class AcademicYearDim extends BaseModel{
-    private Integer academic_year_id;
+    private Integer academicYearId;
     private String title;
     private Integer active;
     private Integer start_year;
     private Collection<EnrollmentFact> enrollmentFacts;
 
-    public AcademicYearDim(Integer academic_year_id, String title, Integer active, Integer start_year) {
-        this.academic_year_id = academic_year_id;
+    public AcademicYearDim(Integer academicYearId, String title, Integer active, Integer start_year) {
+        this.academicYearId = academicYearId;
         this.title = title;
         this.active = active;
         this.start_year = start_year;
@@ -28,12 +28,12 @@ public class AcademicYearDim extends BaseModel{
 
     @Basic
     @Column(name = "academic_year_id", nullable = false)
-    public Integer getAcademic_year_id() {
-        return academic_year_id;
+    public Integer getAcademicYearId() {
+        return academicYearId;
     }
 
-    public void setAcademic_year_id(Integer academic_year_id) {
-        this.academic_year_id = academic_year_id;
+    public void setAcademicYearId(Integer academicYearId) {
+        this.academicYearId = academicYearId;
     }
 
     @Basic

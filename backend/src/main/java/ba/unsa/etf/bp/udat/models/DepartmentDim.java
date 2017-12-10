@@ -15,13 +15,13 @@ import java.util.Date;
 @Entity
 public class DepartmentDim extends BaseModel{
 
-    private int departmentId;
+    private Integer departmentId;
     private String title;
     private Collection<EnrollmentFact> enrollmentFacts;
     private Collection<AttendanceFact> attendanceFacts;
     private Collection<ExamFact> examFacts;
 
-    public DepartmentDim(int departmentId, String title) {
+    public DepartmentDim(Integer departmentId, String title) {
         this.departmentId = departmentId;
         this.title = title;
     }
@@ -29,12 +29,12 @@ public class DepartmentDim extends BaseModel{
 
     @Basic
     @Column(name = "department_id", nullable = false)
-    public int getDepartmentId() {
+    public Integer getDepartmentId() {
         return departmentId;
     }
 
 
-    public void setDepartmentId(int departmentId) {
+    public void setDepartmentId(Integer departmentId) {
         this.departmentId = departmentId;
     }
 

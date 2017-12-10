@@ -19,9 +19,6 @@ import javax.json.JsonObjectBuilder;
 import javax.transaction.Transactional;
 import javax.validation.Valid;
 
-/**
- * Created by kalashnikov on 12.11.2017..
- */
 public abstract class BaseController<M extends BaseModel, S extends BaseService<M, ? >> {
     protected S service;
 

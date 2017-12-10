@@ -25,13 +25,13 @@ DROP TABLE IF EXISTS `academic_year_dim`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `academic_year_dim` (
-  `id` int(10) NOT NULL,
+  `id` int(10) NOT NULL AUTO_INCREMENT,
   `academic_year_id` int(10) NOT NULL,
   `title` varchar(50) NOT NULL,
   `active` int(10) NOT NULL,
   `start_year` smallint(5) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -93,7 +93,7 @@ CREATE TABLE `course_dim` (
   `title` varchar(50) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `course_dim` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -118,7 +118,7 @@ CREATE TABLE `department_dim` (
   `title` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `department_dim` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -183,11 +183,11 @@ CREATE TABLE `exam_fact` (
   `turnout` int(10) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `exam_fact` (`id`),
-  KEY `fk_exam_fact_1_idx` (`academic_year_dim_id`),
   KEY `fk_exam_fact_2_idx` (`scheduled_date_dim_id`),
   KEY `fk_exam_fact_3_idx` (`course_dim_id`),
   KEY `fk_exam_fact_4_idx` (`department_dim_id`),
   KEY `fk_exam_fact_5_idx` (`semester_dim_id`),
+  KEY `fk_exam_fact_1_idx` (`academic_year_dim_id`),
   CONSTRAINT `fk_exam_fact_1` FOREIGN KEY (`academic_year_dim_id`) REFERENCES `academic_year_dim` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_exam_fact_2` FOREIGN KEY (`scheduled_date_dim_id`) REFERENCES `time_dim` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_exam_fact_3` FOREIGN KEY (`course_dim_id`) REFERENCES `course_dim` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
@@ -218,11 +218,11 @@ CREATE TABLE `lecturer_dim` (
   `first_name` varchar(50) NOT NULL,
   `last_name` varchar(50) NOT NULL,
   `is_student` tinyint(1) NOT NULL,
-  `salary` decimal(19,0) DEFAULT NULL,
-  `gender` int(10) NOT NULL,
+  `salary` decimal(10,0) NOT NULL,
+  `gender` varchar(45) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `lecturer_dim` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=1615 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -271,7 +271,7 @@ CREATE TABLE `semester_dim` (
   `title` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `semester_dim` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=103 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=108 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -301,7 +301,7 @@ CREATE TABLE `time_dim` (
   `day_of_week` varchar(20) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `date_dim` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=138 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -354,4 +354,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-12-09 20:14:28
+-- Dump completed on 2017-12-10  5:02:43

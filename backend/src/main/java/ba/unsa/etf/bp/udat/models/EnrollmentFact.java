@@ -15,14 +15,14 @@ public class EnrollmentFact extends BaseModel{
     private AcademicYearDim academic_year_dim;
     private DepartmentDim department_dim;
     private SemesterDim semester_dim;
-    private boolean budget;
-    private boolean is_repeating;
+    private Boolean budget;
+    private Boolean is_repeating;
 
 
     private Integer enrolled_count;
 
     public EnrollmentFact(AcademicYearDim academic_year_dim, DepartmentDim department_dim, SemesterDim semester_dim,
-                          boolean budget, boolean is_repeating, Integer enrolled_count)
+                          Boolean budget, Boolean is_repeating, Integer enrolled_count)
     {
         this.academic_year_dim = academic_year_dim;
         this.department_dim = department_dim;
@@ -64,22 +64,22 @@ public class EnrollmentFact extends BaseModel{
     @Basic
     @Column(name = "budget", nullable = false)
     @NotNull
-    public boolean isBudget() {
+    public Boolean isBudget() {
         return budget;
     }
 
-    public void setBudget(boolean budget) {
+    public void setBudget(Boolean budget) {
         this.budget = budget;
     }
 
     @Basic
     @Column(name = "is_repeating", nullable = false)
-    public boolean getIs_repeating() {
+    public Boolean getIs_repeating() {
         return is_repeating;
     }
 
 
-    public void setIs_repeating(boolean is_repeating) {
+    public void setIs_repeating(Boolean is_repeating) {
         this.is_repeating = is_repeating;
     }
 

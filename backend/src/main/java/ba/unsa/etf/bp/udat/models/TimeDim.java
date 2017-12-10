@@ -12,7 +12,7 @@ import java.util.Date;
 @Entity
 public class TimeDim extends BaseModel{
 
-    private Date full_date;
+    private Date fullDate;
     private Integer year;
     private Integer monthOfYear;
     private Integer dayOfMonth;
@@ -22,8 +22,8 @@ public class TimeDim extends BaseModel{
     private Collection<ExamFact> examFacts;
     private Collection<AttendanceFact> attendanceFacts;
 
-    public TimeDim(Date full_date, Integer year, Integer monthOfYear, Integer dayOfMonth, Integer hour, String month, String dayOfWeek) {
-        this.full_date = full_date;
+    public TimeDim(Date fullDate, Integer year, Integer monthOfYear, Integer dayOfMonth, Integer hour, String month, String dayOfWeek) {
+        this.fullDate = fullDate;
         this.year = year;
         this.monthOfYear = monthOfYear;
         this.dayOfMonth = dayOfMonth;
@@ -35,42 +35,42 @@ public class TimeDim extends BaseModel{
 
     @Basic
     @Column(name = "full_date", nullable = false)
-    @NotNull
-    public Date getFull_date() {
-        return full_date;
+    //@NotNull
+    public Date getFullDate() {
+        return fullDate;
     }
 
-    public void setFull_date(Date date) {
-        this.full_date = full_date;
+    public void setFullDate(Date date) {
+        this.fullDate = fullDate;
     }
 
     @Basic
     @Column(name = "year", nullable = false)
-    public int getYear() {
+    public Integer getYear() {
         return year;
     }
 
-    public void setYear(int year) {
+    public void setYear(Integer year) {
         this.year = year;
     }
 
     @Basic
     @Column(name = "month_of_year", nullable = false)
-    public int getMonthOfYear() {
+    public Integer getMonthOfYear() {
         return monthOfYear;
     }
 
-    public void setMonthOfYear(int monthOfYear) {
+    public void setMonthOfYear(Integer monthOfYear) {
         this.monthOfYear = monthOfYear;
     }
 
     @Basic
     @Column(name = "day_of_month", nullable = false)
-    public int getDayOfMonth() {
+    public Integer getDayOfMonth() {
         return dayOfMonth;
     }
 
-    public void setDayOfMonth(int dayOfMonth) {
+    public void setDayOfMonth(Integer dayOfMonth) {
         this.dayOfMonth = dayOfMonth;
     }
 
