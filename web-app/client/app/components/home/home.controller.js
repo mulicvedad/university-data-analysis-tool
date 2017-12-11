@@ -1,11 +1,12 @@
 class HomeController {
-    static $inject = ["studentService"];
+    static $inject = ["studentService", "importDataService"];
 
-    constructor(studentService) {
+    constructor(studentService, importDataService) {
         this.studentService = studentService;
+        this.importDataService = importDataService;
         this.currentAcademicYear = 2017;
         this.setupEnrollmentChart();
-        this.loadData();
+        //this.loadData();
     }
 
     setupEnrollmentChart() {
@@ -59,6 +60,10 @@ class HomeController {
         }, (error) => {
             console.log("Greska: " + error);
         });
+    }
+
+    importData() {
+        this.importDataService.importData();
     }
 }
 
