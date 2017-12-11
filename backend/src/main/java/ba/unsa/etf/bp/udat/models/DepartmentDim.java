@@ -20,7 +20,7 @@ public class DepartmentDim extends BaseModel{
     private Collection<EnrollmentFact> enrollmentFacts;
     private Collection<AttendanceFact> attendanceFacts;
     private Collection<ExamFact> examFacts;
-
+    
     public DepartmentDim(Integer departmentId, String title) {
         this.departmentId = departmentId;
         this.title = title;
