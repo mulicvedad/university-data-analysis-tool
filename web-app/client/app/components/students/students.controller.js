@@ -5,7 +5,7 @@ class StudentsController {
         this.studentService = studentService;
         this.currentAcademicYear = 2017;
         this.setupEnrollmentCharts();
-        //this.loadData();
+        this.loadData();
     }
 
     setupEnrollmentCharts() {
@@ -79,7 +79,7 @@ class StudentsController {
     }
 
     loadEnrollmentByDepartment(numDeps = 4) {
-        for (var i = 1; i <= numDeps; i++) { 
+        for (let i = 1; i <= numDeps; i++) { 
             this.studentService.enrollmentByDepartment(i + 8).then((response) => {
                 console.log("vrijednost od i: " + i);
                 this.data2[i - 1] = response.data;

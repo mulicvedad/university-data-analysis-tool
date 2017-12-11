@@ -5,7 +5,7 @@ export default class StudentService extends BaseService {
         return super.get("enrollment/academic_year?ay=" + academic_year);
     }
     enrollmentByDepartment(department_id) {
-        return super.get("enrollment/department?dep=" + department);
+        return super.get("enrollment/department?dep=" + department_id);
     } 
     enrollmentByBudget(isOnBudget) {
         return super.get("enrollment/budget?budget=" + isOnBudget);
