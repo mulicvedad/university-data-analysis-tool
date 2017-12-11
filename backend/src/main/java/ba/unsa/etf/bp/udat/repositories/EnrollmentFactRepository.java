@@ -31,11 +31,17 @@ public interface EnrollmentFactRepository extends PagingAndSortingRepository<Enr
     Integer filterByAcademicYear(@Param("ay") Integer ay);
 
     @Query("SELECT SUM(ef.enrolledCount) FROM EnrollmentFact ef, DepartmentDim dep " +
-            "WHERE ef.departmentDim = dep AND dep.title =:dep")
-    Integer filterByDepartment(@Param("dep") String dep);
+            "WHERE ef.departmentDim = dep AND dep.id =:dep")
+    Integer filterByDepartment(@Param("dep") Long dep);
 
     @Query("SELECT SUM(ef.enrolledCount) FROM EnrollmentFact ef, AcademicYearDim ayd " +
             " WHERE ef.academicYearDim = ayd AND ayd.active = 1")
     Integer filterByActiveYear();
+
+    @Query("SELECT SUM(ef.enrolledCount) FROM EnrollmentFact ef WHERE ef.budget = :budget")
+    Integer filterByBudget(@Param("budget") Boolean budget);
+
+    @Query("SELECT SUM(ef.enrolledCount) FROM EnrollmentFact ef WHERE ef.isRepeating = :isRepeating")
+    Integer filterByRepeating(@Param("isRepeating") Boolean isRepeating);
 
 }
