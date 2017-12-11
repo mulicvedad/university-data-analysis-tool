@@ -108,7 +108,7 @@ class StudentsController {
         }, (error) => {
             console.log("Greska: " + error);
         });
-        this.studentService.enrollmentByRepeating(0).then((response) => {
+        this.studentService.enrollmentByRepeating(1).then((response) => {
             this.data4[1] = response.data;
         }, (error) => {
             console.log("Greska: " + error);

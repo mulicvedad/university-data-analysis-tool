@@ -31,11 +31,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable().authorizeRequests()
-                .antMatchers("/").permitAll()
+                .antMatchers("/").hasAnyRole(ROLE_ADMIN,ROLE_USER)
                 .antMatchers(HttpMethod.POST, "/login").permitAll()
-                .antMatchers( "/import").permitAll()
-                .antMatchers("/enrollment/**").permitAll()
-                .antMatchers("/open").hasRole(ROLE_ADMIN)
+                .antMatchers( "/import").hasRole(ROLE_ADMIN)
+                .antMatchers("/enrollment/**").hasAnyRole(ROLE_ADMIN,ROLE_USER)
                 .anyRequest().authenticated()
                 .and()
                 // We filter the api/login requests
