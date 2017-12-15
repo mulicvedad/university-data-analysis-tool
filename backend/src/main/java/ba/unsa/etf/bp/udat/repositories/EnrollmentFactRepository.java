@@ -11,24 +11,17 @@ import java.util.Collection;
 @Repository
 public interface EnrollmentFactRepository extends PagingAndSortingRepository<EnrollmentFact, Long>
 {
-    /* Potrebno ispraviti queryije
-    @Query("Select s from EnrollmentFact s where s.enrollmentDate.date = s.semester_dim.startDate")
-    Collection<EnrollmentFact> filterByFreshmen();
 
-    @Query("SELECT  COUNT (DISTINCT s.id) FROM EnrollmentFact s WHERE " +
-            "(s.enrollmentDate.year = :year_value)")
-    int filterByAcademicYear(@Param("year_value") int year_value);
-    @Query("SELECT  COUNT (DISTINCT s.id) FROM EnrollmentFact s WHERE " +
-            "(s.enrollmentDate.year <= :year_value) AND " +
-            "(s.dissrollmentDate IS NULL OR s.dissrollmentDate.year >= :year_value)")
-    int filterByAcademicYearAllStudents(@Param("year_value") int year_value);
-    */
     @Query("SELECT ef FROM EnrollmentFact ef")
     Collection<EnrollmentFact> findAll();
 
     @Query("SELECT SUM (ef.enrolledCount) FROM EnrollmentFact ef, AcademicYearDim ayd" +
             " WHERE ef.academicYearDim = ayd AND ayd.startYear = :ay")
     Integer filterByAcademicYear(@Param("ay") Integer ay);
+
+    @Query("SELECT SUM (ef.enrolledCount) FROM EnrollmentFact ef, AcademicYearDim ayd" +
+           " WHERE ef.academicYearDim = ayd AND ayd.startYear = :ay AND ef.isRepeating = 1")
+    Integer filterByAcademicYearRepeatingStudents(@Param("ay") Integer ay);
 
     @Query("SELECT SUM(ef.enrolledCount) FROM EnrollmentFact ef, DepartmentDim dep " +
             "WHERE ef.departmentDim = dep AND dep.id =:dep")

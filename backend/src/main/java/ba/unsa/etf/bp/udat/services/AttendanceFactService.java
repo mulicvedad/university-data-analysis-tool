@@ -4,7 +4,7 @@ import ba.unsa.etf.bp.udat.models.AttendanceFact;
 import ba.unsa.etf.bp.udat.repositories.AttendanceFactRepository;
 import org.hibernate.service.spi.ServiceException;
 import org.springframework.stereotype.Service;
-
+import java.math.BigDecimal;
 import java.util.Collection;
 
 @Service
@@ -22,6 +22,10 @@ public class AttendanceFactService extends BaseService<AttendanceFact, Attendanc
                 return null;
         }
         return super.save(model);
+    }
+    public BigDecimal attendanceByDepartmentCourseLecturer(Long dep, Long course, Long lecturer) throws ServiceException
+    {
+        return repository.attendanceByDepartmentCourseLecturer(dep, course, lecturer);
     }
 
 }

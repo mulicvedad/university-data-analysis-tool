@@ -52,8 +52,8 @@ public abstract class BaseController<M extends BaseModel, S extends BaseService<
 
     }
 
-    public ResponseEntity getPage(@PathVariable("pageNumber") int pageNumber) {
-        Pageable page = new PageRequest(pageNumber - 1, 5);
+    public ResponseEntity getPage(@PathVariable("page") int pageNumber) {
+        Pageable page = new PageRequest(pageNumber - 1, 20);
 
         return ResponseEntity.ok(service.listAllByPage(page));
     }

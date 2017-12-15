@@ -5,6 +5,7 @@ import ba.unsa.etf.bp.udat.repositories.ExamFactRepository;
 import org.hibernate.service.spi.ServiceException;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.Collection;
 
 @Service
@@ -23,6 +24,15 @@ public class ExamFactService extends BaseService<ExamFact, ExamFactRepository> {
                 return null;
         }
         return super.save(model);
+    }
+    public Integer turnoutByAcademicYearDepartmentCourse(Long ay, Long dep, Long course) throws ServiceException
+    {
+        return repository.turnoutByAcademicYearDepartmentCourse(ay, dep, course);
+    }
+
+    public BigDecimal averagePointsByAcademicYearDepartmentCourse(Long ay, Long dep, Long course) throws ServiceException
+    {
+        return repository.averagePointsByAcademicYearDepartmentCourse(ay, dep, course);
     }
 
 }
