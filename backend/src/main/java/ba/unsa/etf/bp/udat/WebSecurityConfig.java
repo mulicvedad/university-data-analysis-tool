@@ -31,7 +31,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable().authorizeRequests()
-                .antMatchers("/").hasAnyRole(ROLE_ADMIN,ROLE_USER)
+                .antMatchers("/**").permitAll();
+                /*.antMatchers("/").hasAnyRole(ROLE_ADMIN,ROLE_USER)
                 .antMatchers(HttpMethod.POST, "/login").permitAll()
                 .antMatchers( "/import").hasRole(ROLE_ADMIN)
                 .antMatchers("/enrollment/**").hasAnyRole(ROLE_ADMIN,ROLE_USER)
@@ -42,7 +43,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                         UsernamePasswordAuthenticationFilter.class)
                 // And filter other requests to check the presence of JWT in header
                 .addFilterBefore(new JWTAuthenticationFilter(),
-                        UsernamePasswordAuthenticationFilter.class);
+                        UsernamePasswordAuthenticationFilter.class);*/
     }
 
     @Override
