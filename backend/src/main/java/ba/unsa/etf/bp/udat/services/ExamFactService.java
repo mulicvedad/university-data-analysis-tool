@@ -13,8 +13,6 @@ import java.util.List;
 
 @Service
 public class ExamFactService extends BaseService<ExamFact, ExamFactRepository> {
-    @Autowired
-    private ExamFactRepository examFactRepository;
 
     public ExamFact save(ExamFact model) throws ServiceException {
         Collection<ExamFact> lista = repository.findAll();
@@ -42,15 +40,15 @@ public class ExamFactService extends BaseService<ExamFact, ExamFactRepository> {
     }
 
     public List<Object[]> groupByAcademicYear() {
-        return examFactRepository.filterByAllYears();
+        return repository.filterByAllYears();
     }
 
     public List<Object[]> groupByDepartments() {
-        return examFactRepository.filterByAllDepartments();
+        return repository.filterByAllDepartments();
     }
 
     public List<Object[]> groupByCourses() {
-        return examFactRepository.filterByAllCourses();
+        return repository.filterByAllCourses();
     }
 
 }

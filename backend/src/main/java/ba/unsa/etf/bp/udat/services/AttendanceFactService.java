@@ -6,6 +6,7 @@ import org.hibernate.service.spi.ServiceException;
 import org.springframework.stereotype.Service;
 import java.math.BigDecimal;
 import java.util.Collection;
+import java.util.List;
 
 @Service
 public class AttendanceFactService extends BaseService<AttendanceFact, AttendanceFactRepository> {
@@ -27,5 +28,18 @@ public class AttendanceFactService extends BaseService<AttendanceFact, Attendanc
     {
         return repository.attendanceByDepartmentCourseLecturer(dep, course, lecturer);
     }
+
+    public List<Object[]> groupByDepartments() {
+        return repository.filterByAllDepartments();
+    }
+
+    public List<Object[]> groupByCourses() {
+        return repository.filterByAllCourses();
+    }
+
+    public List<Object[]> groupByLecturers() {
+        return repository.filterByAllLecturers();
+    }
+
 
 }

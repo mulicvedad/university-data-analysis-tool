@@ -90,9 +90,9 @@ public class EnrollmentReportService extends BaseReportService{
         List<Object[]> rows = enrollmentFactService.groupByAcademicYear();
         for(Object[] row : rows) {
             AcademicYearDim ayd = (AcademicYearDim)row[0];
-            Integer enrolledCount = (Integer)row[1];
+            Long enrolledCount = (Long)row[1];
 
-            ArrayList<String> values = new ArrayList<>(Arrays.asList(Integer.toString(ayd.getStartYear()), Integer.toString(enrolledCount)));
+            ArrayList<String> values = new ArrayList<>(Arrays.asList(Integer.toString(ayd.getStartYear()), Long.toString(enrolledCount)));
             super.addRowToTable(pdfTable, values);
         }
         document.add(pdfTable);
@@ -104,9 +104,9 @@ public class EnrollmentReportService extends BaseReportService{
         List<Object[]> rows = enrollmentFactService.groupByDepartments();
         for(Object[] row : rows) {
             DepartmentDim dd = (DepartmentDim)row[0];
-            Integer enrolledCount = (Integer)row[1];
+            Long enrolledCount = (Long)row[1];
 
-            ArrayList<String> values = new ArrayList<>(Arrays.asList(dd.getTitle(), Integer.toString(enrolledCount)));
+            ArrayList<String> values = new ArrayList<>(Arrays.asList(dd.getTitle(), Long.toString(enrolledCount)));
             super.addRowToTable(pdfTable, values);
         }
         document.add(pdfTable);

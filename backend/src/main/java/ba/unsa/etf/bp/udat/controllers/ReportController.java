@@ -1,5 +1,7 @@
 package ba.unsa.etf.bp.udat.controllers;
 
+import ba.unsa.etf.bp.udat.models.AttendanceFact;
+import ba.unsa.etf.bp.udat.services.AttendanceReportService;
 import ba.unsa.etf.bp.udat.services.BaseReportService;
 import ba.unsa.etf.bp.udat.services.EnrollmentReportService;
 import ba.unsa.etf.bp.udat.services.ExamReportService;
@@ -31,6 +33,21 @@ public class ReportController {
     private EnrollmentReportService enrollmentReportService;
     @Autowired
     private ExamReportService examReportService;
+    @Autowired
+    private AttendanceReportService attendanceReportService;
+
+    //ENROLLMENT
+    @ResponseBody
+    @GetMapping("/report/enrollment/overallReport")
+    public ResponseEntity<byte[]> enrollmentOverallReport() {
+        try {
+            String filepath = enrollmentReportService.generateOverallReport();
+            return createResponse(filepath);
+        }
+        catch (Exception e) {
+            return error(e);
+        }
+    }
 
     //EXAMS
     @ResponseBody
@@ -71,6 +88,20 @@ public class ReportController {
         }
     }
 
+    //ATTENDANCE
+    @ResponseBody
+    @GetMapping("/report/attendance/overallReport")
+    public ResponseEntity<byte[]> attendanceOverallReport() {
+        try {
+            String filepath = attendanceReportService.generateOverallReport();
+            return createResponse(filepath);
+        }
+        catch (Exception e) {
+            return error(e);
+        }
+    }
+
+    //helpers
     private ResponseEntity<byte[]> createResponse(String filepath) {
         FileInputStream fileStream;
         try {

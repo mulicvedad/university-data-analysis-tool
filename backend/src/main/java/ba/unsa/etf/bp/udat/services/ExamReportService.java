@@ -34,14 +34,6 @@ public class ExamReportService extends BaseReportService {
 
     @Autowired
     private ExamFactService examFactService;
-    @Autowired
-    private AcademicYearDimService academicYearDimService;
-    @Autowired
-    private SemesterDimService semesterDimService;
-    @Autowired
-    private DepartmentDimService departmentDimService;
-    @Autowired
-    private CourseDimService courseDimService;
 
     public String generateOverallReport() throws ServiceException {
         try {

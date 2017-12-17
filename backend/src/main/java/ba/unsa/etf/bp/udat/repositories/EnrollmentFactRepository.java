@@ -39,7 +39,7 @@ public interface EnrollmentFactRepository extends PagingAndSortingRepository<Enr
     Integer filterByRepeating(@Param("isRepeating") Boolean isRepeating);
 
 
-    @Query("SELECT ef.academicYearDim, SUM(ef.enrolledCount) AVG(ef.averagePoints) FROM EnrollmentFact ef" +
+    @Query("SELECT ef.academicYearDim, SUM(ef.enrolledCount) FROM EnrollmentFact ef" +
             " group by ef.academicYearDim order by ef.academicYearDim")
     List<Object[]> filterByAllYears();
 
