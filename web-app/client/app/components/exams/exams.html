@@ -1,0 +1,73 @@
+<div class="row">
+<div class="col s6">
+        <div class="card grey lighten-5">
+            <div class="card-content" >
+                <canvas id="bar" class="chart chart-line" chart-data="$ctrl.data1" chart-labels="$ctrl.labels1" chart-series="$ctrl.series1"></canvas>  
+            </div>
+        </div>
+        <p style="color:lightseagreen;text-align:center"> Izlaznost studenata </p>    
+        <div class="row">
+        <div class="col s4">
+        <p> Akademska godina: </p>
+           <select ng-model="selectedYear" ng-options="option.name for option in $ctrl.academy_years" id="dropdown" name="dropdown">
+            <option value="">-</option>
+            <option value="">{{option.name}}</option>
+        </select>
+        <!-- odabrana vrijednost je spasena u {{selectedYear.value}} -->
+
+        </div>
+         <div class="col s4">
+        <p> Predmeti: </p>
+           <select ng-model="selectedSubject" ng-options="option.name for option in $ctrl.subjects" id="dropdown" name="dropdown">
+            <option value="">-</option>
+            <option value="">{{option.name}}</option>
+        </select>
+        </div>
+         <div class="col s4">
+        <p> Odsjeci: </p>
+           <select ng-model="selectedDept" ng-options="option.name for option in $ctrl.departments" id="dropdown" name="dropdown">
+            <option value="">-</option>
+            <option value="">{{option.name}}</option>
+        </select>
+        </div>
+
+
+        </div>
+    </div>
+    <div class="col s6">
+            <div class="card grey lighten-5">
+                <div class="card-content">
+                        <canvas id="line" class="chart chart-bar" chart-data="$ctrl.data2" chart-labels="$ctrl.labels2" chart-series="$ctrl.series2" chart-options="$ctrl.options"
+                            chart-dataset-override="datasetOverride">
+                        </canvas>
+                </div>
+            </div>
+            <p style="color:lightseagreen;text-align:center"> Prosjecan broj bodova na ispitu </p> 
+            <div class="row">
+        <div class="col s4">
+        <p> Akademska godina: </p>
+           <select ng-model="selectedYear2" ng-options="option.name for option in $ctrl.academy_years" id="dropdown" name="dropdown">
+            <option value="">-</option>
+            <option value="">{{option.name}}</option>
+        </select>
+        </div>
+         <div class="col s4">
+        <p> Predmeti: </p>
+           <select ng-model="selectedSubject2" ng-options="option.name for option in $ctrl.subjects" id="dropdown" name="dropdown">
+            <option value="">-</option>
+            <option value="">{{option.name}}</option>
+        </select>
+        </div>
+         <div class="col s4">
+        <p> Odsjeci: </p>
+           <select ng-model="selectedDept2" ng-options="option.name for option in $ctrl.departments" id="dropdown" name="dropdown">
+            <option value="">-</option>
+            <option value="">{{option.name}}</option>
+        </select>
+        </div>
+
+
+        </div>  
+    </div>
+
+</div>

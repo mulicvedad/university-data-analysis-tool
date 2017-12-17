@@ -1,10 +1,18 @@
+@media (max-width: 1350px) { 
+
+	.material-icons{
+		margin-left: 45px !important;
+	}
+
+
+ }
 .example-card {
   width: auto;
 }
 .material-icons{
 	font-size: 45px !important;
     line-height: 107%;
-    margin-left: -11px;
+    margin-left: 110px
 }
 .first-row{
 	margin-left: -7% !important;
