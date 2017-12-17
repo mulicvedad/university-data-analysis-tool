@@ -43,13 +43,13 @@ public class AttendanceReportService extends BaseReportService {
             super.initializeDocument(document);
             super.addGeneralInfo(document, DOCUMENT_TITLE);
 
-            this.<DepartmentDim>addTable(document, new ArrayList<String>(Arrays.asList("Odsjek", "Prosjecan broj prisutnih", "Porcenat prisutnih")),
+            this.<DepartmentDim>addTable(document, new ArrayList<String>(Arrays.asList("Odsjek", "Prosjecan broj prisutnih", "Procenat prisutnih")),
                 attendanceFactService.groupByDepartments());
             super.addEmptyRow(document);
-            this.<CourseDim>addTable(document, new ArrayList<String>(Arrays.asList("Predmet", "Prosjecan broj prisutnih", "Porcenat prisutnih")),
+            this.<CourseDim>addTable(document, new ArrayList<String>(Arrays.asList("Predmet", "Prosjecan broj prisutnih", "Procenat prisutnih")),
                     attendanceFactService.groupByCourses());
             super.addEmptyRow(document);
-            this.<LecturerDim>addTable(document, new ArrayList<String>(Arrays.asList("Nastavnik", "Prosjecan broj prisutnih", "Porcenat prisutnih")),
+            this.<LecturerDim>addTable(document, new ArrayList<String>(Arrays.asList("Nastavnik", "Prosjecan broj prisutnih", "Procenat prisutnih")),
                     attendanceFactService.groupByLecturers());
 
             document.close();
