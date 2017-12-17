@@ -7,6 +7,7 @@ import org.hibernate.service.spi.ServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.Collection;
 import java.util.List;
 
@@ -29,6 +30,15 @@ public class ExamFactService extends BaseService<ExamFact, ExamFactRepository> {
                 return null;
         }
         return super.save(model);
+    }
+    public Integer turnoutByAcademicYearDepartmentCourse(Long ay, Long dep, Long course) throws ServiceException
+    {
+        return repository.turnoutByAcademicYearDepartmentCourse(ay, dep, course);
+    }
+
+    public BigDecimal averagePointsByAcademicYearDepartmentCourse(Long ay, Long dep, Long course) throws ServiceException
+    {
+        return repository.averagePointsByAcademicYearDepartmentCourse(ay, dep, course);
     }
 
     public List<Object[]> groupByAcademicYear() {
