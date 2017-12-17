@@ -1,10 +1,11 @@
-class StudentsController {
+class ExamsController {
     static $inject = ['studentService'];
 
  constructor(studentService) {
         this.studentService = studentService;
         this.currentAcademicYear = 2017;
         this.setupEnrollmentCharts();
+        this.setupDropdowns();
         this.loadData();
     }
 
@@ -21,30 +22,86 @@ class StudentsController {
               ]
             }
         };
-        this.setupEnrollmentByAcademicYear();
+        this.setupExamParticipationByAcademicYear();
         this.setupEnrollmentDepartment();
         this.setupEnrollmentByBudget();
         this.setupEnrollmentByRepeating();
     }
 
-    setupEnrollmentByAcademicYear() {
-        this.labelsAY = ["2014", "2015", "2016", "2017"];
-        this.seriesAY = ['Series'];
-        
-        this.data = [
+    setupExamParticipationByAcademicYear() {
+        this.labels1 = ["2014", "2015", "2016", "2017"];
+        this.series1 = ['Series'];
+        this.data1 = [
             35, 20, 17, 16
         ];
     }
 
     setupEnrollmentDepartment() {
-        this.labelsDep = ["RI", "AiE", "EE", "TK"];
-        this.seriesDep = ['Series'];
+        this.labels2 = ["RI", "AiE", "EE", "TK"];
+        this.series2 = ['Series'];
     
         this.data2 = [
-            35, 20, 17, 15
+            40, 45, 17, 15
+
         ];
     }
 
+    setupDropdowns(){
+        this.academy_years = [
+        {
+            name: '2017',
+            value: '2017'
+        },
+        {
+          name: '2016',
+            value: '2016'
+        },{
+          name: '2015',
+            value: '2015'
+        },{
+          name: '2014',
+            value: '2014'
+        }
+        ];
+        this.subjects = [
+        {
+          name: 'Baze Podataka',
+            value: 'Baze Podataka'
+        },
+        {
+          name: 'Paralelni Racunarski Sistemi',
+            value: 'Paralelni Racunarski Sistemi'
+        },{
+          name: 'Optimizacija Resursa',
+            value: 'Optimizacija Resursa'
+        },
+        {
+          name: 'Multimedijalni Sistemi',
+            value: 'Multimedijalni Sistemi'
+        },
+        {
+          name: 'DRAOS',
+            value: 'DRAOS'
+        }
+        ];
+        this.departments = [{
+          name: 'RI',
+            value: 'RI'
+        },{
+          name: 'AiE',
+            value: 'AiE'
+        },
+        {
+          name: 'EE',
+            value: 'EE'
+        },
+        {
+            name: 'TK',
+            value: 'TK'
+        }
+        ];
+
+    }
     setupEnrollmentByBudget() {
         this.labelsBudget = ["Redovni", "Samofinansirajuci"];
         this.seriesBudget = ['Series'];
@@ -125,4 +182,4 @@ class StudentsController {
 
 }
 
-export default StudentsController;
+export default ExamsController;

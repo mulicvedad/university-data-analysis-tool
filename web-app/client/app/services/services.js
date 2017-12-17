@@ -4,6 +4,7 @@ import swalService from './swalService';
 import sessionService from './sessionService';
 import studentService from './studentService';
 import jwtService from './jwtService';
+import importDataService from './importDataService';
 
 let servicesModule = angular.module('app.services', [])
 .service({
@@ -11,7 +12,8 @@ let servicesModule = angular.module('app.services', [])
     swalService,
     sessionService,
     studentService,
-    jwtService
+    jwtService,
+    importDataService
 })
 .name;
 

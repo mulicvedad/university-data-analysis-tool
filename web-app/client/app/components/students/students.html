@@ -1,7 +1,7 @@
 <h5 style="text-align:center;color:darkgray"> Students analysis </h5>
 <div class="container" id="container1">
 <div class="row first-row">
-<div class="col s2 offset-s1  cardelement">
+<!--<div class="col s2 offset-s1  cardelement">
 <mat-card class="example-card">
   <mat-card-header>
     <div class="row">
@@ -30,9 +30,9 @@
     </div>
   </md-card-footer>
 </mat-card>
-</div>
+</div>-->
 
-<div class="col s2 offset-s1 cardelement cardelement2">
+<div class="col s5 offset-s1 cardelement cardelement2">
 <mat-card class="example-card">
   <mat-card-header>
     <div class="row">
@@ -64,7 +64,7 @@
 </div>
 
 
-<div class="col s2 offset-s1 cardelement cardelement3">
+<!--<div class="col s2 offset-s1 cardelement cardelement3">
 <mat-card class="example-card">
   <mat-card-header>
     <div class="row">
@@ -93,10 +93,10 @@
     </div>
   </md-card-footer>
 </mat-card>
-</div>
+</div>-->
 
 
-<div class="col s2 offset-s1 cardelement cardelement4">
+<div class="col s5 offset-s1 cardelement cardelement4">
 <mat-card class="example-card">
   <mat-card-header>
     <div class="row">
@@ -130,47 +130,48 @@
 
 
 <div class="row">
-<div class="col s3">
+<div class="col s6">
         <div class="card grey lighten-5">
             <div class="card-content" >
-                <canvas id="bar" class="chart chart-bar" chart-data="$ctrl.data" chart-labels="$ctrl.labels" chart-series="$ctrl.series"></canvas>  
+                <canvas id="bar" class="chart chart-bar" chart-data="$ctrl.data" chart-labels="$ctrl.labelsAY" chart-series="$ctrl.seriesAY"></canvas>  
             </div>
         </div>
-        <p style="color:lightseagreen;text-align:center"> Student applications in 2014 </p>         
+        <p style="color:lightseagreen;text-align:center"> Prethodne 4 godine </p>         
     </div>
-    <div class="col s3">
+    <div class="col s6">
             <div class="card grey lighten-5">
                 <div class="card-content">
-                        <canvas id="line" class="chart chart-bar" chart-data="$ctrl.data2" chart-labels="$ctrl.labels" chart-series="$ctrl.series" chart-options="$ctrl.options"
+                        <canvas id="line" class="chart chart-bar" chart-data="$ctrl.data2" chart-labels="$ctrl.labelsDep" chart-series="$ctrl.seriesDep" chart-options="$ctrl.options"
                             chart-dataset-override="datasetOverride">
                         </canvas>
                 </div>
             </div>
-            <p style="color:lightseagreen;text-align:center"> Student applications in 2015 </p> 
+            <p style="color:lightseagreen;text-align:center"> Odsjeci </p> 
+            
+    </div>
+</div>
+<div class="row">
+    <div class="col s6">
+            <div class="card grey lighten-5">
+                <div class="card-content">
+                        <canvas id="line" class="chart chart-pie" chart-data="$ctrl.data3" chart-labels="$ctrl.labelsBudget" chart-series="$ctrl.seriesBudget" chart-options="$ctrl.options"
+                            chart-dataset-override="datasetOverride">
+                        </canvas>
+                </div>
+            </div>
+            <p style="color:lightseagreen;text-align:center"> Nacin finansiranja </p> 
             
     </div>
 
-    <div class="col s3">
+    <div class="col s6">
             <div class="card grey lighten-5">
                 <div class="card-content">
-                        <canvas id="line" class="chart chart-bar" chart-data="$ctrl.data3" chart-labels="$ctrl.labels" chart-series="$ctrl.series" chart-options="$ctrl.options"
+                        <canvas id="line" class="chart chart-pie" chart-data="$ctrl.data4" chart-labels="$ctrl.labelsRepeating" chart-series="$ctrl.seriesRepeating" chart-options="$ctrl.options"
                             chart-dataset-override="datasetOverride">
                         </canvas>
                 </div>
             </div>
-            <p style="color:lightseagreen;text-align:center"> Student applications in 2016 </p> 
-            
-    </div>
-
-    <div class="col s3">
-            <div class="card grey lighten-5">
-                <div class="card-content">
-                        <canvas id="line" class="chart chart-bar" chart-data="$ctrl.data4" chart-labels="$ctrl.labels" chart-series="$ctrl.series" chart-options="$ctrl.options"
-                            chart-dataset-override="datasetOverride">
-                        </canvas>
-                </div>
-            </div>
-            <p style="color:lightseagreen;text-align:center"> Student applications in 2017 </p> 
+            <p style="color:lightseagreen;text-align:center"> Redovni studenti i ponovci </p> 
             
     </div>
 

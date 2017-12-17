@@ -1,23 +1,15 @@
 class CoursesController {
-    static $inject = ["studentService"];
+    static $inject = ['studentService'];
 
-    constructor(studentService) {
+ constructor(studentService) {
         this.studentService = studentService;
         this.currentAcademicYear = 2017;
-        this.setupEnrollmentChart();
+        this.setupCoursesCharts();
+        this.setupDropdowns();
         this.loadData();
     }
 
-    /* changeChartView() {
-        this.data = {
-        singleSelect: null,
-        option1: 'option-1'
-        };
-        }*/
-
-    setupEnrollmentChart() {
-        this.labels = ["2012", "2013", "2014", "2015", "2016", "2017"];
-        this.series = ['Redovni'];
+    setupCoursesCharts() {
         this.options = {
             scales: {
               yAxes: [
@@ -30,59 +22,178 @@ class CoursesController {
               ]
             }
         };
-        this.data = [
-         4000, 6000, 2000, 7000, 8000, 10000 
-        ];
-        this.colors1 = ["#2196f3", "#e3f2fd", "#bbdefb", "#90caf9", "#64b5f6", "#42a5f5"];
-        this.data2 = [
-            35, 10, 65, 40, 100
-        ];
-        this.labels2 = ["2017", "2016", "2015", "2014", "2013"];
-        this.colors2 =["#2196f3", "#e3f2fd", "#bbdefb", "#90caf9", "#64b5f6", "#42a5f5"];
-        this.data3 = [40, 43, 45, 45, 48, 55, 59, 64, 70, 78];
-        this.labels3 = [
-        "Finance", "Business Management", "English Literature", "Tech Engineering",
-         "Human Resource Management", "Computer Science","Civil Engineering", 
-         "Electrical Engineering","Performing Arts","Music"];
-         this.colors3 = [ "#0000ff", "#0000ff", "#0000ff","#0000ff","#0000ff","#0000ff","#0000ff","#0000ff","#0000ff","#0000ff"];
-         this.colors4 = [ "#4169e1", "#4169e1", "#4169e1", "#4169e1", "#4169e1", "#4169e1", "#4169e1", "#4169e1", "#4169e1","#4169e1"];
-         this.data4 = [70, 70, 73, 75, 78, 78, 80, 82, 84, 86];
-         this.labels4 = [
-        "Finance", "Business Management", "English Literature", "Tech Engineering",
-         "Human Resource Management", "Computer Science","Civil Engineering", 
-         "Electrical Engineering","Performing Arts","Music"];
+        this.setupExamParticipationByAcademicYear();
+        this.setupCourseHighestAttendance();
+        this.setupEnrollmentDepartment();
+        this.setupEnrollmentByBudget();
+        this.setupEnrollmentByRepeating();
     }
 
+    setupCourseHighestAttendance(){
+        this.dataattendance = [ 100, 30 , 54, 60, 29 ];
+        this.labelsattendance = ["Željko Jurić", "Huse Fatkić", "Narcis Behlilović", "Hasna Šamić", "Haris Šupić"];   
+    }
+
+    setupExamParticipationByAcademicYear() {
+        this.labels1 = ["2014", "2015", "2016", "2017"];
+        this.series1 = ['Series'];
+        this.data1 = [
+            35, 20, 17, 16
+        ];
+    }
+
+    setupEnrollmentDepartment() {
+        this.labels2 = ["RI", "AiE", "EE", "TK"];
+        this.series2 = ['Series'];
+    
+        this.data2 = [
+            40, 45, 17, 15
+
+        ];
+    }
+
+    setupDropdowns(){
+        this.semesters = [
+        {
+            name: 'I',
+            value: 'I'
+        },
+        {
+          name: 'II',
+            value: 'II'
+        },{
+          name: 'III',
+            value: 'III'
+        },{
+          name: 'IV',
+            value: 'IV'
+        },
+        {
+          name: 'V',
+            value: 'V'
+        },
+        {
+          name: 'VI',
+            value: 'VI'
+        }
+        ];
+        this.days = [
+        {
+          name: 'Ponedjeljak',
+            value: 'Ponedjeljak'
+        },
+        {
+          name: 'Utorak',
+            value: 'Utorak'
+        },{
+          name: 'Srijeda',
+            value: 'Srijeda'
+        },
+        {
+          name: 'Cetvrtak',
+            value: 'Cetvrtak'
+        },
+        {
+          name: 'Petak',
+            value: 'Petak'
+        }
+        ];
+        this.departments = [{
+          name: 'RI',
+            value: 'RI'
+        },{
+          name: 'AiE',
+            value: 'AiE'
+        },
+        {
+          name: 'EE',
+            value: 'EE'
+        },
+        {
+            name: 'TK',
+            value: 'TK'
+        }
+        ];
+
+    }
+    setupEnrollmentByBudget() {
+        this.labelsBudget = ["Redovni", "Samofinansirajuci"];
+        this.seriesBudget = ['Series'];
+        
+        this.data3 = [
+            20, 25
+        ];
+    }
+
+    setupEnrollmentByRepeating() {
+        this.labelsRepeating = ["Redovni", "Ponovci"];
+        this.seriesRepeating = ['Series'];
+        
+        this.data4 = [
+            14, 20
+        ];
+    }
 
     loadData() {
-        this.loadEnrollmentData();
+        this.loadEnrollmentByAY();
+        this.loadEnrollmentByDepartment();
+        this.loadEnrollmentByBudget();
+        this.loadEnrollmentByRepeating();
     }
 
-    loadEnrollmentData(numYears = 6) {
+    loadEnrollmentByAY(numYears = 4) {
         var tmp = 0;
         for (var i = 0; i < numYears; i++) { 
             tmp = this.currentAcademicYear - numYears + 1 + i;
             this.enrollmentForYear(i, tmp);
-            this.registeredStudentsForYear(i,tmp);
         }   
     }
+
+    loadEnrollmentByDepartment(numDeps = 4) {
+        for (let i = 1; i <= numDeps; i++) { 
+            this.studentService.enrollmentByDepartment(i + 8).then((response) => {
+                console.log("vrijednost od i: " + i);
+                this.data2[i - 1] = response.data;
+            }, (error) => {
+                console.log("Greska: " + error);
+            });
+        }   
+    }
+
+    loadEnrollmentByBudget() {
+        this.studentService.enrollmentByBudget(1).then((response) => {
+            this.data3[0] = response.data;
+        }, (error) => {
+            console.log("Greska: " + error);
+        });
+        this.studentService.enrollmentByBudget(0).then((response) => {
+            this.data3[1] = response.data;
+        }, (error) => {
+            console.log("Greska: " + error);
+        });
+    }
     
+    loadEnrollmentByRepeating() {
+        this.studentService.enrollmentByRepeating(0).then((response) => {
+            this.data4[0] = response.data;
+        }, (error) => {
+            console.log("Greska: " + error);
+        });
+        this.studentService.enrollmentByRepeating(1).then((response) => {
+            this.data4[1] = response.data;
+        }, (error) => {
+            console.log("Greska: " + error);
+        });
+    }
+
     enrollmentForYear(idx, year) {
-        this.studentService.enrollmentReport(year).then((response) => {
+        this.studentService.enrollmentByAcademicYear(year).then((response) => {
             this.data[idx] = response.data; 
         }, (error) => {
             console.log("Greska: " + error);
         });
     }
-    registeredStudentsForYear(idx, year)
-    {
-        this.studentService.registeredStudentsReport(year).then((response) => {
-            this.data2[idx] = response.data;     
-        }, (error) => {
-            console.log("Greska: " + error);
-        });
-    }
+
 }
-    
 
 export default CoursesController;
