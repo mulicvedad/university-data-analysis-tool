@@ -3,7 +3,8 @@ target/
 web-app/node_modules/
 !.mvn/wrapper/maven-wrapper.jar
 .metadata
-
+/backend/dataset.arff
+/backend/inputValue.arff
 ### STS ###
 .apt_generated
 .classpath
@@ -11,6 +12,9 @@ web-app/node_modules/
 .project
 .settings
 .springBeans
+
+### Visual Code Studio ###
+.vscode
 
 ### IntelliJ IDEA ###
 .idea

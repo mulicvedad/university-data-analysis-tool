@@ -4,9 +4,6 @@ import ba.unsa.etf.bp.udat.models.EnrollmentFact;
 import ba.unsa.etf.bp.udat.repositories.EnrollmentFactRepository;
 import org.hibernate.service.spi.ServiceException;
 import org.springframework.stereotype.Service;
-
-import com.itextpdf.text.pdf.PdfStructTreeController.returnType;
-
 import java.rmi.ServerException;
 import java.util.Collection;
 import java.util.List;
@@ -51,6 +48,10 @@ public class EnrollmentFactService extends BaseService<EnrollmentFact, Enrollmen
     public Integer filterByRepeating(Boolean isRepeating) throws ServerException
     {
         return repository.filterByRepeating(isRepeating);
+    }
+    public Integer filterByAcademicYearBudget(Integer ay, Boolean budget) throws ServiceException
+    {
+        return repository.filterByAcademicYearBudget(ay, budget);
     }
 
     public List<Object[]> groupByAcademicYear() {

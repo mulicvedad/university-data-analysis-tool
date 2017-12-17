@@ -45,6 +45,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/lecturers/**").permitAll()//hasAnyRole(ROLE_ADMIN, ROLE_USER)
                 .antMatchers("/semesters/**").permitAll()//hasAnyRole(ROLE_ADMIN, ROLE_USER)
                 .antMatchers("/times/**").permitAll()//hasAnyRole(ROLE_ADMIN, ROLE_USER)
+                .antMatchers("/prediction/**").permitAll()//hasAnyRole(ROLE_ADMIN, ROLE_USER)
                 .anyRequest().authenticated()
                 .and()
                 // We filter the api/login requests
