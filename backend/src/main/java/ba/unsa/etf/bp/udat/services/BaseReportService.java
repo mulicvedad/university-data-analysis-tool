@@ -15,7 +15,7 @@ import java.util.Date;
 import java.util.List;
 
 @Service
-public class BaseReportService {
+public abstract class BaseReportService {
 
     private String REPORT_FILENAME;
     private String REPORT_PDF_EXTENSION;
@@ -114,8 +114,14 @@ public class BaseReportService {
         }
     }
 
+    protected void addEmptyRow(Document document) throws DocumentException{
+        Paragraph paragraph = new Paragraph();
+        paragraph.add(new Paragraph(" "));
+        document.add(paragraph);
+    }
+
     // asinhrono brisanje datoteke nakon sto obradjen zahtjev
-    public void deleteReportFile(String filepath) {
+    public static void deleteReportFile(String filepath) {
         File file = new File(filepath);
         if (file != null) {
             new Thread(new Runnable() {
@@ -127,6 +133,6 @@ public class BaseReportService {
         }
     }
 
-    public String generateReport() throws Exception{ return null; }
+    public abstract String generateOverallReport() throws Exception;
 }
 

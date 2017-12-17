@@ -30,12 +30,12 @@ public class EnrollmentReportService extends BaseReportService{
     private EnrollmentFactService enrollmentFactService;
 
     @Override
-    public String generateReport() throws Exception{
+    public String generateOverallReport() throws Exception{
         try {
             logger.entering("EnrollmentFactSErvice", "generateReport");
-            String auditReportFilename = ENROLLMENT_REPORT_FILENAME + Math.random() + FILE_EXTENSION;
+            String reportFilename = ENROLLMENT_REPORT_FILENAME + Math.random() + FILE_EXTENSION;
 
-            OutputStream file = new FileOutputStream(new File(auditReportFilename));
+            OutputStream file = new FileOutputStream(new File(reportFilename));
             Document document = new Document(PageSize.A3.rotate());
             logger.info("Kreiran file i document");
             PdfWriter.getInstance(document, file);
@@ -48,11 +48,15 @@ public class EnrollmentReportService extends BaseReportService{
             document.close();
             file.close();
 
-            return auditReportFilename;
+            return reportFilename;
         }
         catch (Exception e) {
             throw new Exception("Došlo je do greške prilikom kreiranja PDF dokumenta.");
         }
+    }
+
+    public String generateReport(int academicYearId) {
+        return null;
     }
 
     private void addEnrollmentByAcademicYearTable(Document document, int numberOfYears) throws DocumentException{

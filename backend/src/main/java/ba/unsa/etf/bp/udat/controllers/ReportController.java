@@ -1,7 +1,10 @@
 package ba.unsa.etf.bp.udat.controllers;
 
+import ba.unsa.etf.bp.udat.services.BaseReportService;
 import ba.unsa.etf.bp.udat.services.EnrollmentReportService;
+import ba.unsa.etf.bp.udat.services.ExamReportService;
 import org.apache.commons.io.IOUtils;
+import org.hibernate.service.spi.ServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -26,18 +29,56 @@ public class ReportController {
 
     @Autowired
     private EnrollmentReportService enrollmentReportService;
+    @Autowired
+    private ExamReportService examReportService;
+
+    //EXAMS
+    @ResponseBody
+    @GetMapping("/report/exam/overallReport")
+    public ResponseEntity<byte[]> examOverallReport() {
+        try {
+            String filepath = examReportService.generateOverallReport();
+            return createResponse(filepath);
+        }
+        catch (Exception e) {
+            return error(e);
+        }
+    }
 
     @ResponseBody
-    @GetMapping("/report/test")
-    public ResponseEntity<byte[]> pdfEnrollmentReport() {
+    @GetMapping("/report/exam/turnout")
+    public ResponseEntity<byte[]> examTurnoutReport(@RequestParam("ay") Long ay, @RequestParam("dep") Long dep,
+                                             @RequestParam("course") Long course) {
+        try {
+            String filepath = examReportService.generateTurnoutReport(ay, dep, course);
+            return createResponse(filepath);
+        }
+        catch (Exception e) {
+            return error(e);
+        }
+    }
+
+    @ResponseBody
+    @GetMapping("/report/exam/points")
+    public ResponseEntity<byte[]> examPointsReport(@RequestParam("ay") Long ay, @RequestParam("dep") Long dep,
+                                                    @RequestParam("course") Long course) {
+        try {
+            String filepath = examReportService.generatePointsReport(ay, dep, course);
+            return createResponse(filepath);
+        }
+        catch (Exception e) {
+            return error(e);
+        }
+    }
+
+    private ResponseEntity<byte[]> createResponse(String filepath) {
         FileInputStream fileStream;
         try {
-            String filePath = enrollmentReportService.generateReport();
-            fileStream = new FileInputStream(new File(filePath));
+            fileStream = new FileInputStream(new File(filepath));
             byte[] contents = IOUtils.toByteArray(fileStream);
 
             fileStream.close();
-            enrollmentReportService.deleteReportFile(filePath);
+            BaseReportService.deleteReportFile(filepath);
 
             HttpHeaders headers = new HttpHeaders();
             headers.setContentType(MediaType.parseMediaType("application/pdf"));
@@ -45,12 +86,6 @@ public class ReportController {
             ResponseEntity<byte[]> response = new ResponseEntity<>(contents, headers, HttpStatus.OK);
 
             return response;
-        }
-        catch (FileNotFoundException e) {
-            return error(e);
-        }
-        catch (IOException e) {
-            return error(e);
         }
         catch (Exception e) {
             return error(e);
