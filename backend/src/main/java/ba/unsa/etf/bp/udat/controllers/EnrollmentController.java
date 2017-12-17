@@ -16,6 +16,11 @@ public class EnrollmentController extends BaseController<EnrollmentFact, Enrollm
         return service.filterByAcademicYear(ay);
     }
     @ResponseBody
+    @GetMapping("/enrollment/academic_year/budget")
+    public Integer enrollmentByAcademicYearBudget(@RequestParam("ay") Integer ay, @RequestParam("budget") Boolean budget) {
+        return service.filterByAcademicYearBudget(ay,budget);
+    }   
+    @ResponseBody
     @GetMapping("/enrollment/academic_year/active")
     public Integer enrollmentByActiveYear() {
         return service.filterByActiveYear();
