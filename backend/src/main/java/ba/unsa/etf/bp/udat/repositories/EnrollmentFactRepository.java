@@ -7,6 +7,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.Collection;
+import java.util.List;
 
 @Repository
 public interface EnrollmentFactRepository extends PagingAndSortingRepository<EnrollmentFact, Long>
@@ -43,5 +44,14 @@ public interface EnrollmentFactRepository extends PagingAndSortingRepository<Enr
 
     @Query("SELECT SUM(ef.enrolledCount) FROM EnrollmentFact ef WHERE ef.isRepeating = :isRepeating")
     Integer filterByRepeating(@Param("isRepeating") Boolean isRepeating);
+
+
+    @Query("SELECT ef.academicYearDim, SUM(ef.enrolledCount) AVG(ef.averagePoints) FROM EnrollmentFact ef" +
+            " group by ef.academicYearDim order by ef.academicYearDim")
+    List<Object[]> filterByAllYears();
+
+    @Query("SELECT ef.departmentDim, SUM(ef.enrolledCount) FROM EnrollmentFact ef" +
+            " group by ef.departmentDim order by ef.departmentDim")
+    List<Object[]> filterByAllDepartments();
 
 }

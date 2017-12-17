@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.rmi.ServerException;
 import java.util.Collection;
+import java.util.List;
 
 @Service
 public class EnrollmentFactService extends BaseService<EnrollmentFact, EnrollmentFactRepository>{
@@ -44,6 +45,14 @@ public class EnrollmentFactService extends BaseService<EnrollmentFact, Enrollmen
     public Integer filterByRepeating(Boolean isRepeating) throws ServerException
     {
         return repository.filterByRepeating(isRepeating);
+    }
+
+    public List<Object[]> groupByAcademicYear() {
+        return repository.filterByAllYears();
+    }
+
+    public List<Object[]> groupByDepartments() {
+        return repository.filterByAllDepartments();
     }
 
 
