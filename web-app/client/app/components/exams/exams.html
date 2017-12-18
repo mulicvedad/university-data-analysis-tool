@@ -2,32 +2,28 @@
 <div class="col s6">
         <div class="card grey lighten-5">
             <div class="card-content" >
-                <canvas id="bar" class="chart chart-line" chart-data="$ctrl.data1" chart-labels="$ctrl.labels1" chart-series="$ctrl.series1"></canvas>  
+                <canvas id="bar" class="chart chart-bar" chart-data="$ctrl.data1" chart-labels="$ctrl.labels1" chart-series="$ctrl.series1"></canvas>  
             </div>
         </div>
         <p style="color:lightseagreen;text-align:center"> Izlaznost studenata </p>    
         <div class="row">
         <div class="col s4">
         <p> Akademska godina: </p>
-           <select ng-model="selectedYear" ng-options="option.name for option in $ctrl.academy_years" id="dropdown" name="dropdown">
-            <option value="">-</option>
-            <option value="">{{option.name}}</option>
+           <select ng-model="$ctrl.selectedYear1" ng-options="ay.title for ay in $ctrl.academicYears" id="dropdown" name="dropdown" ng-change="$ctrl.refreshTurnout()">
         </select>
         <!-- odabrana vrijednost je spasena u {{selectedYear.value}} -->
 
         </div>
-         <div class="col s4">
+         <!--div class="col s4">
         <p> Predmeti: </p>
            <select ng-model="selectedSubject" ng-options="option.name for option in $ctrl.subjects" id="dropdown" name="dropdown">
             <option value="">-</option>
             <option value="">{{option.name}}</option>
         </select>
-        </div>
+        </div-->
          <div class="col s4">
         <p> Odsjeci: </p>
-           <select ng-model="selectedDept" ng-options="option.name for option in $ctrl.departments" id="dropdown" name="dropdown">
-            <option value="">-</option>
-            <option value="">{{option.name}}</option>
+           <select ng-model="$ctrl.selectedDepartment1" ng-options="dep.title for dep in $ctrl.departments" id="dropdown" name="dropdown" ng-change="$ctrl.refreshTurnout()">
         </select>
         </div>
 
@@ -46,23 +42,19 @@
             <div class="row">
         <div class="col s4">
         <p> Akademska godina: </p>
-           <select ng-model="selectedYear2" ng-options="option.name for option in $ctrl.academy_years" id="dropdown" name="dropdown">
-            <option value="">-</option>
-            <option value="">{{option.name}}</option>
+           <select ng-model="$ctrl.selectedYear2" ng-options="ay.title for ay in $ctrl.academicYears" id="dropdown" name="dropdown" ng-change="$ctrl.refreshAveragePoints()">
         </select>
         </div>
-         <div class="col s4">
+         <!--div class="col s4">
         <p> Predmeti: </p>
            <select ng-model="selectedSubject2" ng-options="option.name for option in $ctrl.subjects" id="dropdown" name="dropdown">
             <option value="">-</option>
             <option value="">{{option.name}}</option>
         </select>
-        </div>
+        </div-->
          <div class="col s4">
         <p> Odsjeci: </p>
-           <select ng-model="selectedDept2" ng-options="option.name for option in $ctrl.departments" id="dropdown" name="dropdown">
-            <option value="">-</option>
-            <option value="">{{option.name}}</option>
+           <select ng-model="$ctrl.selectedDepartment2" ng-options="dep.title for dep in $ctrl.departments" id="dropdown" name="dropdown" ng-change="$ctrl.refreshAveragePoints()">
         </select>
         </div>
 
@@ -71,3 +63,8 @@
     </div>
 
 </div>
+<div class="row">
+        <div class="col s12">
+            <button class="btn" ng-click="$ctrl.examsReport()">Izvjestaj</button>
+        </div>
+    </div>

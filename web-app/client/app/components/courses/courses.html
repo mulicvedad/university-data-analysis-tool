@@ -2,25 +2,23 @@
     <div class="col s6">
         <div class="card grey lighten-5">
             <div class="card-content" >
-                <canvas id="bar" class="chart chart-pie" chart-data="$ctrl.data1" chart-labels="$ctrl.labels1" chart-series="$ctrl.series1"></canvas>  
+                <canvas id="bar" class="chart chart-pie" chart-data="$ctrl.attendanceData" chart-labels="$ctrl.attendanceLabels" chart-series="$ctrl.series1"></canvas>  
             </div>
         </div>
                 <p style="color:lightseagreen;text-align:center"> Broj studenata upisanih na kurs </p>
     <div class="row">
         <div class="col s6">
         <p> Odsjek: </p>
-           <select ng-model="selectedDepartment" ng-options="option.name for option in $ctrl.departments" id="dropdown" name="dropdown">
-            <option value="">-</option>
-            <option value="">{{option.name}}</option>
-        </select>   
+           <select ng-model="$ctrl.selectedDepartment" ng-options="dep.title for dep in $ctrl.departments" id="dropdown" name="dropdown" ng-change="$ctrl.selectedChanged()">
+        </select>
         </div>
-        <div class="col s6">
+        <!--div class="col s6">
         <p> Semestar: </p>
            <select ng-model="selectedSemester" ng-options="option.name for option in $ctrl.semesters" id="dropdown" name="dropdown">
             <option value="">-</option>
             <option value="">{{option.name}}</option>
         </select>
-        </div>
+        </div-->
         <!--<div class="col s4">
         <p> Dan u sedmici: </p>
            <select ng-model="selectedDay" ng-options="option.name for option in $ctrl.days" id="dropdown" name="dropdown">
@@ -34,14 +32,14 @@
     <div class="col s6">
             <div class="card grey lighten-5">
                 <div class="card-content">
-                        <canvas id="line" class="chart chart-bar" chart-data="$ctrl.data2" chart-labels="$ctrl.labels2" chart-series="$ctrl.series2" chart-options="$ctrl.options"
+                        <canvas id="line" class="chart chart-bar" chart-data="$ctrl.attendanceData" chart-labels="$ctrl.attendanceLabels" chart-series="$ctrl.series2" chart-options="$ctrl.options"
                             chart-dataset-override="datasetOverride">
                         </canvas>
                 </div>
             </div>
             <p style="color:lightseagreen;text-align:center"> Broj studenata prisutnih na predavanju </p> 
             <div class="row">
-        <div class="col s4">
+        <!--div class="col s4">
         <p> Odsjek: </p>
            <select ng-model="selectedDepartment2" ng-options="option.name for option in $ctrl.departments" id="dropdown" name="dropdown">
             <option value="">-</option>
@@ -61,7 +59,7 @@
             <option value="">-</option>
             <option value="">{{option.name}}</option>
         </select>
-        </div>
+        </div-->
     </div>
     </div>
 
@@ -77,4 +75,10 @@
             </div>
         </div>    
 </div>
-</div>      
+</div>   
+
+<div class="row">
+    <div class="col s12">
+        <button class="btn" ng-click="$ctrl.attendanceReport()">Izvjestaj</button>
+    </div>
+</div>

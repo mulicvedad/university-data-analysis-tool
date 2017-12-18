@@ -1,9 +1,13 @@
 class CoursesController {
-    static $inject = ['studentService'];
+    static $inject = ['studentService',  'departmentService', 'attendanceService', 'reportService'];
 
- constructor(studentService) {
+ constructor(studentService, departmentService, attendanceService, reportService) {
+        this.departmentService = departmentService;
         this.studentService = studentService;
+        this.attendanceService = attendanceService;
+        this.reportService = reportService;
         this.currentAcademicYear = 2017;
+        this.selectedDepartment = null;
         this.setupCoursesCharts();
         this.setupDropdowns();
         this.loadData();
@@ -22,11 +26,8 @@ class CoursesController {
               ]
             }
         };
-        this.setupExamParticipationByAcademicYear();
+        this.setupAttendanceChart();
         this.setupCourseHighestAttendance();
-        this.setupEnrollmentDepartment();
-        this.setupEnrollmentByBudget();
-        this.setupEnrollmentByRepeating();
     }
 
     setupCourseHighestAttendance(){
@@ -34,165 +35,44 @@ class CoursesController {
         this.labelsattendance = ["Željko Jurić", "Huse Fatkić", "Narcis Behlilović", "Hasna Šamić", "Haris Šupić"];   
     }
 
-    setupExamParticipationByAcademicYear() {
-        this.labels1 = ["2014", "2015", "2016", "2017"];
-        this.series1 = ['Series'];
-        this.data1 = [
-            35, 20, 17, 16
-        ];
-    }
-
-    setupEnrollmentDepartment() {
-        this.labels2 = ["RI", "AiE", "EE", "TK"];
-        this.series2 = ['Series'];
-    
-        this.data2 = [
-            40, 45, 17, 15
-
-        ];
+    setupAttendanceChart() {
+        this.attendanceLabels = ["Prisutni", "Odsutni"];
+        this.attendanceData = [0.5, 0.5];
     }
 
     setupDropdowns(){
-        this.semesters = [
-        {
-            name: 'I',
-            value: 'I'
-        },
-        {
-          name: 'II',
-            value: 'II'
-        },{
-          name: 'III',
-            value: 'III'
-        },{
-          name: 'IV',
-            value: 'IV'
-        },
-        {
-          name: 'V',
-            value: 'V'
-        },
-        {
-          name: 'VI',
-            value: 'VI'
-        }
-        ];
-        this.days = [
-        {
-          name: 'Ponedjeljak',
-            value: 'Ponedjeljak'
-        },
-        {
-          name: 'Utorak',
-            value: 'Utorak'
-        },{
-          name: 'Srijeda',
-            value: 'Srijeda'
-        },
-        {
-          name: 'Cetvrtak',
-            value: 'Cetvrtak'
-        },
-        {
-          name: 'Petak',
-            value: 'Petak'
-        }
-        ];
-        this.departments = [{
-          name: 'RI',
-            value: 'RI'
-        },{
-          name: 'AiE',
-            value: 'AiE'
-        },
-        {
-          name: 'EE',
-            value: 'EE'
-        },
-        {
-            name: 'TK',
-            value: 'TK'
-        }
-        ];
+        //zatrebace soon
+        /*Promise.all([this.loadLocationTypes(), this.loadAllLocations()]).then(([locTypesRes, locRes]) => {
+            this.locationTypes = locTypesRes.data;
+            this.allLocations = locRes.data;
+
+            this.loadLocations(page);
+        });*/
+        this.departments = [];
+        this.loadDepartments();
 
     }
-    setupEnrollmentByBudget() {
-        this.labelsBudget = ["Redovni", "Samofinansirajuci"];
-        this.seriesBudget = ['Series'];
-        
-        this.data3 = [
-            20, 25
-        ];
-    }
-
-    setupEnrollmentByRepeating() {
-        this.labelsRepeating = ["Redovni", "Ponovci"];
-        this.seriesRepeating = ['Series'];
-        
-        this.data4 = [
-            14, 20
-        ];
+    
+    loadDepartments(page = 1) {
+        this.departmentService.departments(page).then((response) => {
+            this.departments = response.data.content;    
+        });
     }
 
     loadData() {
-        this.loadEnrollmentByAY();
-        this.loadEnrollmentByDepartment();
-        this.loadEnrollmentByBudget();
-        this.loadEnrollmentByRepeating();
     }
 
-    loadEnrollmentByAY(numYears = 4) {
-        var tmp = 0;
-        for (var i = 0; i < numYears; i++) { 
-            tmp = this.currentAcademicYear - numYears + 1 + i;
-            this.enrollmentForYear(i, tmp);
-        }   
-    }
-
-    loadEnrollmentByDepartment(numDeps = 4) {
-        for (let i = 1; i <= numDeps; i++) { 
-            this.studentService.enrollmentByDepartment(i + 8).then((response) => {
-                console.log("vrijednost od i: " + i);
-                this.data2[i - 1] = response.data;
-            }, (error) => {
-                console.log("Greska: " + error);
-            });
-        }   
-    }
-
-    loadEnrollmentByBudget() {
-        this.studentService.enrollmentByBudget(1).then((response) => {
-            this.data3[0] = response.data;
-        }, (error) => {
-            console.log("Greska: " + error);
-        });
-        this.studentService.enrollmentByBudget(0).then((response) => {
-            this.data3[1] = response.data;
-        }, (error) => {
-            console.log("Greska: " + error);
-        });
-    }
-    
-    loadEnrollmentByRepeating() {
-        this.studentService.enrollmentByRepeating(0).then((response) => {
-            this.data4[0] = response.data;
-        }, (error) => {
-            console.log("Greska: " + error);
-        });
-        this.studentService.enrollmentByRepeating(1).then((response) => {
-            this.data4[1] = response.data;
-        }, (error) => {
-            console.log("Greska: " + error);
+    selectedChanged() {
+        this.attendanceService.attendancePercentage(this.selectedDepartment.id, -1, -1).then((response) => {
+            this.attendanceData[0] = response.data;
+            this.attendanceData[1] = 1 - response.data;
         });
     }
 
-    enrollmentForYear(idx, year) {
-        this.studentService.enrollmentByAcademicYear(year).then((response) => {
-            this.data[idx] = response.data; 
-        }, (error) => {
-            console.log("Greska: " + error);
-        });
+    attendanceReport() {
+        this.reportService.attendanceOverallReport();
     }
+
 
 }
 

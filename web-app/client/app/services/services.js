@@ -5,6 +5,11 @@ import sessionService from './sessionService';
 import studentService from './studentService';
 import jwtService from './jwtService';
 import importDataService from './importDataService';
+import attendanceService from './attendanceService';
+import departmentService from './departmentService';
+import academicYearService from './academicYearService';
+import examService from './examService';
+import reportService from './reportService';
 
 let servicesModule = angular.module('app.services', [])
 .service({
@@ -13,7 +18,12 @@ let servicesModule = angular.module('app.services', [])
     sessionService,
     studentService,
     jwtService,
-    importDataService
+    importDataService,
+    attendanceService,
+    departmentService,
+    academicYearService,
+    examService,
+    reportService
 })
 .name;
 

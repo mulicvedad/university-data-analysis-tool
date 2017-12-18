@@ -39,24 +39,25 @@
     <div class="cardheader2">
     <div mat-card-avatar class="example-header-image"></div>
     <mat-card-title>
-        <h5 class="cardtitle center-align"> Admission Rate </h5>
+        <h5 class="cardtitle center-align"> Broj upisanih studenata u tekucoj ak. god. </h5>
     </mat-card-title>
     </div>
   </div>
   </mat-card-header>
   <mat-card-content>
-    <h3 class="midvalue center-align"> 16.6% </h3>
+    <h3 class="midvalue center-align"> {{$ctrl.enrollmentCurrentYear}} </h3>
   </mat-card-content>
   <md-card-footer>
     <div class="row cardfooter">
     <div class="col s4">
-    <p class="appsum left-align">16.4%</p>
+    <!--p class="appsum left-align">16.4%</p-->
     </div>
     <div class="col s2 offset-s2">
-    <i class="material-icons up">arrow_drop_up</i>
+    <i class="material-icons down" ng-show="$ctrl.enrollmentIncrease < 0">arrow_drop_down</i>
+    <i class="material-icons up" ng-show="$ctrl.enrollmentIncrease >= 0">arrow_drop_up</i>
     </div>
-    <div class="col s4 footer-percentage">
-    <p class="apppercent right-align">1.11%</p>
+    <div class="col s4">
+    <p class="apppercent right-align">{{$ctrl.enrollmentIncrease}}%</p>
     </div>
     </div>
   </md-card-footer>
@@ -103,24 +104,25 @@
     <div class="cardheader4">
     <div mat-card-avatar class="example-header-image"></div>
     <mat-card-title>
-        <h5 class="cardtitle center-align"> Retention Rate </h5>
+        <h5 class="cardtitle center-align"> Broj ponovaca u tekucoj ak. god. </h5>
     </mat-card-title>
     </div>
   </div>
   </mat-card-header>
   <mat-card-content>
-    <h3 class="midvalue center-align"> 76.2% </h3>
+    <h3 class="midvalue center-align"> {{$ctrl.repeatersCount}} </h3>
   </mat-card-content>
   <md-card-footer>
     <div class="row cardfooter">
     <div class="col s4">
-    <p class="appsum left-align">85.1%</p>
+    <!--p class="appsum left-align">{{$ctrl.repeatersIncrease}}%</p-->
     </div>
     <div class="col s2 offset-s2">
-    <i class="material-icons down">arrow_drop_down</i>
+    <i class="material-icons down" ng-show="$ctrl.repeatersIncrease < 0">arrow_drop_down</i>
+    <i class="material-icons up" ng-show="$ctrl.repeatersIncrease >= 0">arrow_drop_up</i>
     </div>
     <div class="col s4">
-    <p class="apppercent right-align">10.53%</p>
+    <p class="apppercent right-align up">{{$ctrl.repeatersIncrease}}%</p>
     </div>
     </div>
   </md-card-footer>
@@ -185,3 +187,9 @@
 
 
 </div>
+
+<div class="row">
+        <div class="col s12">
+            <button class="btn" ng-click="$ctrl.enrollmentReport()">Izvjestaj</button>
+        </div>
+    </div>
