@@ -10,6 +10,7 @@ import departmentService from './departmentService';
 import academicYearService from './academicYearService';
 import examService from './examService';
 import reportService from './reportService';
+import predictionService from './predictionService';
 
 let servicesModule = angular.module('app.services', [])
 .service({
@@ -23,7 +24,8 @@ let servicesModule = angular.module('app.services', [])
     departmentService,
     academicYearService,
     examService,
-    reportService
+    reportService,
+    predictionService
 })
 .name;
 

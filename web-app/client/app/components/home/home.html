@@ -1,45 +1,38 @@
-<h5 style="text-align:center;color:darkgray"> Overall analysis </h5>
-<!--div class="row">
-    <div class="col s6">
-        <div class="card grey lighten-5">
-            <div class="card-content" >
-                <canvas id="bar" class="chart chart-bar" chart-data="$ctrl.data" chart-labels="$ctrl.labels" chart-series="$ctrl.series"></canvas>  
-            </div>
-        </div>
-        <p style="color:lightseagreen;text-align:center"> Student enrollment in last 5 academic years </p>         
-    </div>
-    <div class="col s6">
-            <div class="card grey lighten-5">
-                <div class="card-content">
-                        <canvas id="line" class="chart chart-line" chart-data="$ctrl.data2" chart-labels="$ctrl.labels" chart-series="$ctrl.series" chart-options="$ctrl.options"
-                            chart-dataset-override="datasetOverride">
-                        </canvas>
-                </div>
-            </div>
-            <p style="color:lightseagreen;text-align:center"> Registered students on the university in the last 5 academic years </p> 
-            
-    </div>
-
-    <div ui-view=""></div>
-</div-->
+<!--h5 style="text-align:center;color:darkgray"> Overall analysis </h5>
 <div class="row">
     <div class="col-s11 offset-s1" style="text-align:center">
         <button class="btn" ng-click="$ctrl.importData()">Import</button>
     </div>
+</div-->
+<h5 style="text-align:center;color:darkgray"> Predikcija broja upisanih studenata </h5>
+<div class="row">
 </div>
-<!--div class="row">
-        <div class="col s6">
-            <div class="card grey lighten-5">
-                <div class="card-content">
-                    <canvas id="bar" class="chart chart-bar" chart-data="$ctrl.data" chart-labels="$ctrl.labels" chart-series="$ctrl.series"></canvas>   
-                </div>
-            </div>
+<div class="row">
+    <div class="col s6" style="text-align:right">
+        Broj studenata na budzetu:
+    </div>
+    <div class="col s6" style="text-align:left">
+        Izvrsi predikciju
+    </div>
+    
+</div>
+<div class="row">
+        <div class="col s2 offset-s4" style="text-align:right">
+            <input type="number" ng-model="$ctrl.budgetNum" min = "1">
         </div>
         <div class="col s6">
-                <div class="card grey lighten-5">
-                    <div class="card-content">
-                        <canvas id="bar" class="chart chart-bar" chart-data="$ctrl.data" chart-labels="$ctrl.labels" chart-series="$ctrl.series"></canvas>   
-                    </div>
-                </div>
+            <button class="btn" ng-click="$ctrl.loadPredictionData($ctrl.budgetNum)">
+                Izvrsi predikciju
+            </button>
         </div>
-    </div-->
+        
+</div>.
+<div class="row">
+        <div class="col s6" style="text-align:right">
+            Rezultat: 
+        </div>
+        <div class="col s6">
+            {{$ctrl.predictedNumber}}
+        </div>
+        
+</div>

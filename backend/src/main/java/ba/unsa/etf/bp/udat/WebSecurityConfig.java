@@ -31,7 +31,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable().authorizeRequests()
-                .antMatchers("/**").permitAll();
+                //.antMatchers("/**").permitAll();
+               // .antMatchers("/**").authenticated()
                 /*.antMatchers("/").hasAnyRole(ROLE_ADMIN,ROLE_USER)
                 .antMatchers("/").permitAll()
                 .antMatchers(HttpMethod.POST, "/login").permitAll()
@@ -45,7 +46,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/lecturers/**").permitAll()//hasAnyRole(ROLE_ADMIN, ROLE_USER)
                 .antMatchers("/semesters/**").permitAll()//hasAnyRole(ROLE_ADMIN, ROLE_USER)
                 .antMatchers("/times/**").permitAll()//hasAnyRole(ROLE_ADMIN, ROLE_USER)
-                .antMatchers("/prediction/**").permitAll()//hasAnyRole(ROLE_ADMIN, ROLE_USER)
+                .antMatchers("/prediction/**").permitAll()//hasAnyRole(ROLE_ADMIN, ROLE_USER)*/
                 .anyRequest().authenticated()
                 .and()
                 // We filter the api/login requests
@@ -53,7 +54,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                         UsernamePasswordAuthenticationFilter.class)
                 // And filter other requests to check the presence of JWT in header
                 .addFilterBefore(new JWTAuthenticationFilter(),
-                        UsernamePasswordAuthenticationFilter.class);*/
+                        UsernamePasswordAuthenticationFilter.class);
     }
 
     @Override

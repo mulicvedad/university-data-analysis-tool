@@ -16,4 +16,12 @@ public class AttendanceController extends BaseController<AttendanceFact, Attenda
         return service.attendanceByDepartmentCourseLecturer(dep, course, lecturer).setScale(2, BigDecimal.ROUND_HALF_UP);
     }
 
+    @ResponseBody
+    @GetMapping("/attendancePercentage")
+    public BigDecimal attendancePercentageByDepartmentCourseLecturer(@RequestParam("dep") Long dep,
+                                                           @RequestParam("course") Long course, @RequestParam("lecturer") Long lecturer) throws ServerException
+    {
+        return service.attendancePercentageByDepartmentCourseLecturer(dep, course, lecturer).setScale(2, BigDecimal.ROUND_HALF_UP);
+    }
+
 }

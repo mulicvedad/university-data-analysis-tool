@@ -13,12 +13,20 @@ import java.util.List;
 public interface AttendanceFactRepository extends PagingAndSortingRepository<AttendanceFact, Long> {
     @Query("SELECT af FROM AttendanceFact af")
     Collection<AttendanceFact> findAll();
-    @Query("SELECT af.attendancePercentage FROM AttendanceFact af,DepartmentDim depd, CourseDim cod, LecturerDim ld " +
+
+    @Query("SELECT AVG(af.attendance) FROM AttendanceFact af,DepartmentDim depd, CourseDim cod, LecturerDim ld " +
            " WHERE ((af.departmentDim = depd AND depd.id = :dep) OR (:dep = -1)) AND " +
            " ((af.courseDim = cod AND cod.id = :course) OR (:course = -1)) AND " +
            "((af.lecturerDim = ld AND ld.id = :lecturer) OR (:lecturer = -1))")
     BigDecimal attendanceByDepartmentCourseLecturer(@Param("dep")
     Long dep, @Param("course") Long course, @Param("lecturer") Long lecturer);
+
+    @Query("SELECT AVG(af.attendancePercentage) FROM AttendanceFact af,DepartmentDim depd, CourseDim cod, LecturerDim ld " +
+            " WHERE ((af.departmentDim = depd AND depd.id = :dep) OR (:dep = -1)) AND " +
+            " ((af.courseDim = cod AND cod.id = :course) OR (:course = -1)) AND " +
+            "((af.lecturerDim = ld AND ld.id = :lecturer) OR (:lecturer = -1))")
+    BigDecimal attendancePercentageByDepartmentCourseLecturer(@Param("dep")
+                                                            Long dep, @Param("course") Long course, @Param("lecturer") Long lecturer);
 
     @Query("SELECT af.departmentDim, AVG(af.attendance), AVG(af.attendancePercentage) FROM AttendanceFact af" +
             " group by af.departmentDim")

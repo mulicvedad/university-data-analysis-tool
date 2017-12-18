@@ -51,7 +51,7 @@ public class EnrollmentController extends BaseController<EnrollmentFact, Enrollm
         Double currentYearEnrollment = service.filterByAcademicYear(ay).doubleValue();
         Double lastYearEnrollment = service.filterByAcademicYear(ay - 1).doubleValue();
         Double increasePercentage = (currentYearEnrollment - lastYearEnrollment) / lastYearEnrollment;
-        return  new BigDecimal(increasePercentage.toString()).setScale(4, BigDecimal.ROUND_HALF_UP);
+        return  new BigDecimal(increasePercentage.toString()).setScale(2, BigDecimal.ROUND_HALF_UP);
     }
     @ResponseBody
     @GetMapping("/enrollment/percentage/repeating")
@@ -60,7 +60,7 @@ public class EnrollmentController extends BaseController<EnrollmentFact, Enrollm
         Double currentYearRepeaters = service.filterByAcademicYearRepeatingStudents(ay).doubleValue();
         Double lastYearRepeaters = service.filterByAcademicYearRepeatingStudents(ay - 1).doubleValue();
         Double increasePercentage = (currentYearRepeaters - lastYearRepeaters) / lastYearRepeaters;
-        return  new BigDecimal(increasePercentage.toString()).setScale(4, BigDecimal.ROUND_HALF_UP);
+        return  new BigDecimal(increasePercentage.toString()).setScale(2, BigDecimal.ROUND_HALF_UP);
 
     }
 

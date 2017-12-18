@@ -29,6 +29,11 @@ public class AttendanceFactService extends BaseService<AttendanceFact, Attendanc
         return repository.attendanceByDepartmentCourseLecturer(dep, course, lecturer);
     }
 
+    public BigDecimal attendancePercentageByDepartmentCourseLecturer(Long dep, Long course, Long lecturer) throws ServiceException
+    {
+        return repository.attendancePercentageByDepartmentCourseLecturer(dep, course, lecturer);
+    }
+
     public List<Object[]> groupByDepartments() {
         return repository.filterByAllDepartments();
     }
