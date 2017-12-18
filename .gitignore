@@ -3,6 +3,11 @@ target/
 web-app/node_modules/
 !.mvn/wrapper/maven-wrapper.jar
 .metadata
+/backend/dataset.arff
+/backend/inputValue.arff
+
+### Visual Studio Code ###
+.vscode
 
 ### STS ###
 .apt_generated
