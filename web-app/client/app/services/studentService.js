@@ -16,5 +16,11 @@ export default class StudentService extends BaseService {
     budgetPercentage() {
         return super.get("enrollment/budgetPercentage");
     }
+    enrollmentIncreaseByYear(year) {
+        return super.get("enrollment/percentage/activeAcademicYear?ay=" + year);
+    }
+    repeatersIncreaseByYear(year) {
+        return super.get("enrollment/percentage/repeating?ay=" + year);
+    }
 
 }

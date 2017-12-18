@@ -78,4 +78,9 @@ public class DepartmentDim extends BaseModel{
     public void setExamFacts(Collection<ExamFact> exams) {
         this.examFacts = examFacts;
     }
+
+    @Override
+    public String toString() {
+        return this.getTitle();
+    }
 }

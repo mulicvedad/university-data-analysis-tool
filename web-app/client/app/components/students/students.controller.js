@@ -1,8 +1,9 @@
 class StudentsController {
-    static $inject = ['studentService'];
+    static $inject = ['studentService', 'reportService'];
 
- constructor(studentService) {
+ constructor(studentService, reportService) {
         this.studentService = studentService;
+        this.reportService = reportService;
         this.currentAcademicYear = 2017;
         this.setupEnrollmentCharts();
         this.loadData();
@@ -25,6 +26,7 @@ class StudentsController {
         this.setupEnrollmentDepartment();
         this.setupEnrollmentByBudget();
         this.setupEnrollmentByRepeating();
+        this.setupPercentages();
     }
 
     setupEnrollmentByAcademicYear() {
@@ -63,11 +65,19 @@ class StudentsController {
         ];
     }
 
+    setupPercentages() {
+        this.enrollmentCurrentYear = 200;
+        this.enrollmentIncrease = -10.5;
+        this.repeatersCount = 50;
+        this.repeatersIncrease = 2.05;
+    }
+
     loadData() {
         this.loadEnrollmentByAY();
         this.loadEnrollmentByDepartment();
         this.loadEnrollmentByBudget();
         this.loadEnrollmentByRepeating();
+        this.loadPercetages();
     }
 
     loadEnrollmentByAY(numYears = 4) {
@@ -121,6 +131,25 @@ class StudentsController {
         }, (error) => {
             console.log("Greska: " + error);
         });
+    }
+
+    loadPercetages(year = 2017) {
+        this.studentService.enrollmentIncreaseByYear(year).then((response) => {
+            this.enrollmentIncrease = response.data;
+        });
+        this.studentService.repeatersIncreaseByYear(year).then((response) => {
+            this.repeatersIncrease = response.data;
+        });
+        this.studentService.enrollmentByAcademicYear(year).then((response) => {
+            this.enrollmentCurrentYear = response.data;
+        });
+        this.studentService.enrollmentByRepeating(1).then((response) => {
+            this.repeatersCount = response.data;
+        });
+    }
+
+    enrollmentReport() {
+        this.reportService.enrollmentOverallReport();
     }
 
 }

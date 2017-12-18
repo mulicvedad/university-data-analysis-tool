@@ -1,6 +1,5 @@
 package ba.unsa.etf.bp.udat.controllers;
 import ba.unsa.etf.bp.udat.RemoteDb;
-import ba.unsa.etf.bp.udat.models.CourseDim;
 import ba.unsa.etf.bp.udat.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;

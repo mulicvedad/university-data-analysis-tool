@@ -21,7 +21,7 @@ public class AttendanceFact extends BaseModel {
         this.timeDim = timeDim;
         this.lecturerDim = lecturerDim;
         this.attendance = attendance;
-        this.attendancePercentage = attendancePercentage;
+        this.attendancePercentage = attendancePercentage.multiply(new BigDecimal(100));
     }
     public AttendanceFact() {}
 
