@@ -4,9 +4,9 @@ import ba.unsa.etf.bp.udat.models.EnrollmentFact;
 import ba.unsa.etf.bp.udat.repositories.EnrollmentFactRepository;
 import org.hibernate.service.spi.ServiceException;
 import org.springframework.stereotype.Service;
-
 import java.rmi.ServerException;
 import java.util.Collection;
+import java.util.List;
 
 @Service
 public class EnrollmentFactService extends BaseService<EnrollmentFact, EnrollmentFactRepository>{
@@ -29,6 +29,10 @@ public class EnrollmentFactService extends BaseService<EnrollmentFact, Enrollmen
     {
         return repository.filterByAcademicYear(ay);
     }
+    public Integer filterByAcademicYearRepeatingStudents(Integer ay) throws ServiceException
+    {
+        return repository.filterByAcademicYearRepeatingStudents(ay);
+    }
     public Integer filterByDepartment(Long dep) throws ServiceException
     {
         return repository.filterByDepartment(dep);
@@ -44,6 +48,18 @@ public class EnrollmentFactService extends BaseService<EnrollmentFact, Enrollmen
     public Integer filterByRepeating(Boolean isRepeating) throws ServerException
     {
         return repository.filterByRepeating(isRepeating);
+    }
+    public Integer filterByAcademicYearBudget(Integer ay, Boolean budget) throws ServiceException
+    {
+        return repository.filterByAcademicYearBudget(ay, budget);
+    }
+
+    public List<Object[]> groupByAcademicYear() {
+        return repository.filterByAllYears();
+    }
+
+    public List<Object[]> groupByDepartments() {
+        return repository.filterByAllDepartments();
     }
 
 

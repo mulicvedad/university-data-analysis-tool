@@ -1,7 +1,6 @@
-<h5 style="text-align:center;color:darkgray"> Students analysis </h5>
 <div class="container" id="container1">
 <div class="row first-row">
-<div class="col s2 offset-s1  cardelement">
+<!--<div class="col s2 offset-s1  cardelement">
 <mat-card class="example-card">
   <mat-card-header>
     <div class="row">
@@ -30,33 +29,34 @@
     </div>
   </md-card-footer>
 </mat-card>
-</div>
+</div>-->
 
-<div class="col s2 offset-s1 cardelement cardelement2">
+<div class="col s5 offset-s1 cardelement cardelement2">
 <mat-card class="example-card">
   <mat-card-header>
     <div class="row">
     <div class="cardheader2">
     <div mat-card-avatar class="example-header-image"></div>
     <mat-card-title>
-        <h5 class="cardtitle center-align"> Admission Rate </h5>
+        <h5 class="cardtitle center-align"> Broj upisanih studenata u tekucoj ak. god. </h5>
     </mat-card-title>
     </div>
   </div>
   </mat-card-header>
   <mat-card-content>
-    <h3 class="midvalue center-align"> 16.6% </h3>
+    <h3 class="midvalue center-align"> {{$ctrl.enrollmentCurrentYear}} </h3>
   </mat-card-content>
   <md-card-footer>
     <div class="row cardfooter">
     <div class="col s4">
-    <p class="appsum left-align">16.4%</p>
+    <!--p class="appsum left-align">16.4%</p-->
     </div>
     <div class="col s2 offset-s2">
-    <i class="material-icons up">arrow_drop_up</i>
+    <i class="material-icons down" ng-show="$ctrl.enrollmentIncrease < 0">arrow_drop_down</i>
+    <i class="material-icons up" ng-show="$ctrl.enrollmentIncrease >= 0">arrow_drop_up</i>
     </div>
-    <div class="col s4 footer-percentage">
-    <p class="apppercent right-align">1.11%</p>
+    <div class="col s4">
+    <p class="apppercent right-align">{{$ctrl.enrollmentIncrease}}%</p>
     </div>
     </div>
   </md-card-footer>
@@ -64,7 +64,7 @@
 </div>
 
 
-<div class="col s2 offset-s1 cardelement cardelement3">
+<!--<div class="col s2 offset-s1 cardelement cardelement3">
 <mat-card class="example-card">
   <mat-card-header>
     <div class="row">
@@ -93,34 +93,35 @@
     </div>
   </md-card-footer>
 </mat-card>
-</div>
+</div>-->
 
 
-<div class="col s2 offset-s1 cardelement cardelement4">
+<div class="col s5 offset-s1 cardelement cardelement4">
 <mat-card class="example-card">
   <mat-card-header>
     <div class="row">
     <div class="cardheader4">
     <div mat-card-avatar class="example-header-image"></div>
     <mat-card-title>
-        <h5 class="cardtitle center-align"> Retention Rate </h5>
+        <h5 class="cardtitle center-align"> Broj ponovaca u tekucoj ak. god. </h5>
     </mat-card-title>
     </div>
   </div>
   </mat-card-header>
   <mat-card-content>
-    <h3 class="midvalue center-align"> 76.2% </h3>
+    <h3 class="midvalue center-align"> {{$ctrl.repeatersCount}} </h3>
   </mat-card-content>
   <md-card-footer>
     <div class="row cardfooter">
     <div class="col s4">
-    <p class="appsum left-align">85.1%</p>
+    <!--p class="appsum left-align">{{$ctrl.repeatersIncrease}}%</p-->
     </div>
     <div class="col s2 offset-s2">
-    <i class="material-icons down">arrow_drop_down</i>
+    <i class="material-icons down" ng-show="$ctrl.repeatersIncrease < 0">arrow_drop_down</i>
+    <i class="material-icons up" ng-show="$ctrl.repeatersIncrease >= 0">arrow_drop_up</i>
     </div>
     <div class="col s4">
-    <p class="apppercent right-align">10.53%</p>
+    <p class="apppercent right-align up">{{$ctrl.repeatersIncrease}}%</p>
     </div>
     </div>
   </md-card-footer>
@@ -130,7 +131,7 @@
 
 
 <div class="row">
-<div class="col s3">
+<div class="col s6">
         <div class="card grey lighten-5">
             <div class="card-content" >
                 <canvas id="bar" class="chart chart-bar" chart-data="$ctrl.data" chart-labels="$ctrl.labelsAY" chart-series="$ctrl.seriesAY"></canvas>  
@@ -138,7 +139,7 @@
         </div>
         <p style="color:lightseagreen;text-align:center"> Prethodne 4 godine </p>         
     </div>
-    <div class="col s3">
+    <div class="col s6">
             <div class="card grey lighten-5">
                 <div class="card-content">
                         <canvas id="line" class="chart chart-bar" chart-data="$ctrl.data2" chart-labels="$ctrl.labelsDep" chart-series="$ctrl.seriesDep" chart-options="$ctrl.options"
@@ -149,11 +150,12 @@
             <p style="color:lightseagreen;text-align:center"> Odsjeci </p> 
             
     </div>
-
-    <div class="col s3">
+</div>
+<div class="row">
+    <div class="col s6">
             <div class="card grey lighten-5">
                 <div class="card-content">
-                        <canvas id="line" class="chart chart-bar" chart-data="$ctrl.data3" chart-labels="$ctrl.labelsBudget" chart-series="$ctrl.seriesBudget" chart-options="$ctrl.options"
+                        <canvas id="line" class="chart chart-pie" chart-data="$ctrl.data3" chart-labels="$ctrl.labelsBudget" chart-series="$ctrl.seriesBudget" chart-options="$ctrl.options"
                             chart-dataset-override="datasetOverride">
                         </canvas>
                 </div>
@@ -162,10 +164,10 @@
             
     </div>
 
-    <div class="col s3">
+    <div class="col s6">
             <div class="card grey lighten-5">
                 <div class="card-content">
-                        <canvas id="line" class="chart chart-bar" chart-data="$ctrl.data4" chart-labels="$ctrl.labelsRepeating" chart-series="$ctrl.seriesRepeating" chart-options="$ctrl.options"
+                        <canvas id="line" class="chart chart-pie" chart-data="$ctrl.data4" chart-labels="$ctrl.labelsRepeating" chart-series="$ctrl.seriesRepeating" chart-options="$ctrl.options"
                             chart-dataset-override="datasetOverride">
                         </canvas>
                 </div>
@@ -184,3 +186,9 @@
 
 
 </div>
+
+<div class="row">
+        <div class="col s12">
+            <button class="btn" ng-click="$ctrl.enrollmentReport()">Izvjestaj</button>
+        </div>
+    </div>

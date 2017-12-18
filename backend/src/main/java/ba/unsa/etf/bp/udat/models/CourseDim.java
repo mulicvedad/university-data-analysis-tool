@@ -73,4 +73,9 @@ public class CourseDim extends BaseModel{
     public void setAttendanceFacts(Collection<AttendanceFact> attendanceFacts) {
         this.attendanceFacts = attendanceFacts;
     }
+
+    @Override
+    public String toString() {
+        return this.getTitle();
+    }
 }
