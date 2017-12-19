@@ -65,7 +65,7 @@ class CoursesController {
     selectedChanged() {
         this.attendanceService.attendancePercentage(this.selectedDepartment.id, -1, -1).then((response) => {
             this.attendanceData[0] = response.data;
-            this.attendanceData[1] = 1 - response.data;
+            this.attendanceData[1] = 100 - response.data;
         });
     }
 
