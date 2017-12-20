@@ -1,38 +1,41 @@
-<!--h5 style="text-align:center;color:darkgray"> Overall analysis </h5>
-<div class="row">
-    <div class="col-s11 offset-s1" style="text-align:center">
-        <button class="btn" ng-click="$ctrl.importData()">Import</button>
-    </div>
-</div-->
 <h5 style="text-align:center;color:darkgray"> Predikcija broja upisanih studenata </h5>
 <div class="row">
 </div>
 <div class="row">
-    <div class="col s6" style="text-align:right">
-        Broj studenata na budzetu:
+    <div class="col s3" style="text-align:left">
+        <p style="margin-bottom:0px">Unesite broj studenata na budzetu:</p>
     </div>
-    <div class="col s6" style="text-align:left">
-        Izvrsi predikciju
+    <div class="col s2">
+        <input type="number" ng-model="$ctrl.budgetNum" min = "1" value="20">
     </div>
-    
 </div>
 <div class="row">
-        <div class="col s2 offset-s4" style="text-align:right">
-            <input type="number" ng-model="$ctrl.budgetNum" min = "1">
-        </div>
         <div class="col s6">
             <button class="btn" ng-click="$ctrl.loadPredictionData($ctrl.budgetNum)">
                 Izvrsi predikciju
             </button>
-        </div>
-        
-</div>.
-<div class="row">
-        <div class="col s6" style="text-align:right">
-            Rezultat: 
-        </div>
-        <div class="col s6">
-            {{$ctrl.predictedNumber}}
-        </div>
-        
+        </div> 
 </div>
+
+<div class="row">
+    <div class="col s6">
+        <div class="card grey lighten-5">
+            <div class="card-content" >
+                <canvas id="bar" class="chart chart-bar" chart-data="$ctrl.dataAY" chart-labels="$ctrl.labelsAY" chart-series="$ctrl.seriesAY" chart-options="$ctrl.options"></canvas>  
+            </div>
+        </div>
+        <p style="color:lightseagreen;text-align:center"> Prethodne 4 godine </p>         
+    </div>
+    <div class="col s6">
+            <div class="card grey lighten-5">
+                <div class="card-content">
+                    <canvas id="line" class="chart chart-bar" chart-data="$ctrl.dataPred" chart-labels="$ctrl.labelsPred" chart-series="$ctrl.seriesPred" chart-options="$ctrl.options"
+                        chart-dataset-override="datasetOverride">
+                    </canvas>
+                </div>
+            </div>
+            <p style="color:lightseagreen;text-align:center"> Predstojeca godina </p>           
+        </div>
+    </div>
+</div>
+

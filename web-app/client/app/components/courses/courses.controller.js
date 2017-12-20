@@ -8,6 +8,7 @@ class CoursesController {
         this.reportService = reportService;
         this.currentAcademicYear = 2017;
         this.selectedDepartment = null;
+        this.title = "Podaci o nastavi";
         this.setupCoursesCharts();
         this.setupDropdowns();
         this.loadData();
@@ -18,10 +19,13 @@ class CoursesController {
             scales: {
               yAxes: [
                 {
-                  id: 'y-axis-1',
-                  type: 'linear',
-                  display: true,
-                  position: 'left'
+                    ticks: {
+                        beginAtZero:true
+                    },
+                    id: 'y-axis-1',
+                    type: 'linear',
+                    display: true,
+                    position: 'left'
                 }
               ]
             }

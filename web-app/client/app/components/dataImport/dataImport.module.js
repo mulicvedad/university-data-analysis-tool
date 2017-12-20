@@ -1,9 +1,9 @@
 import angular from 'angular';
 import uiRouter from 'angular-ui-router';
 import angularChart from 'angular-chart.js';
-import coursesComponent from './courses.component';
+import dataImportComponent from './dataImport.component';
 
-let coursesModule = angular.module('courses', [
+let dataImport = angular.module('dataImport', [
   uiRouter,
   angularChart
 ])
@@ -14,12 +14,12 @@ let coursesModule = angular.module('courses', [
   $urlRouterProvider.otherwise('/');
 
   $stateProvider
-    .state('courses', { 
-      url: '/nastava',
-      component: 'courses'
+    .state('dataImport', { 
+      url: '/ucitavanje-podataka',
+      component: 'dataImport'
     });
 })
-.component('courses', coursesComponent)  
+.component('dataImport', dataImportComponent)  
 .name;
 
-export default coursesModule;
+export default dataImport;

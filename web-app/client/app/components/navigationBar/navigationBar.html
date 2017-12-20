@@ -3,19 +3,21 @@
         <a ui-sref="home" class="brand-logo">UDAT</a>
         <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
         <ul class="right hide-on-med-and-down">
-            <li><a ui-sref="home">Početna</a></li>
+            <!--li><a ui-sref="home">Početna</a></li-->
             <li><a ui-sref="students">Studenti</a></li>
             <li><a ui-sref="courses">Nastava</a></li>
             <li><a ui-sref="exams">Ispiti</a></li>
             <li><a ui-sref="home">Predikcije</a></li>
+            <li style="color:darkblue" show-for-role="ROLE_ADMIN"><a ui-sref="dataImport">Ucitavanje podataka</a></li>
             <li><a ng-click="$ctrl.logout()">Odjavi se</a></li>
         </ul>
         <ul class="side-nav" id="nav-mobile">
-            <li><a ui-sref="home">Početna</a></li>
+            <!--li><a ui-sref="home">Početna</a></li-->
             <li><a ui-sref="students">Studenti</a></li>
             <li><a ui-sref="courses">Nastava</a></li>
             <li><a ui-sref="exams">Ispiti</a></li>
             <li><a ui-sref="home">Predikcije</a></li>
+             <li style="color:darkblue" show-for-role="ROLE_ADMIN"><a ui-sref="dataImport">Ucitavanje podataka</a></li>
             <li><a ng-click="$ctrl.logout()">Odjavi se</a></li>
         </ul>
     </div>

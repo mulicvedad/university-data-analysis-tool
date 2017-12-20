@@ -13,7 +13,7 @@ let loginModule = angular.module('login', [
 
     $stateProvider
         .state('login', { 
-        url: '/login',
+        url: '/prijava',
         component: 'login'
         });
 })

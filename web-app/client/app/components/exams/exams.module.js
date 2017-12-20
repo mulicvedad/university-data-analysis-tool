@@ -15,7 +15,7 @@ let examsModule = angular.module('exams', [
 
   $stateProvider
     .state('exams', { 
-      url: '/',
+      url: '/ispiti',
       component: 'exams'
     });
 })
