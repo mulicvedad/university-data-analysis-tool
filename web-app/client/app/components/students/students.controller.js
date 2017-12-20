@@ -14,10 +14,13 @@ class StudentsController {
             scales: {
               yAxes: [
                 {
-                  id: 'y-axis-1',
-                  type: 'linear',
-                  display: true,
-                  position: 'left'
+                ticks: {
+                    beginAtZero:true
+                },
+                id: 'y-axis-1',
+                type: 'linear',
+                display: true,
+                position: 'left'
                 }
               ]
             }

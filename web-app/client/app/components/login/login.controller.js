@@ -8,6 +8,7 @@ class LoginController {
         this.sessionService = sessionService;
         this.error = "";
         this.user = {};
+        this.title = "";
     }
 
     login() {
@@ -16,7 +17,7 @@ class LoginController {
     	}
         this.accountService.login(this.user).then((response) => {
             this.sessionService.startSession(response.data);
-            this.$state.go("home");
+            this.$state.go("students");
         }, (error) => {
             this.swalService.displayError("Neispravni podaci za prijavu.");
         });

@@ -8,6 +8,7 @@ class ExamsController {
         this.examService = examService;
         this.reportService = reportService;
         this.currentAcademicYear = 2017;
+        this.title = "Podaci o ispitima";
         this.setupEnrollmentCharts();
         this.setupDropdowns();
         this.loadData();
@@ -18,10 +19,13 @@ class ExamsController {
             scales: {
               yAxes: [
                 {
-                  id: 'y-axis-1',
-                  type: 'linear',
-                  display: true,
-                  position: 'left'
+                    ticks: {
+                        beginAtZero:true
+                    },
+                    id: 'y-axis-1',
+                    type: 'linear',
+                    display: true,
+                    position: 'left'
                 }
               ]
             }

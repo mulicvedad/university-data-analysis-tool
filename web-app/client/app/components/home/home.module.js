@@ -15,7 +15,7 @@ let homeModule = angular.module('home', [
 
   $stateProvider
     .state('home', { 
-      url: '/',
+      url: '/predikcije',
       component: 'home'
     });
 })

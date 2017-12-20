@@ -36,7 +36,7 @@ public class ImportDataController {
 
     @RequestMapping("/import")
     @ResponseBody
-    public String populateDatabase() throws SQLException {
+    public Integer populateDatabase() throws SQLException {
 
         RemoteDb etf = new RemoteDb();
         etf.connect();
@@ -103,6 +103,6 @@ public class ImportDataController {
                                     " ORDER BY cd.courseid", attendanceFactService, courseDimService, departmentDimService, timeDimService, lecturerDimService);
 
        // etf.disconnect();
-        return "Uspjeh brassa";
+        return 1;
     }
 }
