@@ -35,9 +35,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                // .antMatchers("/**").authenticated()
                 /*.antMatchers("/").hasAnyRole(ROLE_ADMIN,ROLE_USER)
                 .antMatchers("/").permitAll()
-                .antMatchers(HttpMethod.POST, "/login").permitAll()
-                .antMatchers("/import").permitAll()//hasRole(ROLE_ADMIN)
-                .antMatchers("/enrollment/**").permitAll()//hasAnyRole(ROLE_ADMIN,ROLE_USER)
+                .antMatchers(HttpMethod.POST, "/login").permitAll()*/
+                .antMatchers("/import/**").hasRole(ROLE_ADMIN)
+               /* .antMatchers("/enrollment/**").permitAll()//hasAnyRole(ROLE_ADMIN,ROLE_USER)
                 .antMatchers("/exams/**").permitAll()//hasAnyRole(ROLE_ADMIN, ROLE_USER)
                 .antMatchers("/attendance/**").permitAll()//hasAnyRole(ROLE_ADMIN, ROLE_USER)
                 .antMatchers("/academic_years/**").permitAll()//hasAnyRole(ROLE_ADMIN, ROLE_USER)

@@ -11,13 +11,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
+import java.sql.Date;
 @Controller
 @EnableAutoConfiguration
 
@@ -123,13 +124,18 @@ public class ImportDataController {
         RemoteDb etf = new RemoteDb();
         etf.connect();
         etf.setSchema();
+        SimpleDateFormat monthDayYearformatter = new SimpleDateFormat("dd/mm/yyyy");
         List<Object[]> l = importTimeService.findTimeOfImport();
         List<Object[]> clones = new ArrayList<Object[]>();
         for(int i = 0; i < l.size(); i++)
         {
             Object[] el = new Object[4];
             el[0] = l.get(i)[0];
-            el[1] = l.get(i)[1];
+            Timestamp last_dw_import = (Timestamp)l.get(i)[1];
+            Date date = new Date(last_dw_import.getTime());
+            String formattedDate = new SimpleDateFormat("dd-MM-yyyy").format(date);
+
+            el[1] = formattedDate;
             Timestamp current_status =(Timestamp)l.get(i)[1];
             Timestamp newest_change = etf.timeOfLastModification(etf.svi_stringovi.get(i).get(0));
             for(int j = 0; j < etf.svi_stringovi.get(i).size(); j++)
@@ -137,7 +143,9 @@ public class ImportDataController {
                 if(newest_change.before(etf.timeOfLastModification(etf.svi_stringovi.get(i).get(j))))
                     newest_change = etf.timeOfLastModification(etf.svi_stringovi.get(i).get(j));
             }
-            el[2] =(Object) newest_change;
+            Date date1 = new Date(newest_change.getTime());
+            String formattedDate1 = new SimpleDateFormat("dd-MM-yyyy").format(date1);
+            el[2] =formattedDate1;
             if(current_status.after(newest_change)) // Up to date
                 el[3] =(Object) true;
             else
