@@ -5,6 +5,7 @@ import ba.unsa.etf.bp.udat.repositories.AttendanceFactRepository;
 import org.hibernate.service.spi.ServiceException;
 import org.springframework.stereotype.Service;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -46,6 +47,18 @@ public class AttendanceFactService extends BaseService<AttendanceFact, Attendanc
 
     public List<Object[]> groupByLecturers() {
         return repository.filterByAllLecturers();
+    }
+
+    public List<Object[]> maxAttendanceByLecutrers(int lecturersNumber) {
+        List<Object[]> result = new ArrayList<>();
+        int i = 0;
+        for(Object[] o : repository.maxAttendanceByLecturers()){
+            result.add(o);
+            i++;
+            if(i == lecturersNumber)
+                break;
+        }
+        return result;
     }
 
 
