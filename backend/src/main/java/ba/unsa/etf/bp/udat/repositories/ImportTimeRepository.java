@@ -1,8 +1,8 @@
 package ba.unsa.etf.bp.udat.repositories;
 
 import ba.unsa.etf.bp.udat.models.ImportTime;
-
-import java.sql.Date;
+import java.util.Collection;
+import java.util.List;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
@@ -16,4 +16,7 @@ public interface ImportTimeRepository extends PagingAndSortingRepository<ImportT
     @Query("SELECT it FROM ImportTime it WHERE it.tableName = :name")
     ImportTime findByTableName(@Param("name") String tableName);
 
+    @Query("SELECT it.tableName, it.timeOfImport FROM ImportTime it")
+    List<Object[]> findTimeOfImport();
+    
 }

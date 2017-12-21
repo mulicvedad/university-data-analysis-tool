@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 @Service
 public class ImportTimeService extends BaseService<ImportTime, ImportTimeRepository>{
@@ -19,6 +20,10 @@ public class ImportTimeService extends BaseService<ImportTime, ImportTimeReposit
     {
         ImportTime it = repository.findByTableName(tableName);
         return it;
+    }
+    public List<Object[]> findTimeOfImport()
+    {
+        return repository.findTimeOfImport();
     }
 
 

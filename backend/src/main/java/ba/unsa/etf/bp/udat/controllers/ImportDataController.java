@@ -1,6 +1,8 @@
 package ba.unsa.etf.bp.udat.controllers;
 import ba.unsa.etf.bp.udat.RemoteDb;
+import ba.unsa.etf.bp.udat.models.ImportTime;
 import ba.unsa.etf.bp.udat.services.*;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.stereotype.Controller;
@@ -8,6 +10,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Controller
 @EnableAutoConfiguration
@@ -107,4 +116,35 @@ public class ImportDataController {
         // etf.disconnect();
         return 1;
     }
+    @RequestMapping("/import/all_tables")
+    @ResponseBody
+    public List<Object[]> listImportedTimes() throws SQLException
+    {
+        RemoteDb etf = new RemoteDb();
+        etf.connect();
+        etf.setSchema();
+        List<Object[]> l = importTimeService.findTimeOfImport();
+        List<Object[]> clones = new ArrayList<Object[]>();
+        for(int i = 0; i < l.size(); i++)
+        {
+            Object[] el = new Object[4];
+            el[0] = l.get(i)[0];
+            el[1] = l.get(i)[1];
+            Timestamp current_status =(Timestamp)l.get(i)[1];
+            Timestamp newest_change = etf.timeOfLastModification(etf.svi_stringovi.get(i).get(0));
+            for(int j = 0; j < etf.svi_stringovi.get(i).size(); j++)
+            {
+                if(newest_change.before(etf.timeOfLastModification(etf.svi_stringovi.get(i).get(j))))
+                    newest_change = etf.timeOfLastModification(etf.svi_stringovi.get(i).get(j));
+            }
+            el[2] =(Object) newest_change;
+            if(current_status.after(newest_change)) // Up to date
+                el[3] =(Object) true;
+            else
+                el[3] =(Object) false;
+            clones.add(el);
+        }        
+        return clones;
+    }
+
 }

@@ -1,14 +1,11 @@
 package ba.unsa.etf.bp.udat.models;
 
-import java.sql.Date;
 import java.sql.Timestamp;
-
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
-import com.itextpdf.text.pdf.PdfStructTreeController.returnType;
 
 @Entity
 @Table(name="import_time")

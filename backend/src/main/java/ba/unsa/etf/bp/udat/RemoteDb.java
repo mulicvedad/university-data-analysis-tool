@@ -26,6 +26,19 @@ public class RemoteDb {
     //static ResultSet resultSet = null;
     static String connectionString = null;
     static String defaultSchema = "BP07";
+
+    
+    List<String> oracle_semester = Arrays.asList("semester");
+    List<String> oracle_department = Arrays.asList("department");
+    List<String> oracle_course = Arrays.asList("course");
+    List<String> oracle_academicyear = Arrays.asList("academicyear");
+    List<String> oracle_time = Arrays.asList("exam","class");
+    List<String> oracle_lecturer = Arrays.asList("zamgeruserdetails","users","userdetails","employeedetails","studentdetails");
+    List<String> oracle_exam = Arrays.asList("examresult","exam","course_department");
+    List<String> oracle_enrollment = Arrays.asList("zamgeruserdetails","USER_enrollment","course_department","academicyear","semester","department","studentdetails");
+    List<String> oracle_attendance = Arrays.asList("classattendance","class","course_department");
+    public List<List<String>> svi_stringovi = Arrays.asList(oracle_semester,oracle_department,oracle_course,oracle_academicyear
+    ,oracle_time, oracle_lecturer, oracle_exam, oracle_enrollment, oracle_attendance);
     // Dodatni podaci
     //protected BasicDataSource dataSource;
     //protected int dbConnectionsMinCount = 1; // minimalan broj konekcija na BP
@@ -233,9 +246,8 @@ public class RemoteDb {
         {
             Statement statement = conn.createStatement();
             ResultSet rs = statement.executeQuery(query);
-            List<String> tabele = Arrays.asList("exam","class");
             List<Timestamp> lastModificationOracle = new ArrayList<>();
-            for(String s : tabele)
+            for(String s : oracle_time)
             {
                 lastModificationOracle.add(timeOfLastModification(s));
             }
@@ -248,7 +260,6 @@ public class RemoteDb {
                 if(lastTimeImport.getTimeOfImport().before(t))
                     counter++;
             }
-
             if(lastTimeImport == null) // First time import
             {
                 iservice.save(new ImportTime("TimeDim", getCurrentTime()));
@@ -283,9 +294,8 @@ public class RemoteDb {
         {
             Statement statement = conn.createStatement();
             ResultSet rs = statement.executeQuery(query);
-            List<String> tabele = Arrays.asList("zamgeruserdetails","users","userdetails","employeedetails","studentdetails");
             List<Timestamp> lastModificationOracle = new ArrayList<>();
-            for(String s : tabele)
+            for(String s : oracle_lecturer)
             {
                 lastModificationOracle.add(timeOfLastModification(s));
             }
@@ -333,9 +343,8 @@ public class RemoteDb {
         {
             Statement statement = conn.createStatement();
             ResultSet rs = statement.executeQuery(query);
-            List<String> tabele = Arrays.asList("examresult","exam","course_department");
             List<Timestamp> lastModificationOracle = new ArrayList<>();
-            for(String s : tabele)
+            for(String s : oracle_exam)
             {
                 lastModificationOracle.add(timeOfLastModification(s));
             }
@@ -388,9 +397,8 @@ public class RemoteDb {
         {
             Statement statement = conn.createStatement();
             ResultSet rs = statement.executeQuery(query);
-            List<String> tabele = Arrays.asList("zamgeruserdetails","USER_enrollment","course_department","academicyear","semester","department","studentdetails");
             List<Timestamp> lastModificationOracle = new ArrayList<>();
-            for(String s : tabele)
+            for(String s : oracle_enrollment)
             {
                 lastModificationOracle.add(timeOfLastModification(s));
             }
@@ -440,9 +448,8 @@ public class RemoteDb {
         {
             Statement statement = conn.createStatement();
             ResultSet rs = statement.executeQuery(query);
-            List<String> tabele = Arrays.asList("classattendance","class","course_department");
             List<Timestamp> lastModificationOracle = new ArrayList<>();
-            for(String s : tabele)
+            for(String s : oracle_attendance)
             {
                 lastModificationOracle.add(timeOfLastModification(s));
             }
