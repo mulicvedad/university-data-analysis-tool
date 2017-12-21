@@ -10,7 +10,9 @@ import java.util.Collection;
 @Service
 public class AcademicYearDimService extends BaseService<AcademicYearDim, AcademicYearDimRepository>{
 
-    public AcademicYearDim save(AcademicYearDim model) throws ServiceException {
+    public AcademicYearDim save(AcademicYearDim model, boolean firstImport) throws ServiceException {
+        if(firstImport == true)
+            return super.save(model);
         Collection<AcademicYearDim> lista = repository.findAllByAcademicYearId(model.getAcademicYearId());
         for(AcademicYearDim ayd : lista )
         {

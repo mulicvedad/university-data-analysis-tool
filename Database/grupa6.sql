@@ -4,7 +4,7 @@ USE `grupa6`;
 --
 -- Host: localhost    Database: grupa6
 -- ------------------------------------------------------
--- Server version	5.7.18-0ubuntu0.16.04.1
+-- Server version	5.7.20-0ubuntu0.16.04.1
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -206,6 +206,30 @@ LOCK TABLES `exam_fact` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `import_time`
+--
+
+DROP TABLE IF EXISTS `import_time`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `import_time` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name_of_table` varchar(45) DEFAULT NULL,
+  `time_of_import` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `import_time`
+--
+
+LOCK TABLES `import_time` WRITE;
+/*!40000 ALTER TABLE `import_time` DISABLE KEYS */;
+/*!40000 ALTER TABLE `import_time` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `lecturer_dim`
 --
 
@@ -354,4 +378,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-12-10  5:02:43
+-- Dump completed on 2017-12-21  0:54:56

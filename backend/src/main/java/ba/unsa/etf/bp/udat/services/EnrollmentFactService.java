@@ -5,13 +5,16 @@ import ba.unsa.etf.bp.udat.repositories.EnrollmentFactRepository;
 import org.hibernate.service.spi.ServiceException;
 import org.springframework.stereotype.Service;
 import java.rmi.ServerException;
+import java.sql.Timestamp;
 import java.util.Collection;
 import java.util.List;
 
 @Service
 public class EnrollmentFactService extends BaseService<EnrollmentFact, EnrollmentFactRepository>{
 
-    public EnrollmentFact save(EnrollmentFact model) throws ServiceException {
+    public EnrollmentFact save(EnrollmentFact model, boolean firstImport) throws ServiceException {
+        if(firstImport == true)
+            return super.save(model);
         Collection<EnrollmentFact> lista = repository.findAll();
         for(EnrollmentFact ef : lista )
         {

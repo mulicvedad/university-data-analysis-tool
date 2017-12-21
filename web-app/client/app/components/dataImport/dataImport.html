@@ -15,3 +15,27 @@
         </div>
     </div>
 </div>
+<div class="row">
+    <div class="col s12">
+        <table class="bordered">
+            <thead>
+              <tr>
+                  <th>Tabela</th>
+                  <th>Posljednja izmjena (DW)</th>
+                  <th>Posljednja izmjena (Glavna baza)</th>
+                  <th>Aktuelni podaci</th>                  
+                </tr>
+            </thead>
+    
+            <tbody>
+              <tr ng-repeat="row in $ctrl.allTablesInfo">
+                <td>{{row[0]}}</td>
+                <td>{{row[1]}}</td>
+                <td>{{row[2]}}</td>
+                <td ng-show="row[3]">DA</td>
+                <td ng-show="!row[3]">NE</td>
+              </tr>
+            </tbody>
+          </table>
+    </div>
+</div>

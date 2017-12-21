@@ -10,7 +10,9 @@ import java.util.List;
 
 @Service
 public class AttendanceFactService extends BaseService<AttendanceFact, AttendanceFactRepository> {
-    public AttendanceFact save(AttendanceFact model) throws ServiceException {
+    public AttendanceFact save(AttendanceFact model, boolean firstImport) throws ServiceException {
+        if(firstImport == true)
+            return super.save(model);
         Collection<AttendanceFact> lista = repository.findAll();
         for(AttendanceFact af : lista )
         {

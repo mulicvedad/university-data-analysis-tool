@@ -13,7 +13,9 @@ import java.util.Collection;
 public class DepartmentDimService extends BaseService<DepartmentDim, DepartmentDimRepository> {
 
 
-    public DepartmentDim save(DepartmentDim model) throws ServiceException {
+    public DepartmentDim save(DepartmentDim model, boolean firstImport) throws ServiceException {
+        if(firstImport == true)
+            return super.save(model);
         Collection<DepartmentDim> lista = repository.findAllByDepartmentId(model.getDepartmentId());
         for(DepartmentDim dd : lista )
         {
