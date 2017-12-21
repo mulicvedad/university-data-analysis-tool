@@ -2,6 +2,8 @@ package ba.unsa.etf.bp.udat.controllers;
 import org.springframework.web.bind.annotation.*;
 import java.math.BigDecimal;
 import java.rmi.ServerException;
+import java.util.List;
+
 import ba.unsa.etf.bp.udat.models.AttendanceFact;
 import ba.unsa.etf.bp.udat.services.AttendanceFactService;
 
@@ -22,6 +24,13 @@ public class AttendanceController extends BaseController<AttendanceFact, Attenda
                                                            @RequestParam("course") Long course, @RequestParam("lecturer") Long lecturer) throws ServerException
     {
         return service.attendancePercentageByDepartmentCourseLecturer(dep, course, lecturer).setScale(2, BigDecimal.ROUND_HALF_UP);
+    }
+
+    @ResponseBody
+    @GetMapping("/maxAttendance")
+    public List<Object[]> maxAttendanceByLecturers() throws ServerException
+    {
+        return service.maxAttendanceByLecutrers(4);
     }
 
 }

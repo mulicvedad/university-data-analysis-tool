@@ -39,5 +39,10 @@ public interface AttendanceFactRepository extends PagingAndSortingRepository<Att
     @Query("SELECT af.lecturerDim, AVG(af.attendance), AVG(af.attendancePercentage) FROM AttendanceFact af" +
             " group by af.lecturerDim")
     List<Object[]> filterByAllLecturers();
+        //select * from (select af.lecturer_dim_id, avg(af.attendance_precentage) as x from attendance_fact af
+        //group by af.lecturer_dim_id order by x desc) as tmp limit 5
+    @Query("SELECT af.lecturerDim, AVG(af.attendancePercentage) as x FROM AttendanceFact af" +
+            " group by af.lecturerDim order by x desc")
+    List<Object[]> maxAttendanceByLecturers();
 }
 
