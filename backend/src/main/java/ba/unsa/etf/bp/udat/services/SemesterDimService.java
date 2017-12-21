@@ -13,7 +13,9 @@ import java.util.Collection;
 @Service
 public class SemesterDimService extends BaseService<SemesterDim, SemesterDimRepository>{
 
-    public SemesterDim save(SemesterDim model) throws ServiceException {
+    public SemesterDim save(SemesterDim model, boolean firstImport) throws ServiceException {
+        if(firstImport == true)
+            return super.save(model);
         Collection<SemesterDim> lista = repository.findAllBySemesterId(model.getSemesterId());
         for(SemesterDim sd : lista )
         {

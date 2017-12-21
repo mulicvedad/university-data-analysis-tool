@@ -9,7 +9,9 @@ import java.util.Collection;
 
 @Service
 public class LecturerDimService extends BaseService<LecturerDim, LecturerDimRepository> {
-    public LecturerDim save(LecturerDim model) throws ServiceException {
+    public LecturerDim save(LecturerDim model, boolean firstImport) throws ServiceException {
+        if(firstImport == true)
+            return super.save(model);        
         Collection<LecturerDim> lista = repository.findLecturerDimsByLecturerZamgerUserId(model.getLecturerZamgerUserId());
         for(LecturerDim ld : lista )
         {

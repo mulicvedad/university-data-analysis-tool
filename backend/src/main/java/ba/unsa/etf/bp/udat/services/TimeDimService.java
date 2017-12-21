@@ -11,7 +11,7 @@ import java.util.Date;
 
 @Service
 public class TimeDimService extends BaseService<TimeDim,TimeDimRepository> {
-    public TimeDim save(TimeDim model) throws ServiceException {
+    public TimeDim save(TimeDim model, boolean firstImport) throws ServiceException {
         Collection<TimeDim> lista = repository.findAllByFullDate(model.getFullDate());
         if(lista.size() > 0)
             return null;

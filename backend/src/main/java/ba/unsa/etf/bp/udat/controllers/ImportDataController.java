@@ -33,6 +33,8 @@ public class ImportDataController {
     EnrollmentFactService enrollmentFactService;
     @Autowired
     AttendanceFactService attendanceFactService;
+    @Autowired
+    ImportTimeService importTimeService;
 
     @RequestMapping("/import")
     @ResponseBody
@@ -42,13 +44,13 @@ public class ImportDataController {
         etf.connect();
         etf.setSchema();
         // Populate dimensions first
-        etf.populateSemesterDim("SELECT id, title FROM  semester ORDER BY id", semesterDimService);
-        etf.populateDepartmentDim("SELECT id, title FROM department", departmentDimService);
-        etf.populateCourseDim("SELECT id, title FROM course ORDER BY id", courseDimService);
+        etf.populateSemesterDim("SELECT id, title FROM  semester ORDER BY id", semesterDimService, importTimeService);
+        etf.populateDepartmentDim("SELECT id, title FROM department", departmentDimService, importTimeService);
+        etf.populateCourseDim("SELECT id, title FROM course ORDER BY id", courseDimService, importTimeService);
 
         etf.populateAcademicYearDim("SELECT id, title, active, EXTRACT(YEAR FROM \"start\") AS start_year" +
                                             " FROM academicyear" +
-                                            " ORDER BY start_year", academicYearDimService);
+                                            " ORDER BY start_year", academicYearDimService, importTimeService);
 
         etf.populateTimeDim("SELECT scheduled AS full_date, extract(YEAR FROM scheduled) AS year, extract(MONTH FROM scheduled) AS month," +
                                     " extract(DAY FROM scheduled) AS day, extract(HOUR FROM scheduled) as hour," +
@@ -59,7 +61,7 @@ public class ImportDataController {
                                     " extract(DAY FROM scheduled) AS day, extract(HOUR FROM scheduled) as hour," +
                                     " to_char(scheduled, 'MONTH') AS month_word, to_char(scheduled, 'DAY') AS day_word" +
                                     " FROM class" +
-                                    " ORDER BY full_date DESC",timeDimService);
+                                    " ORDER BY full_date DESC",timeDimService, importTimeService);
 
         etf.populateLecturerDim("SELECT zud.userid AS id, ud.firstname AS first_name, ud.lastname AS last_name," +
                                     "   Decode(" +
@@ -71,7 +73,7 @@ public class ImportDataController {
                                     "    ed.salary AS \"salary\", zud.gender AS \"gender\"" +
                                     " FROM zamgeruserdetails zud, users u, userdetails ud, employeedetails ed" +
                                     " WHERE zud.userid = u.id AND ud.userid = u.id AND ed.zamgeruserdetailsuserid = zud.userid" +
-                                    " ORDER BY zud.userid", lecturerDimService);
+                                    " ORDER BY zud.userid", lecturerDimService, importTimeService);
         // Populate facts
        etf.populateExamFact("SELECT cd.academicyearid AS ayid, e.scheduled as full_date, cd.semesterid as semester_id, " +
                                     "    cd.departmentid as department_id, cd.courseid as course_id, " +
@@ -79,7 +81,7 @@ public class ImportDataController {
                                     " FROM examresult er, exam e, course_department cd" +
                                     " WHERE er.examid = e.id AND e.course_departmentid = cd.id " +
                                     " GROUP BY cd.academicyearid, e.scheduled, cd.semesterid, cd.departmentid, cd.courseid" +
-                                    " ORDER BY cd.academicyearid", examFactService, academicYearDimService, timeDimService, semesterDimService, departmentDimService,courseDimService);
+                                    " ORDER BY cd.academicyearid", examFactService, academicYearDimService, timeDimService, semesterDimService, departmentDimService,courseDimService, importTimeService);
 
         etf.populateEnrollmentFact("SELECT d.id AS dep_id, ay.id AS ay_id, s.id AS semester_id, sd.budget, " +
                                     " Decode " +
@@ -91,7 +93,7 @@ public class ImportDataController {
                                     " WHERE ue.userid = zud.userid AND ue.course_departmentid = cd.id AND cd.academicyearid = ay.id " +
                                     "    AND cd.semesterid = s.id AND cd.departmentid = d.id AND sd.zamgeruserdetailsuserid = zud.userid " +
                                     " GROUP BY d.id, ay.id, s.id, sd.budget,5, ue.enrollmentid" +
-                                    " ORDER BY d.id, ay.id, s.id, sd.budget, ue.enrollmentid", enrollmentFactService, departmentDimService,academicYearDimService,semesterDimService);
+                                    " ORDER BY d.id, ay.id, s.id, sd.budget, ue.enrollmentid", enrollmentFactService, departmentDimService,academicYearDimService,semesterDimService, importTimeService);
 
         etf.populateAttendanceFact("SELECT cd.departmentid as department_id, cd.courseid as course_id, c.scheduled as full_date, " +
                                     "    c.lecturerid as lecturer_id, " +
@@ -100,9 +102,9 @@ public class ImportDataController {
                                     " FROM classattendance ca, class c, course_department cd " +
                                     " WHERE ca.classid = c.id AND c.course_departmentid = cd.id " +
                                     " GROUP BY cd.departmentid, cd.courseid, c.scheduled, c.lecturerid " +
-                                    " ORDER BY cd.courseid", attendanceFactService, courseDimService, departmentDimService, timeDimService, lecturerDimService);
+                                    " ORDER BY cd.courseid", attendanceFactService, courseDimService, departmentDimService, timeDimService, lecturerDimService, importTimeService);
 
-       // etf.disconnect();
+        // etf.disconnect();
         return 1;
     }
 }

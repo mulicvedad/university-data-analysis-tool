@@ -13,7 +13,9 @@ import java.util.Collection;
 public class CourseDimService extends BaseService<CourseDim, CourseDimRepository> {
 
 
-    public CourseDim save(CourseDim model) throws ServiceException {
+    public CourseDim save(CourseDim model, boolean firstImport) throws ServiceException {
+        if(firstImport == true)
+            return super.save(model);
         Collection<CourseDim> lista = repository.findAllByCourseId(model.getCourseId());
         for(CourseDim cd : lista )
         {

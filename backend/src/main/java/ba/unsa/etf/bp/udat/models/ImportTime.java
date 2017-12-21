@@ -6,10 +6,12 @@ import java.sql.Timestamp;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Table;
 
 import com.itextpdf.text.pdf.PdfStructTreeController.returnType;
 
 @Entity
+@Table(name="import_time")
 public class ImportTime extends BaseModel {
 
     String tableName;
@@ -23,7 +25,7 @@ public class ImportTime extends BaseModel {
     public ImportTime(){}
 
     @Basic
-    @Column(name = "tableName")
+    @Column(name = "name_of_table")
     public String getTableName()
     {
         return this.tableName;
@@ -34,7 +36,7 @@ public class ImportTime extends BaseModel {
     }
 
     @Basic
-    @Column(name = "timeOfImport")
+    @Column(name = "time_of_import")
     public Timestamp getTimeOfImport()
     {
         return this.timeOfImport;

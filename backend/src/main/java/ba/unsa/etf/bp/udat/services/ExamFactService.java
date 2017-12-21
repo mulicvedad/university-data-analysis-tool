@@ -14,7 +14,9 @@ import java.util.List;
 @Service
 public class ExamFactService extends BaseService<ExamFact, ExamFactRepository> {
 
-    public ExamFact save(ExamFact model) throws ServiceException {
+    public ExamFact save(ExamFact model, boolean firstImport) throws ServiceException {
+        if(firstImport == true)
+            return super.save(model);
         Collection<ExamFact> lista = repository.findAll();
         for(ExamFact ef : lista )
         {
