@@ -20,7 +20,8 @@ class CoursesController {
               yAxes: [
                 {
                     ticks: {
-                        beginAtZero:true
+                        beginAtZero:true,
+                        max: 100
                     },
                     id: 'y-axis-1',
                     type: 'linear',
@@ -35,8 +36,8 @@ class CoursesController {
     }
 
     setupCourseHighestAttendance(){
-        this.dataattendance = [ 100, 30 , 54, 60, 29 ];
-        this.labelsattendance = ["Željko Jurić", "Huse Fatkić", "Narcis Behlilović", "Hasna Šamić", "Haris Šupić"];   
+        this.maxAttendanceData = [ 100, 30 , 54, 60 ];
+        this.maxAttendanceLabels = ["Huse Fatkić", "Narcis Behlilović", "Hasna Šamić", "Haris Šupić"];   
     }
 
     setupAttendanceChart() {
@@ -64,8 +65,21 @@ class CoursesController {
     }
 
     loadData() {
+        this.loadMaxAttendanceByLecturers();
     }
 
+    loadMaxAttendanceByLecturers() {
+        this.attendanceService.maxAttendanceByLecturers().then((response) => {
+            //this.maxAttendanceData = response.data;
+            let i = 0;
+            for(i=0; i<4; i++) {
+                this.maxAttendanceData[i] = response.data[i][1];
+                this.maxAttendanceLabels[i] = response.data[i][0].firstName + " " + response.data[i][0].lastName;
+            }
+        }).catch((error) => {
+            console.log("Error in 'loadMaxAttendanceByLecturers()':\n " + error);
+        })
+    }
     selectedChanged() {
         this.attendanceService.attendancePercentage(this.selectedDepartment.id, -1, -1).then((response) => {
             this.attendanceData[0] = response.data;

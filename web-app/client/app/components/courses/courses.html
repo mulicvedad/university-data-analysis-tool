@@ -33,8 +33,8 @@
     <div class="col s6">
             <div class="card grey lighten-5">
                 <div class="card-content">
-                        <canvas id="line" class="chart chart-bar" chart-data="$ctrl.attendanceData" chart-labels="$ctrl.attendanceLabels" chart-series="$ctrl.series2" chart-options="$ctrl.options"
-                            chart-dataset-override="datasetOverride">
+                        <canvas id="line" class="chart chart-bar" chart-data="$ctrl.attendanceData" chart-labels="$ctrl.attendanceLabels" chart-series="$ctrl.series2" 
+                            chart-options="$ctrl.options" chart-dataset-override="datasetOverride">
                         </canvas>
                 </div>
             </div>
@@ -72,10 +72,12 @@
  <div class="col s12">
  <div class="card grey lighten-5">
             <div class="card-content" >
-                <canvas id="bar" class="chart chart-line" chart-labels="$ctrl.labelsattendance" chart-data="$ctrl.dataattendance" chart-series="$ctrl.seriesattendance"></canvas>  
+                <canvas id="bar" class="chart chart-bar" chart-labels="$ctrl.maxAttendanceLabels" chart-data="$ctrl.maxAttendanceData" chart-series="$ctrl.seriesattendance"
+                    chart-options="$ctrl.options"></canvas>  
             </div>
         </div>    
 </div>
+<p style="color:lightseagreen;text-align:center"> Procenat prisutnih studenata </p> 
 </div>   
 
 <div class="row">
