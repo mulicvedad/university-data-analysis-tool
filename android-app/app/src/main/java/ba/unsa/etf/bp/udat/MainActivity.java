@@ -16,9 +16,9 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
-        tabLayout.addTab(tabLayout.newTab().setText("Enrollment"));
-        tabLayout.addTab(tabLayout.newTab().setText("Attendance"));
-        tabLayout.addTab(tabLayout.newTab().setText("Predictions"));
+        tabLayout.addTab(tabLayout.newTab().setText("Upis"));
+        tabLayout.addTab(tabLayout.newTab().setText("Nastava"));
+        tabLayout.addTab(tabLayout.newTab().setText("Ispiti"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
         final ViewPager viewPager = (ViewPager) findViewById(R.id.pager);

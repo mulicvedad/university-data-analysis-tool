@@ -23,8 +23,8 @@ public class PagerAdapter extends FragmentStatePagerAdapter {
                 AttendanceTabFragment attendanceTabFragment = new AttendanceTabFragment();
                 return attendanceTabFragment;
             case 2:
-                PredictionsTabFragment predictionsTabFragment = new PredictionsTabFragment();
-                return predictionsTabFragment;
+                ExamsTabFragment examsTabFragment = new ExamsTabFragment();
+                return examsTabFragment;
             default:
                 return null;
         }

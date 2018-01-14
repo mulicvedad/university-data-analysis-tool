@@ -18,14 +18,32 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Diagram"
+                android:text="Dijagrami:"
                 android:id="@+id/textViewTest"
                 android:textStyle="bold"
                 android:layout_marginTop="10dp"
                 android:layout_marginLeft="10dp" />
 
             <com.github.mikephil.charting.charts.BarChart
-                android:id="@+id/chart_enrollment"
+                android:id="@+id/chart_enrollment_by_year"
+                android:layout_width="match_parent"
+                android:layout_height="200dp" />
+
+            <com.github.mikephil.charting.charts.BarChart
+                android:layout_marginTop="10dp"
+                android:id="@+id/chart_enrollment_by_department"
+                android:layout_width="match_parent"
+                android:layout_height="200dp" />
+
+            <com.github.mikephil.charting.charts.BarChart
+                android:layout_marginTop="10dp"
+                android:id="@+id/chart_enrollment_by_budget"
+                android:layout_width="match_parent"
+                android:layout_height="200dp" />
+
+            <com.github.mikephil.charting.charts.BarChart
+                android:layout_marginTop="10dp"
+                android:id="@+id/chart_enrollment_by_repeating"
                 android:layout_width="match_parent"
                 android:layout_height="200dp" />
 
