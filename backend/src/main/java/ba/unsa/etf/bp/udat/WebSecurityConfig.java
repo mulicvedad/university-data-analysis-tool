@@ -47,7 +47,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/semesters/**").permitAll()//hasAnyRole(ROLE_ADMIN, ROLE_USER)
                 .antMatchers("/times/**").permitAll()//hasAnyRole(ROLE_ADMIN, ROLE_USER)
                 .antMatchers("/prediction/**").permitAll()//hasAnyRole(ROLE_ADMIN, ROLE_USER)*/
-                .anyRequest().authenticated()
+                .anyRequest().permitAll()//.authenticated()
                 .and()
                 // We filter the api/login requests
                 .addFilterBefore(new JWTLoginFilter("/login", authenticationManager()),
