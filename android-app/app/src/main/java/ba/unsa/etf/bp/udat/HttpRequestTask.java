@@ -1,10 +1,14 @@
 package ba.unsa.etf.bp.udat;
 
+import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import org.springframework.http.client.ClientHttpRequestInterceptor;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
+
+import java.util.Collections;
 
 public class HttpRequestTask extends AsyncTask<String, Integer, float[]> {
     public interface OnRequestDone {
@@ -27,6 +31,7 @@ public class HttpRequestTask extends AsyncTask<String, Integer, float[]> {
                 String url =  baseUrl + params[i];
                 RestTemplate restTemplate = new RestTemplate();
                 restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
+                restTemplate.setInterceptors(Collections.singletonList((ClientHttpRequestInterceptor)(new HttpInterceptor())));
                 response[i] = restTemplate.getForObject(url, Float.class);
             }
 
@@ -44,4 +49,5 @@ public class HttpRequestTask extends AsyncTask<String, Integer, float[]> {
             response[1] = 100 - response[0];
         caller.onDone(response, chartType);
     }
+
 }

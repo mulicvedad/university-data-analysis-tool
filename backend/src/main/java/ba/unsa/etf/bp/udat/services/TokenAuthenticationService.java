@@ -90,6 +90,8 @@ public class TokenAuthenticationService {
         WebApplicationContext webApplicationContext = WebApplicationContextUtils.getWebApplicationContext(servletContext);
         userRepository = webApplicationContext.getBean(UserRepository.class);
 
+        logger.info("JWT: " + request.getHeader(HEADER_STRING));
+
         String userReq = parseJwt(request.getHeader(HEADER_STRING));
 
         User user = userRepository.findByUsername(userReq);

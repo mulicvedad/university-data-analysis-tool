@@ -1,0 +1,93 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<LinearLayout xmlns:android = "http://schemas.android.com/apk/res/android"
+    xmlns:tools = "http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height = "match_parent"
+    android:paddingLeft= "20dp"
+    android:paddingRight = "20dp"
+    android:paddingTop = "20dp"
+    android:paddingBottom = "20dp"
+    android:orientation="vertical"
+    tools:context = ".LoginActivity">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:id="@+id/imageView"
+            android:src="@drawable/abc"
+            android:layout_centerHorizontal="true" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textViewLogin"
+            android:layout_centerHorizontal="true"
+            android:text="Prijava"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="#223873"/>
+
+    </RelativeLayout>
+
+    <EditText
+        android:layout_width = "match_parent"
+        android:layout_height = "wrap_content"
+        android:id = "@+id/editTextUsername"
+        android:hint = "Korisnicko ime"
+        android:focusable = "true"
+        android:textColorHighlight = "#25326c"
+        android:textColorHint = "#6a6c78"
+        android:layout_marginTop = "46dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:id="@+id/editTextPassword"
+        android:textColorHint="#6a6c78"
+        android:textColorHighlight = "#25326c"
+        android:hint="Lozinka"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="10dp"/>
+
+
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="20dp">
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Prijava"
+            android:id="@+id/buttonLogin" />
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Izlaz"
+            android:id="@+id/buttonCancel" />
+
+    </LinearLayout>
+
+
+</LinearLayout>

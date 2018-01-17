@@ -31,23 +31,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable().authorizeRequests()
-                //.antMatchers("/**").permitAll();
-               // .antMatchers("/**").authenticated()
-                /*.antMatchers("/").hasAnyRole(ROLE_ADMIN,ROLE_USER)
-                .antMatchers("/").permitAll()
-                .antMatchers(HttpMethod.POST, "/login").permitAll()*/
                 .antMatchers("/import/**").hasRole(ROLE_ADMIN)
-               /* .antMatchers("/enrollment/**").permitAll()//hasAnyRole(ROLE_ADMIN,ROLE_USER)
-                .antMatchers("/exams/**").permitAll()//hasAnyRole(ROLE_ADMIN, ROLE_USER)
-                .antMatchers("/attendance/**").permitAll()//hasAnyRole(ROLE_ADMIN, ROLE_USER)
-                .antMatchers("/academic_years/**").permitAll()//hasAnyRole(ROLE_ADMIN, ROLE_USER)
-                .antMatchers("/courses/**").permitAll()//hasAnyRole(ROLE_ADMIN, ROLE_USER)
-                .antMatchers("/departments/**").permitAll()//hasAnyRole(ROLE_ADMIN, ROLE_USER)
-                .antMatchers("/lecturers/**").permitAll()//hasAnyRole(ROLE_ADMIN, ROLE_USER)
-                .antMatchers("/semesters/**").permitAll()//hasAnyRole(ROLE_ADMIN, ROLE_USER)
-                .antMatchers("/times/**").permitAll()//hasAnyRole(ROLE_ADMIN, ROLE_USER)
-                .antMatchers("/prediction/**").permitAll()//hasAnyRole(ROLE_ADMIN, ROLE_USER)*/
-                .anyRequest().permitAll()//.authenticated()
+                .anyRequest().authenticated()
                 .and()
                 // We filter the api/login requests
                 .addFilterBefore(new JWTLoginFilter("/login", authenticationManager()),

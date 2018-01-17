@@ -18,6 +18,7 @@ import org.springframework.security.web.authentication.AbstractAuthenticationPro
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
+import sun.util.logging.PlatformLogger;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletContext;
@@ -29,6 +30,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.logging.Logger;
 
 public class JWTLoginFilter extends AbstractAuthenticationProcessingFilter {
 
@@ -98,5 +100,6 @@ public class JWTLoginFilter extends AbstractAuthenticationProcessingFilter {
             Authentication auth) throws IOException, ServletException {
         TokenAuthenticationService
                 .addAuthentication(req, res, auth.getName());
+        Logger.getLogger(this.getClass().getName()).info( "SUCCESSFUL LOGIN\n");
     }
 }
